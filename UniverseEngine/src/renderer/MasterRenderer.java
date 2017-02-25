@@ -1,5 +1,6 @@
 package renderer;
 
+import entities.Camera;
 import entities.Entity;
 import org.joml.Matrix4f;
 import shaders.Shader;
@@ -8,9 +9,8 @@ import shaders.StaticShader;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.lwjgl.opengl.GL11.GL_COLOR_BUFFER_BIT;
-import static org.lwjgl.opengl.GL11.GL_DEPTH_BUFFER_BIT;
-import static org.lwjgl.opengl.GL11.glClear;
+import static org.lwjgl.opengl.GL11.*;
+import static org.lwjgl.opengl.GL11.GL_DEPTH_TEST;
 
 /**
  * Created by backes on 25/02/17.
@@ -46,7 +46,7 @@ public class MasterRenderer {
     /**
      * The master render loop
      */
-    public void render(){
+    public void render(Camera camera){
         prepare();
     }
 
@@ -54,6 +54,7 @@ public class MasterRenderer {
      * Clears the framebuffer and thus prepares the render process
      */
     private void prepare(){
+        glEnable(GL_DEPTH_TEST);
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); // clear the framebuffer
     }
     

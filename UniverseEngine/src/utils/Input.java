@@ -33,4 +33,12 @@ public class Input {
         wheelDY = wheelY-(float)y;
         wheelY = (float)y;
     }
+    
+    public static void keyPressed(int key){
+        
+    }
+    
+    public static boolean isPressed(int key){
+        return false;
+    }
 }

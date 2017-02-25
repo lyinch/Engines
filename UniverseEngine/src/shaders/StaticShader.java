@@ -1,7 +1,9 @@
 package shaders;
 
 
+import entities.Camera;
 import org.joml.Matrix4f;
+import utils.Maths;
 
 /**
  * Created by backes on 24/02/17.
@@ -12,6 +14,7 @@ public class StaticShader extends Shader{
 
     private int location_transformationMatrix;
     private int location_ProjectionMatrix;
+    private int location_ViewMatrix;
     
     /**
      * creates the program from the vertex and fragment shader, and binds the attributes
@@ -24,6 +27,7 @@ public class StaticShader extends Shader{
     protected void getAllUniformLocations() {
         location_transformationMatrix = super.getUniformLocation("transformationMatrix");
         location_ProjectionMatrix = super.getUniformLocation("projectionMatrix");
+        location_ViewMatrix = super.getUniformLocation("viewMatrix");
     }
 
     /**
@@ -34,10 +38,26 @@ public class StaticShader extends Shader{
         super.loadMatrix(location_transformationMatrix,matrix);
     }
 
-    
+
+    /**
+     * Loads the projection Matrix. This projects the 3D object to the 2D plane. (scales it accordingly to 
+     * it's Z coordinate)
+     * @param projectionMatrix The 4 Dimensional projection matrix
+     */
     public void loadProjectionMatrix(Matrix4f projectionMatrix){
         super.loadMatrix(location_ProjectionMatrix,projectionMatrix);
     }
+
+    /**
+     * Creates and loads the camera matrix
+     * @param camera The camera object
+     */
+    public void loadViewMatrix(Camera camera){
+        super.loadMatrix(location_ViewMatrix, Maths.createViewMatrix(camera));
+    }
+    
+    
+    
     
     @Override
     public void bindAttributes() {

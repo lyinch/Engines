@@ -1,5 +1,6 @@
 package main;
 
+import entities.Camera;
 import entities.CubeEntity;
 import entities.Entity;
 import generation.CubeGenerator;
@@ -37,24 +38,30 @@ public class Engine {
         CubeEntity cube = new CubeEntity(cubeModel);
         StaticShader shader = new StaticShader();
         MasterRenderer renderer = new MasterRenderer(shader);
+        Camera camera = new Camera(new Vector3f(0,0,0));
         /** ================================================= **/
 
         /** ================================================= **/
         
         while (!glfwWindowShouldClose(DisplayManager.window) ) {
+            cube.addPosition(0,0,-0.001f);
+            cube.addRotation(0,1f,1f);
+
+            glEnable(GL_DEPTH_TEST);
             glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); // clear the framebuffer
+            camera.move();
             shader.start();
+            shader.loadViewMatrix(camera);
             glBindVertexArray(cube.getModel().getVaoID());
             
             //System.out.println(cube.getModel().getVaoID());
             Matrix4f transformationMatrix= Maths.createTransformationMatrix(cube.getPosition(),cube.getRotation(),cube.getScale());
             shader.loadTransformationMatrix(transformationMatrix);
-            glDrawArrays(GL_TRIANGLES, 0, 3); 
+            glDrawArrays(GL_TRIANGLES, 0, 12*3); 
 
             glfwSwapBuffers(DisplayManager.window);
             shader.stop();
             glfwPollEvents();
-            cube.addPosition(0,0,-0.1f);
         }
         shader.cleanUp();
     }

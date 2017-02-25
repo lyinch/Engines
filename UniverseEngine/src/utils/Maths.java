@@ -1,5 +1,6 @@
 package utils;
 
+import entities.Camera;
 import org.joml.Math;
 import org.joml.Matrix4f;
 import org.joml.Vector3f;
@@ -24,8 +25,21 @@ public class Maths {
                 .rotate((float)Math.toRadians(rotation.z), new Vector3f(0,0,1))
                 .scale(scale);
     }
-    
-    public static void createProjectionMatrix(){
-        
+
+    /**
+     * Creates the Camera Matrix. This matrix moves the world in the opposite direction, and thus creating the illusion
+     * of a camera, therefore the negative position translation
+     * @param camera The camera
+     * @return The view Matrix
+     */
+    public static Matrix4f createViewMatrix(Camera camera){
+        Matrix4f viewMatrix = new Matrix4f();
+        Vector3f cameraPos = camera.getPosition();
+        Vector3f negativeCameraPos = new Vector3f(-cameraPos.x,-cameraPos.y,-cameraPos.z);
+        viewMatrix.rotate((float)Math.toRadians(camera.getPitch()), new Vector3f(1,0,0))
+                .rotate((float)Math.toRadians(camera.getYaw()), new Vector3f(0,1,0))
+                .rotate((float)Math.toRadians(camera.getRoll()), new Vector3f(0,0,1))
+                .translate(negativeCameraPos);
+        return viewMatrix;
     }
 }
