@@ -6,7 +6,7 @@ package generation;
 public class CubeGenerator implements Generator {
     float[] vertices;
     int[] indices;
-    
+    float[] textureCoords;
     @Override
     public void generate() {
         this.vertices = new float[] {
@@ -55,6 +55,13 @@ public class CubeGenerator implements Generator {
                 20,21,23,
                 23,21,22
         };
+
+        this.textureCoords = new float[] {
+                0,0,
+                0,1,
+                1,1,
+                1,0
+        };
     }
 
     @Override
@@ -65,5 +72,9 @@ public class CubeGenerator implements Generator {
     @Override
     public float[] getVertices() {
         return vertices;
+    }
+
+    public float[] getTextureCoords() {
+        return textureCoords;
     }
 }

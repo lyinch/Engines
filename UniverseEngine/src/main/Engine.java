@@ -14,12 +14,11 @@ import renderer.DisplayManager;
 import renderer.Loader;
 import renderer.MasterRenderer;
 import shaders.StaticShader;
+import textures.Texture;
 import utils.Maths;
 
 
-import static org.lwjgl.glfw.GLFW.glfwPollEvents;
-import static org.lwjgl.glfw.GLFW.glfwSwapBuffers;
-import static org.lwjgl.glfw.GLFW.glfwWindowShouldClose;
+import static org.lwjgl.glfw.GLFW.*;
 import static org.lwjgl.opengl.GL11.*;
 import static org.lwjgl.opengl.GL11.GL_DEPTH_BUFFER_BIT;
 
@@ -40,9 +39,9 @@ public class Engine {
         
         CubeGenerator cubeGenerator = new CubeGenerator();
         cubeGenerator.generate();
-        ModelData cubeData = new ModelData(cubeGenerator.getVertices(),cubeGenerator.getIndices(),3);
+        ModelData cubeData = new ModelData(cubeGenerator.getVertices(),cubeGenerator.getIndices(),cubeGenerator.getTextureCoords(),3);
         Model cubeModel = new Model(loader.loadToVAO(cubeData),cubeData.getCount());
-        CubeEntity cube = new CubeEntity(cubeModel);
+        CubeEntity cube = new CubeEntity(cubeModel,loader.loadTexture("white"));
 
         IcosphereGenerator icosphereGenerator = new IcosphereGenerator(4);
         icosphereGenerator.generate();
@@ -50,15 +49,15 @@ public class Engine {
         Model icoModel = new Model(loader.loadToVAO(icoData),icoData.getCount());
         IconosphereEntity ico = new IconosphereEntity(icoModel);
         ico.addPosition(0,0,-3);
-        //renderer.addEntity(cube);
-        renderer.addEntity(ico);
+        renderer.addEntity(cube);
+        //renderer.addEntity(ico);
         /** ================================================= **/
+        
 
         /** ================================================= **/
         
         while (!glfwWindowShouldClose(DisplayManager.window) ) {
             renderer.render(shader, camera);
-            
             
 
             //glBindVertexArray(cube.getModel().getVaoID());

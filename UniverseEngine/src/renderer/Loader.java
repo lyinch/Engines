@@ -2,14 +2,15 @@ package renderer;
 
 import models.ModelData;
 import org.lwjgl.BufferUtils;
+import textures.Texture;
 
+import java.nio.ByteBuffer;
 import java.nio.FloatBuffer;
 import java.nio.IntBuffer;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.lwjgl.opengl.GL11.GL_FLOAT;
-import static org.lwjgl.opengl.GL11.glDeleteTextures;
+import static org.lwjgl.opengl.GL11.*;
 import static org.lwjgl.opengl.GL15.*;
 import static org.lwjgl.opengl.GL15.GL_ARRAY_BUFFER;
 import static org.lwjgl.opengl.GL15.glBindBuffer;
@@ -18,6 +19,8 @@ import static org.lwjgl.opengl.GL20.glVertexAttribPointer;
 import static org.lwjgl.opengl.GL30.glBindVertexArray;
 import static org.lwjgl.opengl.GL30.glDeleteVertexArrays;
 import static org.lwjgl.opengl.GL30.glGenVertexArrays;
+import static org.lwjgl.stb.STBImage.stbi_image_free;
+import static org.lwjgl.stb.STBImage.stbi_load;
 
 /**
  * Created by backes on 24/02/17.
@@ -124,6 +127,39 @@ public class Loader {
         glBindVertexArray(vaoID);
         vaos.add(vaoID);
         return vaoID;
+    }
+    
+    /**
+     * Loads a .png file as a texture with stbi, and binds the textureID. Returns the texture object
+     * @param filename the filename of the texture, without a path or file ending
+     * @return the Texture object
+     */
+    public Texture loadTexture(String filename){
+        int textureID;
+        IntBuffer width = BufferUtils.createIntBuffer(1);
+        IntBuffer height = BufferUtils.createIntBuffer(1);
+        IntBuffer components = BufferUtils.createIntBuffer(1);
+        ByteBuffer data = stbi_load("./res/"+filename+".png",width,height,components,4);
+
+        if (data == null)
+            throw new RuntimeException("Could not load texture!");
+
+        textureID = glGenTextures();
+
+        int w = width.get();
+        int h = height.get();
+
+        glBindTexture(GL_TEXTURE_2D,textureID);
+
+        glTexParameterf(GL_TEXTURE_2D,GL_TEXTURE_MIN_FILTER,GL_NEAREST);
+        glTexParameterf(GL_TEXTURE_2D,GL_TEXTURE_MAG_FILTER,GL_NEAREST);
+
+        glTexImage2D(GL_TEXTURE_2D,0,GL_RGBA,w,h,0,GL_RGBA,GL_UNSIGNED_BYTE,data);
+
+        stbi_image_free(data);
+        textures.add(textureID);
+
+        return new Texture(textureID,w,h);
     }
     
     /**

@@ -6,6 +6,7 @@ package models;
 public class Model {
     private int vaoID;
     private int count;
+    
     public Model(int vaoID, int count) {
         this.vaoID = vaoID;
         this.count = count;
