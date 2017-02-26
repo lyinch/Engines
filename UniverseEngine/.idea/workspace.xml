@@ -2,21 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="24d73b68-6e3b-4bd7-9171-d3f9579aae58" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/entities/IconosphereEntity.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/generation/IcosphereGenerator.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/UniverseEngine/entities/Camera.class" afterPath="$PROJECT_DIR$/out/production/UniverseEngine/entities/Camera.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/UniverseEngine/main/Engine.class" afterPath="$PROJECT_DIR$/out/production/UniverseEngine/main/Engine.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/UniverseEngine/renderer/DisplayManager.class" afterPath="$PROJECT_DIR$/out/production/UniverseEngine/renderer/DisplayManager.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/UniverseEngine/renderer/MasterRenderer.class" afterPath="$PROJECT_DIR$/out/production/UniverseEngine/renderer/MasterRenderer.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/UniverseEngine/generation/IcosphereGenerator.class" afterPath="$PROJECT_DIR$/out/production/UniverseEngine/generation/IcosphereGenerator.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/UniverseEngine/shaders/FragmentShader.frag" afterPath="$PROJECT_DIR$/out/production/UniverseEngine/shaders/FragmentShader.frag" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/UniverseEngine/shaders/VertexShader.vert" afterPath="$PROJECT_DIR$/out/production/UniverseEngine/shaders/VertexShader.vert" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/entities/Camera.java" afterPath="$PROJECT_DIR$/src/entities/Camera.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/generation/Generator.java" afterPath="$PROJECT_DIR$/src/generation/Generator.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/generation/IcosphereGenerator.java" afterPath="$PROJECT_DIR$/src/generation/IcosphereGenerator.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/Engine.java" afterPath="$PROJECT_DIR$/src/main/Engine.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/renderer/DisplayManager.java" afterPath="$PROJECT_DIR$/src/renderer/DisplayManager.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/shaders/FragmentShader.frag" afterPath="$PROJECT_DIR$/src/shaders/FragmentShader.frag" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/shaders/VertexShader.vert" afterPath="$PROJECT_DIR$/src/shaders/VertexShader.vert" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -35,8 +24,8 @@
       <file leaf-file-name="Engine.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/Engine.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="112">
-              <caret line="32" column="39" lean-forward="false" selection-start-line="32" selection-start-column="39" selection-end-line="32" selection-end-column="39" />
+            <state relative-caret-position="140">
+              <caret line="46" column="72" lean-forward="false" selection-start-line="46" selection-start-column="72" selection-end-line="46" selection-end-column="72" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -59,14 +48,18 @@
       <file leaf-file-name="IcosphereGenerator.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/generation/IcosphereGenerator.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="166">
-              <caret line="81" column="29" lean-forward="false" selection-start-line="81" selection-start-column="29" selection-end-line="81" selection-end-column="29" />
+            <state relative-caret-position="226">
+              <caret line="153" column="8" lean-forward="true" selection-start-line="153" selection-start-column="8" selection-end-line="153" selection-end-column="8" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#5349#5350#0" expanded="true" />
-                <element signature="e#5379#5380#0" expanded="true" />
-                <element signature="e#5429#5430#0" expanded="true" />
-                <element signature="e#5460#5461#0" expanded="true" />
+                <element signature="e#5847#5848#0" expanded="true" />
+                <element signature="e#5877#5878#0" expanded="true" />
+                <element signature="e#5927#5928#0" expanded="true" />
+                <element signature="e#5958#5959#0" expanded="true" />
+                <element signature="e#5993#5994#0" expanded="true" />
+                <element signature="e#6027#6028#0" expanded="true" />
+                <element signature="e#6078#6079#0" expanded="true" />
+                <element signature="e#6124#6125#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -197,8 +190,8 @@
         <option value="$PROJECT_DIR$/src/generation/Generator.java" />
         <option value="$PROJECT_DIR$/src/entities/IconosphereEntity.java" />
         <option value="$PROJECT_DIR$/src/renderer/MasterRenderer.java" />
-        <option value="$PROJECT_DIR$/src/main/Engine.java" />
         <option value="$PROJECT_DIR$/src/entities/Camera.java" />
+        <option value="$PROJECT_DIR$/src/main/Engine.java" />
         <option value="$PROJECT_DIR$/src/generation/IcosphereGenerator.java" />
       </list>
     </option>
@@ -805,12 +798,12 @@
       <option name="presentableId" value="Default" />
       <updated>1487970436796</updated>
       <workItem from="1487970438417" duration="18730000" />
-      <workItem from="1488058042780" duration="19687000" />
+      <workItem from="1488058042780" duration="21829000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="38417000" />
+    <option name="totallyTimeSpent" value="40559000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1280" height="773" extended-state="6" />
@@ -1107,16 +1100,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/Engine.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="112">
-          <caret line="32" column="39" lean-forward="false" selection-start-line="32" selection-start-column="39" selection-end-line="32" selection-end-column="39" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/entities/CubeEntity.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="210">
@@ -1159,16 +1142,30 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/generation/IcosphereGenerator.java">
+    <entry file="file://$PROJECT_DIR$/src/main/Engine.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="166">
-          <caret line="81" column="29" lean-forward="false" selection-start-line="81" selection-start-column="29" selection-end-line="81" selection-end-column="29" />
+        <state relative-caret-position="140">
+          <caret line="46" column="72" lean-forward="false" selection-start-line="46" selection-start-column="72" selection-end-line="46" selection-end-column="72" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#5349#5350#0" expanded="true" />
-            <element signature="e#5379#5380#0" expanded="true" />
-            <element signature="e#5429#5430#0" expanded="true" />
-            <element signature="e#5460#5461#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/generation/IcosphereGenerator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="226">
+          <caret line="153" column="8" lean-forward="true" selection-start-line="153" selection-start-column="8" selection-end-line="153" selection-end-column="8" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#5847#5848#0" expanded="true" />
+            <element signature="e#5877#5878#0" expanded="true" />
+            <element signature="e#5927#5928#0" expanded="true" />
+            <element signature="e#5958#5959#0" expanded="true" />
+            <element signature="e#5993#5994#0" expanded="true" />
+            <element signature="e#6027#6028#0" expanded="true" />
+            <element signature="e#6078#6079#0" expanded="true" />
+            <element signature="e#6124#6125#0" expanded="true" />
           </folding>
         </state>
       </provider>

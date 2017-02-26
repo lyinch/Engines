@@ -15,19 +15,26 @@ import java.util.*;
  * http://blog.andreaskahler.com/2009/06/creating-icosphere-mesh-in-code.html
  */
 public class IcosphereGenerator implements Generator {
-    float[] vertices;
-    int[] indices;
-    List<Vector3i> indicesList = new ArrayList<>();
-    List<Vector3i> indicesListFinal = new ArrayList<>();
-    List<Vector3f> verticesList = new ArrayList<>();
+    private float[] vertices;
+    private int[] indices;
+    
+    private List<Vector3i> indicesList = new ArrayList<>();
+    private List<Vector3f> verticesList = new ArrayList<>();
+    
     private int index;
     private Map<Long,Integer> cache;
-    
+    private int detailLevel;
+
+    public IcosphereGenerator(int detailLevel) {
+        this.detailLevel = detailLevel;
+        index = 0;
+        cache = new HashMap<>();
+    }
+
     @Override
     public void generate() {
         index = 0;
-        cache = new HashMap<Long,Integer>();
-        
+        cache.clear();
         /*
         Golden Ratio:
         In a regular icosahedron, all lengths are the same, therefore solving:
@@ -78,14 +85,25 @@ public class IcosphereGenerator implements Generator {
         indicesList.add(new Vector3i(6,2,10));
         indicesList.add(new Vector3i(8,6,7));
         indicesList.add(new Vector3i(9,8,1));
+        
+        
+        refineTriangles(detailLevel);
+        
+        listToArray(verticesList,indicesList);
+    }
 
-        for (int i = 0; i < 6; i++){
+    /**
+     * Recursively adds a new vertex between every edge
+     * @param details The recursion depth
+     */
+    private void refineTriangles(int details){
+        for (int i = 0; i < details; i++){
             List<Vector3i> indices2 = new ArrayList<>();
             for (Vector3i vec:indicesList) {
                 int a = getMiddlePoint(vec.x,vec.y);
                 int b = getMiddlePoint(vec.y,vec.z);
                 int c = getMiddlePoint(vec.z,vec.x);
-                
+
                 indices2.add(new Vector3i(vec.x,a,c));
                 indices2.add(new Vector3i(vec.y,b,a));
                 indices2.add(new Vector3i(vec.z,c,b));
@@ -94,44 +112,49 @@ public class IcosphereGenerator implements Generator {
             cache.clear();
             indicesList = indices2;
         }
+    }
 
-        for (Vector3i vec:indicesList) {
-            indicesListFinal.add(vec);
-        }
+    /**
+     * Copies the data from the ArrayLists to the output Arrays
+     * @param vertices
+     * @param indices
+     */
+    private void listToArray(List<Vector3f> vertices, List<Vector3i> indices){
         
-        
-        this.indices = new int[indicesListFinal.size()*3];
+        this.indices = new int[indices.size()*3];
         int pointer = 0;
-        for (Vector3i indi:indicesListFinal){
+        for (Vector3i indi:indices){
             this.indices[pointer++] = indi.x;
             this.indices[pointer++] = indi.y;
             this.indices[pointer++] = indi.z;
         }
-
-        this.vertices = new float[verticesList.size()*3];
+        
+        
+        this.vertices = new float[vertices.size()*3];
         pointer = 0;
-        for (Vector3f coord:verticesList){
+        for (Vector3f coord:vertices){
             this.vertices[pointer++] = coord.x;
             this.vertices[pointer++] = coord.y;
             this.vertices[pointer++] = coord.z;
-        }
+        } 
     }
 
     /**
-     * Adds the vertex in the center of an edge to the mesh
-     * @param p1
-     * @param p2
-     * @return
+     * Adds a new vertex in the center of an edge to the mesh
+     * @param p1 The first point
+     * @param p2 The second point
+     * @return The index for the indices list
      */
     private int getMiddlePoint(int p1, int p2){
+        
         boolean firstIsSmaller = p1<p2;
         long smallerIndex = firstIsSmaller ? p1:p2;
         long greaterIndex = firstIsSmaller ? p2:p1;
         long key = (smallerIndex << 32) + greaterIndex;
         
-        if (this.cache.containsKey(key)){
-            return cache.get(key);
-        }
+        Integer val = cache.get(key);
+        if (val != null)
+            return val;
         
         
         Vector3f point1 = verticesList.get(p1);
@@ -152,9 +175,8 @@ public class IcosphereGenerator implements Generator {
      * @return the index of the vertex in the list
      */
     private int addVertex(Vector3f p){
-        float length = p.length();
-        verticesList.add(new Vector3f(p.x/length,p.y/length,p.z/length));
-        //index++;
+        p.normalize();
+        verticesList.add(p);
         return index++;
     }
     
@@ -167,5 +189,13 @@ public class IcosphereGenerator implements Generator {
     @Override
     public float[] getVertices() {
         return vertices;
+    }
+
+    public int getDetailLevel() {
+        return detailLevel;
+    }
+
+    public void setDetailLevel(int detailLevel) {
+        this.detailLevel = detailLevel;
     }
 }
