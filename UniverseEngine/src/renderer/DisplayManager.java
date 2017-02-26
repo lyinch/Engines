@@ -55,7 +55,7 @@ public class DisplayManager {
 
         glfwShowWindow(window);
         GL.createCapabilities();
-        glClearColor(0.34f, 0.5f, 0.91f, 0.0f);
+        glClearColor(0, 0, 0, 0.0f);
 
     }
 

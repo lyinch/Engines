@@ -11,5 +11,5 @@ out vec3 colour;
 void main(void){
     gl_Position = projectionMatrix * viewMatrix *   transformationMatrix * vec4(vertices,1.0);
     
-    colour = vec3(1.0,0.0,0.0);
+    colour = vec3(vertices.x+0.2,vertices.y+0.2,vertices.z+0.2);
 }

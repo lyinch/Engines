@@ -3,7 +3,9 @@ package main;
 import entities.Camera;
 import entities.CubeEntity;
 import entities.Entity;
+import entities.IconosphereEntity;
 import generation.CubeGenerator;
+import generation.IcosphereGenerator;
 import models.Model;
 import models.ModelData;
 import org.joml.Matrix4f;
@@ -30,9 +32,6 @@ public class Engine {
     public static void main(String[] args){
         DisplayManager.createDisplay();
 
-        glPolygonMode(GL_FRONT_AND_BACK,GL_FILL);
-
-
         Loader loader = new Loader();
 
         StaticShader shader = new StaticShader();
@@ -44,9 +43,15 @@ public class Engine {
         ModelData cubeData = new ModelData(cubeGenerator.getVertices(),cubeGenerator.getIndices(),3);
         Model cubeModel = new Model(loader.loadToVAO(cubeData),cubeData.getCount());
         CubeEntity cube = new CubeEntity(cubeModel);
-        
 
-        renderer.addEntity(cube);
+        IcosphereGenerator icosphereGenerator = new IcosphereGenerator();
+        icosphereGenerator.generate();
+        ModelData icoData = new ModelData(icosphereGenerator.getVertices(),icosphereGenerator.getIndices(),3);
+        Model icoModel = new Model(loader.loadToVAO(icoData),icoData.getCount());
+        IconosphereEntity ico = new IconosphereEntity(icoModel);
+        ico.addPosition(0,0,-3);
+        //renderer.addEntity(cube);
+        renderer.addEntity(ico);
         /** ================================================= **/
 
         /** ================================================= **/
