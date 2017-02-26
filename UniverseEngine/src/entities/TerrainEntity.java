@@ -7,14 +7,13 @@ import textures.Texture;
 /**
  * Created by backes on 26/02/17.
  */
-public class IconosphereEntity extends Entity {
+public class TerrainEntity extends Entity {
     
-    public IconosphereEntity(Model model, Vector3f position, Vector3f rotation, float scale) {
+    public TerrainEntity(Model model, Vector3f position, Vector3f rotation, float scale) {
         super(model, position, rotation, scale);
     }
 
-    public IconosphereEntity(Model model, Texture texture){
+    public TerrainEntity(Model model){
         super(model, new Vector3f(0,0,-1), new Vector3f(0,0,0), 0.5f);
-        this.texture = texture;
     }
 }

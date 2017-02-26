@@ -6,6 +6,7 @@ package models;
 public class ModelData {
     private float[] vertices;
     private float[] textureCoords;
+    private float[] colour;
     private int[] indices;
     private int dimension;
     private int count;
@@ -17,11 +18,12 @@ public class ModelData {
         count = indices.length;
     }
 
-    public ModelData(float[] vertices, int[] indices, float[] textureCoords, int dimension) {
+    public ModelData(float[] vertices, int[] indices, float[] textureCoords, float[] colour, int dimension) {
         this.vertices = vertices;
         this.indices = indices;
         this.dimension = dimension;
         this.textureCoords = textureCoords;
+        this.colour = colour;
         count = indices.length;
     }
 
@@ -43,5 +45,9 @@ public class ModelData {
 
     public int getCount() {
         return count;
+    }
+
+    public float[] getColour() {
+        return colour;
     }
 }

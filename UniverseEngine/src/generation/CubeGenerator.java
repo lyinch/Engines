@@ -7,6 +7,8 @@ public class CubeGenerator implements Generator {
     float[] vertices;
     int[] indices;
     float[] textureCoords;
+    
+    
     @Override
     public void generate() {
         this.vertices = new float[] {

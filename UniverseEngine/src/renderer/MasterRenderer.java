@@ -34,6 +34,9 @@ public class MasterRenderer {
         shader.loadProjectionMatrix(createProjectionMatrix());
         shader.stop();
         entities = new ArrayList<>();
+
+        glEnable(GL_CULL_FACE);
+        glCullFace(GL_BACK);
     }
 
     /**
@@ -74,8 +77,8 @@ public class MasterRenderer {
             Matrix4f transformationMatrix= Maths.createTransformationMatrix(entity.getPosition(),entity.getRotation(),entity.getScale());
             shader.loadTransformationMatrix(transformationMatrix);
             
-            glActiveTexture(GL_TEXTURE0);
-            glBindTexture(GL_TEXTURE_2D,entity.getTexture().getTextureID());
+            //glActiveTexture(GL_TEXTURE0);
+            //glBindTexture(GL_TEXTURE_2D,entity.getTexture().getTextureID());
 
             glDrawElements(GL_TRIANGLES, entity.getModel().getCount(), GL11.GL_UNSIGNED_INT, 0);
             entity.addRotation(1,0,0);

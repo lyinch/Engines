@@ -63,6 +63,7 @@ public class StaticShader extends Shader{
     public void bindAttributes() {
         super.bindAttribute(0,"vertices");
         super.bindAttribute(1,"uvCoords");
+        super.bindAttribute(2,"uvCoords");
     }
 
     

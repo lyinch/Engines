@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.lwjgl.opengl.GL11.*;
+import static org.lwjgl.opengl.GL12.GL_CLAMP_TO_EDGE;
 import static org.lwjgl.opengl.GL15.*;
 import static org.lwjgl.opengl.GL15.GL_ARRAY_BUFFER;
 import static org.lwjgl.opengl.GL15.glBindBuffer;
@@ -51,7 +52,8 @@ public class Loader {
         storeDataInAttributeList(0,modelData.getDimension(),modelData.getVertices());
         bindIndicesBuffer(modelData.getIndices());
         storeDataInAttributeList(1,2,modelData.getTextureCoords());
-        
+        storeDataInAttributeList(1,3,modelData.getColour());
+
         return vaoID;
     }
 

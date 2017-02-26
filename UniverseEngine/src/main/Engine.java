@@ -3,8 +3,10 @@ package main;
 import entities.Camera;
 import entities.CubeEntity;
 import entities.IconosphereEntity;
+import entities.TerrainEntity;
 import generation.CubeGenerator;
 import generation.IcosphereGenerator;
+import generation.TerrainGenerator;
 import models.Model;
 import models.ModelData;
 import org.joml.Vector3f;
@@ -29,21 +31,30 @@ public class Engine {
         MasterRenderer renderer = new MasterRenderer(shader);
         Camera camera = new Camera(new Vector3f(0,0,0));
         
-        CubeGenerator cubeGenerator = new CubeGenerator();
-        cubeGenerator.generate();
-        ModelData cubeData = new ModelData(cubeGenerator.getVertices(),cubeGenerator.getIndices(),cubeGenerator.getTextureCoords(),3);
-        Model cubeModel = new Model(loader.loadToVAO(cubeData),cubeData.getCount());
-        CubeEntity cube = new CubeEntity(cubeModel,loader.loadTexture("white"));
+//        CubeGenerator cubeGenerator = new CubeGenerator();
+//        cubeGenerator.generate();
+//        ModelData cubeData = new ModelData(cubeGenerator.getVertices(),cubeGenerator.getIndices(),cubeGenerator.getTextureCoords(),3);
+//        Model cubeModel = new Model(loader.loadToVAO(cubeData),cubeData.getCount());
+//        CubeEntity cube = new CubeEntity(cubeModel,loader.loadTexture("white"));
 
         
-//        IcosphereGenerator icosphereGenerator = new IcosphereGenerator(4);
-//        icosphereGenerator.generate();
-//        ModelData icoData = new ModelData(icosphereGenerator.getVertices(),icosphereGenerator.getIndices(),3);
-//        Model icoModel = new Model(loader.loadToVAO(icoData),icoData.getCount());
-//        IconosphereEntity ico = new IconosphereEntity(icoModel);
-//        ico.addPosition(0,0,-3);
-        renderer.addEntity(cube);
-        //renderer.addEntity(ico);
+        IcosphereGenerator icosphereGenerator = new IcosphereGenerator(4);
+        icosphereGenerator.generate();
+        ModelData icoData = new ModelData(icosphereGenerator.getVertices(),icosphereGenerator.getIndices(),icosphereGenerator.getTextureCoords(),icosphereGenerator.getColour(),3);
+        Model icoModel = new Model(loader.loadToVAO(icoData),icoData.getCount());
+        IconosphereEntity ico = new IconosphereEntity(icoModel,loader.loadTexture("moon1k"));
+        ico.addPosition(0,0,-3);
+//        renderer.addEntity(cube);
+        renderer.addEntity(ico);
+
+//        TerrainGenerator terrainGenerator = new TerrainGenerator(40);
+//        terrainGenerator.generate();
+//        ModelData terrainData = new ModelData(terrainGenerator.getVertices(),terrainGenerator.getIndices(),terrainGenerator.getTextureCoords(),terrainGenerator.getColour(),3);
+//        Model terrainModel = new Model(loader.loadToVAO(terrainData),terrainData.getCount());
+//        TerrainEntity terrain = new TerrainEntity(terrainModel);
+//        renderer.addEntity(terrain);
+        
+        
         /** ================================================= **/
         
 

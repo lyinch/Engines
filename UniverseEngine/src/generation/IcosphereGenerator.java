@@ -17,7 +17,8 @@ import java.util.*;
 public class IcosphereGenerator implements Generator {
     private float[] vertices;
     private int[] indices;
-    
+    private float[] textureCoords;
+    private float[] colour;
     private List<Vector3i> indicesList = new ArrayList<>();
     private List<Vector3f> verticesList = new ArrayList<>();
     
@@ -89,6 +90,17 @@ public class IcosphereGenerator implements Generator {
         
         refineTriangles(detailLevel);
         
+        textureCoords = new float[2*verticesList.size()];
+        int pointer = 0;
+        for (Vector3f vert:verticesList){
+            Vector3f tmp = vert;
+            vert.normalize();
+            float u = (float) (java.lang.Math.atan2(vert.x,vert.z)/(2f* java.lang.Math.PI))+0.5f;
+            float v = vert.y*0.5f+0.5f;
+            textureCoords[pointer++]=u;
+            textureCoords[pointer++]=v;
+        }
+        
         listToArray(verticesList,indicesList);
     }
 
@@ -131,10 +143,48 @@ public class IcosphereGenerator implements Generator {
         
         
         this.vertices = new float[vertices.size()*3];
+        this.colour = new float[vertices.size()*3];
+        pointer = 0;
+        float max = 0;
+        for (Vector3f coord:vertices) {
+
+            /** ================================================= **/
+            float j = new Random().nextInt(2);
+            float k = new Random().nextInt(2);
+            float l = new Random().nextInt(2);
+
+            if (j == 0)
+                j = new Random().nextFloat();
+            else
+                j = -new Random().nextFloat();
+
+
+            if (k == 0)
+                k = new Random().nextFloat();
+            else
+                k = -new Random().nextFloat();
+
+
+            if (l == 0)
+                l = new Random().nextFloat();
+            else
+                l = -new Random().nextFloat();
+            coord.add(j / 10, k / 10, l / 10);
+
+            //System.out.println(middle + " " + j + " " + k + " " + l);
+            max = Math.max(max,coord.length());
+            /** ================================================= **/
+            //System.out.println(coord.lengthSquared());
+        }
+        
         pointer = 0;
         for (Vector3f coord:vertices){
+            colour[pointer] = coord.length()/max;
             this.vertices[pointer++] = coord.x;
+            colour[pointer] = coord.length()/max;
+
             this.vertices[pointer++] = coord.y;
+            colour[pointer] = coord.length()/max;
             this.vertices[pointer++] = coord.z;
         } 
     }
@@ -163,7 +213,33 @@ public class IcosphereGenerator implements Generator {
                 (point1.x+point2.x) / 2.0f,
                 (point1.y+point2.y) / 2.0f,
                 (point1.z+point2.z) / 2.0f);
+
+        /** ================================================= **/
+        float j = new Random().nextInt(2);
+        float k = new Random().nextInt(2);
+        float l = new Random().nextInt(2);
         
+        if (j == 0)
+            j = new Random().nextFloat();
+        else 
+            j = - new Random().nextFloat();
+
+
+        if (k == 0)
+            k = new Random().nextFloat();
+        else
+            k = - new Random().nextFloat();
+
+
+        if (l == 0)
+            l = new Random().nextFloat();
+        else
+            l = - new Random().nextFloat();
+        //middle.add(j,k,l);
+
+        //System.out.println(middle + " " + j + " " + k + " " + l);
+
+        /** ================================================= **/
         int i = addVertex(middle);
         cache.put(key,i);
         return i;
@@ -197,5 +273,13 @@ public class IcosphereGenerator implements Generator {
 
     public void setDetailLevel(int detailLevel) {
         this.detailLevel = detailLevel;
+    }
+
+    public float[] getTextureCoords() {
+        return textureCoords;
+    }
+
+    public float[] getColour() {
+        return colour;
     }
 }
