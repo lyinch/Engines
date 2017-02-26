@@ -6,5 +6,7 @@ package generation;
 public interface Generator {
     
     //The generator function for the vertices
-    public float[] generate();
+    void generate();
+    int[] getIndices();
+    float[] getVertices();
 }

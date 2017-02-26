@@ -13,7 +13,7 @@ public class Camera {
     private Vector3f position = new Vector3f(0,0,0);
     private float pitch = 0; //high-low
     private float yaw = 0; //left-right
-    private float roll; //tilting 
+    private float roll = 0; //tilting 
 
     public Camera(Vector3f position) {
         this.position = position;

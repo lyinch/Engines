@@ -78,6 +78,14 @@ public class DisplayManager {
         glfwSetScrollCallback(window,(window,x,y)->Input.wheelMove(y));
     }
 
+    /**
+     * updates the display, swaps the buffer and pulls the events
+     */
+    public static void update(){
+        glfwSwapBuffers(window);
+        glfwPollEvents();
+    }
+
     public static int getWIDTH() {
         return WIDTH;
     }

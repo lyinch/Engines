@@ -3,14 +3,19 @@ package renderer;
 import entities.Camera;
 import entities.Entity;
 import org.joml.Matrix4f;
+import org.lwjgl.opengl.GL11;
 import shaders.Shader;
 import shaders.StaticShader;
+import utils.Maths;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import static org.lwjgl.glfw.GLFW.glfwPollEvents;
+import static org.lwjgl.glfw.GLFW.glfwSwapBuffers;
 import static org.lwjgl.opengl.GL11.*;
 import static org.lwjgl.opengl.GL11.GL_DEPTH_TEST;
+import static org.lwjgl.opengl.GL30.glBindVertexArray;
 
 /**
  * Created by backes on 25/02/17.
@@ -46,8 +51,29 @@ public class MasterRenderer {
     /**
      * The master render loop
      */
-    public void render(Camera camera){
+    public void render(StaticShader shader,Camera camera){
         prepare();
+        camera.move();
+        shader.start();
+        shader.loadViewMatrix(camera);
+        renderEntity(shader);
+        shader.stop();
+        DisplayManager.update();
+        //entities.clear();
+    }
+
+    /**
+     * Renders the entity: Creates and loads the transformation matrix, and then draws the entity
+     * @param shader The shader to load the transformation matrix to
+     */
+    private void renderEntity(StaticShader shader){
+        for (Entity entity:entities){
+            glBindVertexArray(entity.getModel().getVaoID());
+            Matrix4f transformationMatrix= Maths.createTransformationMatrix(entity.getPosition(),entity.getRotation(),entity.getScale());
+            shader.loadTransformationMatrix(transformationMatrix);
+            glDrawElements(GL_TRIANGLES, entity.getModel().getCount(), GL11.GL_UNSIGNED_INT, 0);
+            entity.addRotation(1,0,0);
+        }
     }
 
     /**
@@ -57,6 +83,8 @@ public class MasterRenderer {
         glEnable(GL_DEPTH_TEST);
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); // clear the framebuffer
     }
-    
-    
+
+    public void addEntity(Entity entity) {
+        entities.add(entity);
+    }
 }

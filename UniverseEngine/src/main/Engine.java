@@ -30,40 +30,42 @@ public class Engine {
     public static void main(String[] args){
         DisplayManager.createDisplay();
 
+        glPolygonMode(GL_FRONT_AND_BACK,GL_FILL);
+
+
         Loader loader = new Loader();
-        
-        CubeGenerator cubeGenerator = new CubeGenerator();
-        ModelData cubeData = new ModelData(cubeGenerator.generate());
-        Model cubeModel = new Model(loader.loadToVAO(cubeData.getVertices()));
-        CubeEntity cube = new CubeEntity(cubeModel);
+
         StaticShader shader = new StaticShader();
         MasterRenderer renderer = new MasterRenderer(shader);
         Camera camera = new Camera(new Vector3f(0,0,0));
+        
+        CubeGenerator cubeGenerator = new CubeGenerator();
+        cubeGenerator.generate();
+        ModelData cubeData = new ModelData(cubeGenerator.getVertices(),cubeGenerator.getIndices(),3);
+        Model cubeModel = new Model(loader.loadToVAO(cubeData),cubeData.getCount());
+        CubeEntity cube = new CubeEntity(cubeModel);
+        
+
+        renderer.addEntity(cube);
         /** ================================================= **/
 
         /** ================================================= **/
         
         while (!glfwWindowShouldClose(DisplayManager.window) ) {
-            cube.addPosition(0,0,-0.001f);
-            cube.addRotation(0,1f,1f);
+            renderer.render(shader, camera);
+            
+            
 
-            glEnable(GL_DEPTH_TEST);
-            glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); // clear the framebuffer
-            camera.move();
-            shader.start();
-            shader.loadViewMatrix(camera);
-            glBindVertexArray(cube.getModel().getVaoID());
+            //glBindVertexArray(cube.getModel().getVaoID());
             
             //System.out.println(cube.getModel().getVaoID());
-            Matrix4f transformationMatrix= Maths.createTransformationMatrix(cube.getPosition(),cube.getRotation(),cube.getScale());
-            shader.loadTransformationMatrix(transformationMatrix);
-            glDrawArrays(GL_TRIANGLES, 0, 12*3); 
+            //Matrix4f transformationMatrix= Maths.createTransformationMatrix(cube.getPosition(),cube.getRotation(),cube.getScale());
+            //shader.loadTransformationMatrix(transformationMatrix);
+            //glDrawArrays(GL_TRIANGLES, 0, 12*3); 
 
-            glfwSwapBuffers(DisplayManager.window);
-            shader.stop();
-            glfwPollEvents();
         }
         shader.cleanUp();
+        loader.cleanUP();
     }
     
     
