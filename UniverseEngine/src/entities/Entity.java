@@ -2,6 +2,7 @@ package entities;
 
 import models.Model;
 import org.joml.Vector3f;
+import textures.Texture;
 
 /**
  * Created by backes on 24/02/17.
@@ -12,6 +13,7 @@ public abstract class Entity {
     private Vector3f position;
     private Vector3f rotation;
     private float scale;
+    protected Texture texture;
 
     public Entity(Model model, Vector3f position, Vector3f rotation, float scale) {
         this.model = model;
@@ -69,5 +71,9 @@ public abstract class Entity {
 
     public Model getModel() {
         return model;
+    }
+
+    public Texture getTexture() {
+        return texture;
     }
 }

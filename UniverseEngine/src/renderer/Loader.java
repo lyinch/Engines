@@ -50,6 +50,8 @@ public class Loader {
         int vaoID = createVAO();
         storeDataInAttributeList(0,modelData.getDimension(),modelData.getVertices());
         bindIndicesBuffer(modelData.getIndices());
+        storeDataInAttributeList(1,2,modelData.getTextureCoords());
+        
         return vaoID;
     }
 

@@ -2,27 +2,19 @@ package main;
 
 import entities.Camera;
 import entities.CubeEntity;
-import entities.Entity;
 import entities.IconosphereEntity;
 import generation.CubeGenerator;
 import generation.IcosphereGenerator;
 import models.Model;
 import models.ModelData;
-import org.joml.Matrix4f;
 import org.joml.Vector3f;
 import renderer.DisplayManager;
 import renderer.Loader;
 import renderer.MasterRenderer;
 import shaders.StaticShader;
-import textures.Texture;
-import utils.Maths;
 
 
 import static org.lwjgl.glfw.GLFW.*;
-import static org.lwjgl.opengl.GL11.*;
-import static org.lwjgl.opengl.GL11.GL_DEPTH_BUFFER_BIT;
-
-import static org.lwjgl.opengl.GL30.glBindVertexArray;
 
 /**
  * Created by backes on 24/02/17.
@@ -43,12 +35,13 @@ public class Engine {
         Model cubeModel = new Model(loader.loadToVAO(cubeData),cubeData.getCount());
         CubeEntity cube = new CubeEntity(cubeModel,loader.loadTexture("white"));
 
-        IcosphereGenerator icosphereGenerator = new IcosphereGenerator(4);
-        icosphereGenerator.generate();
-        ModelData icoData = new ModelData(icosphereGenerator.getVertices(),icosphereGenerator.getIndices(),3);
-        Model icoModel = new Model(loader.loadToVAO(icoData),icoData.getCount());
-        IconosphereEntity ico = new IconosphereEntity(icoModel);
-        ico.addPosition(0,0,-3);
+        
+//        IcosphereGenerator icosphereGenerator = new IcosphereGenerator(4);
+//        icosphereGenerator.generate();
+//        ModelData icoData = new ModelData(icosphereGenerator.getVertices(),icosphereGenerator.getIndices(),3);
+//        Model icoModel = new Model(loader.loadToVAO(icoData),icoData.getCount());
+//        IconosphereEntity ico = new IconosphereEntity(icoModel);
+//        ico.addPosition(0,0,-3);
         renderer.addEntity(cube);
         //renderer.addEntity(ico);
         /** ================================================= **/

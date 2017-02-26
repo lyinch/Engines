@@ -9,7 +9,6 @@ import textures.Texture;
  */
 public class CubeEntity extends Entity {
     
-    private Texture texture;
     
     public CubeEntity(Model model, Vector3f position, Vector3f rotation, float scale) {
         super(model, position, rotation, scale);
@@ -19,8 +18,5 @@ public class CubeEntity extends Entity {
         super(model, new Vector3f(0,0,-1), new Vector3f(0,0,0), 0.5f);
         this.texture = texture;
     }
-
-    public Texture getTexture() {
-        return texture;
-    }
+    
 }

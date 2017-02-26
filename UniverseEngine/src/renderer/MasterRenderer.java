@@ -15,6 +15,8 @@ import static org.lwjgl.glfw.GLFW.glfwPollEvents;
 import static org.lwjgl.glfw.GLFW.glfwSwapBuffers;
 import static org.lwjgl.opengl.GL11.*;
 import static org.lwjgl.opengl.GL11.GL_DEPTH_TEST;
+import static org.lwjgl.opengl.GL13.GL_TEXTURE0;
+import static org.lwjgl.opengl.GL13.glActiveTexture;
 import static org.lwjgl.opengl.GL30.glBindVertexArray;
 
 /**
@@ -71,6 +73,10 @@ public class MasterRenderer {
             glBindVertexArray(entity.getModel().getVaoID());
             Matrix4f transformationMatrix= Maths.createTransformationMatrix(entity.getPosition(),entity.getRotation(),entity.getScale());
             shader.loadTransformationMatrix(transformationMatrix);
+            
+            glActiveTexture(GL_TEXTURE0);
+            glBindTexture(GL_TEXTURE_2D,entity.getTexture().getTextureID());
+
             glDrawElements(GL_TRIANGLES, entity.getModel().getCount(), GL11.GL_UNSIGNED_INT, 0);
             entity.addRotation(1,0,0);
         }
