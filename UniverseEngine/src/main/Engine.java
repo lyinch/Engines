@@ -38,21 +38,22 @@ public class Engine {
 //        CubeEntity cube = new CubeEntity(cubeModel,loader.loadTexture("white"));
 
         
-        IcosphereGenerator icosphereGenerator = new IcosphereGenerator(4);
-        icosphereGenerator.generate();
-        ModelData icoData = new ModelData(icosphereGenerator.getVertices(),icosphereGenerator.getIndices(),icosphereGenerator.getTextureCoords(),icosphereGenerator.getColour(),3);
-        Model icoModel = new Model(loader.loadToVAO(icoData),icoData.getCount());
-        IconosphereEntity ico = new IconosphereEntity(icoModel,loader.loadTexture("moon1k"));
-        ico.addPosition(0,0,-3);
-//        renderer.addEntity(cube);
-        renderer.addEntity(ico);
+//        IcosphereGenerator icosphereGenerator = new IcosphereGenerator(7);
+//        icosphereGenerator.generate();
+//        ModelData icoData = new ModelData(icosphereGenerator.getVertices(),icosphereGenerator.getIndices(),icosphereGenerator.getTextureCoords(),icosphereGenerator.getColour(),3);
+//        Model icoModel = new Model(loader.loadToVAO(icoData),icoData.getCount());
+//        IconosphereEntity ico = new IconosphereEntity(icoModel,loader.loadTexture("moon1k"));
+//        ico.addPosition(0,0,-30);
+//        ico.setScale(3);
+////        renderer.addEntity(cube);
+//        renderer.addEntity(ico);
 
-//        TerrainGenerator terrainGenerator = new TerrainGenerator(40);
-//        terrainGenerator.generate();
-//        ModelData terrainData = new ModelData(terrainGenerator.getVertices(),terrainGenerator.getIndices(),terrainGenerator.getTextureCoords(),terrainGenerator.getColour(),3);
-//        Model terrainModel = new Model(loader.loadToVAO(terrainData),terrainData.getCount());
-//        TerrainEntity terrain = new TerrainEntity(terrainModel);
-//        renderer.addEntity(terrain);
+        TerrainGenerator terrainGenerator = new TerrainGenerator(40);
+        terrainGenerator.generate();
+        ModelData terrainData = new ModelData(terrainGenerator.getVertices(),terrainGenerator.getIndices(),terrainGenerator.getTextureCoords(),terrainGenerator.getColour(),3);
+        Model terrainModel = new Model(loader.loadToVAO(terrainData),terrainData.getCount());
+        TerrainEntity terrain = new TerrainEntity(terrainModel);
+        renderer.addEntity(terrain);
         
         
         /** ================================================= **/

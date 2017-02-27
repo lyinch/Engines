@@ -149,30 +149,30 @@ public class IcosphereGenerator implements Generator {
         for (Vector3f coord:vertices) {
 
             /** ================================================= **/
-            float j = new Random().nextInt(2);
-            float k = new Random().nextInt(2);
-            float l = new Random().nextInt(2);
-
-            if (j == 0)
-                j = new Random().nextFloat();
-            else
-                j = -new Random().nextFloat();
-
-
-            if (k == 0)
-                k = new Random().nextFloat();
-            else
-                k = -new Random().nextFloat();
-
-
-            if (l == 0)
-                l = new Random().nextFloat();
-            else
-                l = -new Random().nextFloat();
-            coord.add(j / 10, k / 10, l / 10);
+//            float j = new Random().nextInt(2);
+//            float k = new Random().nextInt(2);
+//            float l = new Random().nextInt(2);
+//
+//            if (j == 0)
+//                j = new Random().nextFloat();
+//            else
+//                j = -new Random().nextFloat();
+//
+//
+//            if (k == 0)
+//                k = new Random().nextFloat();
+//            else
+//                k = -new Random().nextFloat();
+//
+//
+//            if (l == 0)
+//                l = new Random().nextFloat();
+//            else
+//                l = -new Random().nextFloat();
+//            coord.add(j / 10, k / 10, l / 10);
 
             //System.out.println(middle + " " + j + " " + k + " " + l);
-            max = Math.max(max,coord.length());
+            max = Math.max(max,coord.length()); 
             /** ================================================= **/
             //System.out.println(coord.lengthSquared());
         }

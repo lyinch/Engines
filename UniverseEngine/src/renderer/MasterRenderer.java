@@ -35,8 +35,8 @@ public class MasterRenderer {
         shader.stop();
         entities = new ArrayList<>();
 
-        glEnable(GL_CULL_FACE);
-        glCullFace(GL_BACK);
+        //glEnable(GL_CULL_FACE);
+        //glCullFace(GL_BACK);
     }
 
     /**
@@ -81,7 +81,7 @@ public class MasterRenderer {
             //glBindTexture(GL_TEXTURE_2D,entity.getTexture().getTextureID());
 
             glDrawElements(GL_TRIANGLES, entity.getModel().getCount(), GL11.GL_UNSIGNED_INT, 0);
-            entity.addRotation(1,0,0);
+            entity.addRotation(0.0f,0,0);
         }
     }
 

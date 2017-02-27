@@ -14,6 +14,6 @@ public class TerrainEntity extends Entity {
     }
 
     public TerrainEntity(Model model){
-        super(model, new Vector3f(0,0,-1), new Vector3f(0,0,0), 0.5f);
+        super(model, new Vector3f(0,0,0), new Vector3f(0,0,0), 1f);
     }
 }
