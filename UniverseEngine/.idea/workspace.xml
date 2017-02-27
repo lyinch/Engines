@@ -2,8 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="24d73b68-6e3b-4bd7-9171-d3f9579aae58" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/UniverseEngine/generation/TerrainGenerator.class" afterPath="$PROJECT_DIR$/out/production/UniverseEngine/generation/TerrainGenerator.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/generation/TerrainGenerator.java" afterPath="$PROJECT_DIR$/src/generation/TerrainGenerator.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -59,8 +57,8 @@
       <file leaf-file-name="TerrainGenerator.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/generation/TerrainGenerator.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="48">
-              <caret line="39" column="23" lean-forward="false" selection-start-line="39" selection-start-column="23" selection-end-line="39" selection-end-column="23" />
+            <state relative-caret-position="241">
+              <caret line="47" column="8" lean-forward="false" selection-start-line="47" selection-start-column="8" selection-end-line="47" selection-end-column="8" />
               <folding />
             </state>
           </provider>
@@ -805,12 +803,12 @@
       <option name="presentableId" value="Default" />
       <updated>1487970436796</updated>
       <workItem from="1487970438417" duration="18730000" />
-      <workItem from="1488058042780" duration="44627000" />
+      <workItem from="1488058042780" duration="48971000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="63357000" />
+    <option name="totallyTimeSpent" value="67701000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-2" y="23" width="1280" height="773" extended-state="6" />
@@ -857,7 +855,7 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="8" />
+      <option name="time" value="10" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -1223,8 +1221,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/generation/TerrainGenerator.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="48">
-          <caret line="39" column="23" lean-forward="false" selection-start-line="39" selection-start-column="23" selection-end-line="39" selection-end-column="23" />
+        <state relative-caret-position="241">
+          <caret line="47" column="8" lean-forward="false" selection-start-line="47" selection-start-column="8" selection-end-line="47" selection-end-column="8" />
           <folding />
         </state>
       </provider>

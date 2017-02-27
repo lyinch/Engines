@@ -19,53 +19,36 @@ public class TerrainGenerator implements Generator{
 
     @Override
     public void generate() {
-//        vertices = new float[]{
-//                0,0,0,
-//                0,0,10,
-//                0,0,20,
-//                10,0,0,
-//                10,0,10,
-//                10,0,20
-//                
-//        };
-//        
-//        indices = new int[]{
-//                0,1,4,
-//                0,4,3,
-//                1,2,5,
-//                1,5,4
-//        };
         
-        int height = 4; //gives us width-1 terrain
-        int width = 5; 
-        vertices = new float[height*(width+1)*3];
-        indices = new int[height*width*2*3];
-
+        //nbr. of squares with the given size
+        int width = 20;
+        int height = 20;
         int size = 10;
+
+        vertices = new float[(height+1)*(width+1)*3];
+        indices = new int[height*width*2*3];
+        int ver_height = height+1; //how many vertices we have for the height
         
         int p = 0;
-        
-        //indices
         for (int j = 0; j < width; j++) {
-            for (int i = j * height; i < (j + 1) * height - 1; i++) {
-                indices[p++] = i;
-                indices[p++] = (i+1);
-                indices[p++] = (i+1+height);
-                indices[p++] = i;
-                indices[p++] = (i+1+height);
-                indices[p++] = (i+height);
+            for (int i = 0; i < height ; i++) {
+                indices[p++] = (j*ver_height+i);
+                indices[p++] = (j*ver_height+i+1);
+                indices[p++] = ((j+1)*ver_height+i+1);
+                indices[p++] = (j*ver_height+i);
+                indices[p++] = ((j+1)*ver_height+i+1);
+                indices[p++] = ((j+1)*ver_height+i);
 //                p+=6;
 //                System.out.println(p);
-
-                //System.out.println("[" + i + "," + (i + 1) + "," + (i + 1 + height) + "]");
-                //System.out.println("[" + i + "," + (i + 1 + height) + "," + (i + height) + "]");
+//
+//                System.out.println("[" + (j*ver_height+i) + "," + (j*ver_height+i+1) + "," + ((j+1)*ver_height+i+1) + "]");
+//                System.out.println("[" + (j*ver_height+i) + "," + ((j+1)*ver_height+i+1) + "," + ((j+1)*ver_height+i) + "]");
             }
         }
         
-        
-        p = 0;
+        p=0;
         for (int i = 0; i < width+1; i++){
-            for (int j = 0; j < height; j++) {
+            for (int j = 0; j < height+1; j++) {
                 vertices[p++] = (i * size);
                 vertices[p++] = 0;
                 vertices[p++] = j*size;
@@ -73,7 +56,7 @@ public class TerrainGenerator implements Generator{
                 //System.out.println(i + ":" + j);
             }
         }
-        
+
 
 
         for (int i = 0; i < colour.length; i++){
