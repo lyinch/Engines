@@ -14,6 +14,6 @@ void main(void){
     gl_Position = projectionMatrix * viewMatrix *   transformationMatrix * vec4(vertices,1.0);
     passUV = uvCoords;
     vert = vertices;
-    //col_out = co;
-    col_out = vec3(vertices.x+0.2,vertices.y+0.2,vertices.z+0.2);
+    col_out = co;
+    //col_out = vec3(vertices.x+0.2,vertices.y+0.2,vertices.z+0.2);
 }
