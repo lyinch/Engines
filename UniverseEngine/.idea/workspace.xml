@@ -2,17 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="24d73b68-6e3b-4bd7-9171-d3f9579aae58" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/UniverseEngine/generation/IcosphereGenerator.class" afterPath="$PROJECT_DIR$/out/production/UniverseEngine/generation/IcosphereGenerator.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/UniverseEngine/generation/TerrainGenerator.class" afterPath="$PROJECT_DIR$/out/production/UniverseEngine/generation/TerrainGenerator.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/UniverseEngine/main/Engine.class" afterPath="$PROJECT_DIR$/out/production/UniverseEngine/main/Engine.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/UniverseEngine/shaders/VertexShader.vert" afterPath="$PROJECT_DIR$/out/production/UniverseEngine/shaders/VertexShader.vert" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/entities/TerrainEntity.java" afterPath="$PROJECT_DIR$/src/entities/TerrainEntity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/generation/IcosphereGenerator.java" afterPath="$PROJECT_DIR$/src/generation/IcosphereGenerator.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/generation/TerrainGenerator.java" afterPath="$PROJECT_DIR$/src/generation/TerrainGenerator.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/Engine.java" afterPath="$PROJECT_DIR$/src/main/Engine.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/renderer/MasterRenderer.java" afterPath="$PROJECT_DIR$/src/renderer/MasterRenderer.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/shaders/VertexShader.vert" afterPath="$PROJECT_DIR$/src/shaders/VertexShader.vert" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -67,8 +59,8 @@
       <file leaf-file-name="TerrainGenerator.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/generation/TerrainGenerator.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="271">
-              <caret line="52" column="31" lean-forward="false" selection-start-line="52" selection-start-column="31" selection-end-line="52" selection-end-column="31" />
+            <state relative-caret-position="48">
+              <caret line="39" column="23" lean-forward="false" selection-start-line="39" selection-start-column="23" selection-end-line="39" selection-end-column="23" />
               <folding />
             </state>
           </provider>
@@ -199,6 +191,7 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds">
+    <option name="x" value="-2" />
     <option name="y" value="23" />
     <option name="width" value="1280" />
     <option name="height" value="773" />
@@ -812,15 +805,15 @@
       <option name="presentableId" value="Default" />
       <updated>1487970436796</updated>
       <workItem from="1487970438417" duration="18730000" />
-      <workItem from="1488058042780" duration="43537000" />
+      <workItem from="1488058042780" duration="44627000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="62267000" />
+    <option name="totallyTimeSpent" value="63357000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="23" width="1280" height="773" extended-state="6" />
+    <frame x="-2" y="23" width="1280" height="773" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -864,7 +857,7 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="7" />
+      <option name="time" value="8" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -1230,8 +1223,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/generation/TerrainGenerator.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="271">
-          <caret line="52" column="31" lean-forward="false" selection-start-line="52" selection-start-column="31" selection-end-line="52" selection-end-column="31" />
+        <state relative-caret-position="48">
+          <caret line="39" column="23" lean-forward="false" selection-start-line="39" selection-start-column="23" selection-end-line="39" selection-end-column="23" />
           <folding />
         </state>
       </provider>

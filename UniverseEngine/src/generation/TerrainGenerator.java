@@ -36,13 +36,15 @@ public class TerrainGenerator implements Generator{
 //                1,5,4
 //        };
         
-        int height = 4;
-        int width = 2;
+        int height = 4; //gives us width-1 terrain
+        int width = 5; 
         vertices = new float[height*(width+1)*3];
-        indices = new int[height*(width+1)*3];
+        indices = new int[height*width*2*3];
 
         int size = 10;
+        
         int p = 0;
+        
         //indices
         for (int j = 0; j < width; j++) {
             for (int i = j * height; i < (j + 1) * height - 1; i++) {
@@ -52,10 +54,14 @@ public class TerrainGenerator implements Generator{
                 indices[p++] = i;
                 indices[p++] = (i+1+height);
                 indices[p++] = (i+height);
+//                p+=6;
+//                System.out.println(p);
+
                 //System.out.println("[" + i + "," + (i + 1) + "," + (i + 1 + height) + "]");
                 //System.out.println("[" + i + "," + (i + 1 + height) + "," + (i + height) + "]");
             }
         }
+        
         
         p = 0;
         for (int i = 0; i < width+1; i++){
