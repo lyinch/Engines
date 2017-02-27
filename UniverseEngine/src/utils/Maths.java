@@ -42,4 +42,20 @@ public class Maths {
                 .translate(negativeCameraPos);
         return viewMatrix;
     }
+
+    /**
+     * Clamps the value between min and max
+     * @param var
+     * @param min
+     * @param max
+     * @param <T>
+     * @return
+     */
+    public static <T extends Comparable<? super T>> T clamp(T var, T min, T max){
+        if(var.compareTo(max) > 0)
+            return max;
+        else if (var.compareTo(min) < 0)
+            return min;
+        return var;
+    }
 }

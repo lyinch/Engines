@@ -62,6 +62,7 @@ public class Engine {
         /** ================================================= **/
         
         while (!glfwWindowShouldClose(DisplayManager.window) ) {
+            camera.move();
             renderer.render(shader, camera);
             
 

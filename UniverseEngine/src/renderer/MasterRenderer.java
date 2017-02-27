@@ -58,7 +58,6 @@ public class MasterRenderer {
      */
     public void render(StaticShader shader,Camera camera){
         prepare();
-        camera.move();
         shader.start();
         shader.loadViewMatrix(camera);
         renderEntity(shader);

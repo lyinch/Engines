@@ -3,6 +3,8 @@ package entities;
 
 import org.joml.Vector3f;
 import renderer.DisplayManager;
+import utils.Input;
+import utils.Maths;
 
 import static org.lwjgl.glfw.GLFW.*;
 import static org.lwjgl.opengl.GL11.*;
@@ -58,11 +60,29 @@ public class Camera {
                 wire = true;
             }
         }
-
-
-
+        calculatePitch();
+        calculateYaw();
     }
 
+    /**
+     * Calculates the pitch of the camera based on the new mouse position
+     */
+    private void calculatePitch(){
+        if (glfwGetMouseButton(DisplayManager.window,GLFW_MOUSE_BUTTON_LEFT) == GLFW_TRUE){
+            float pitchChange = Input.mouseDY;
+            pitch -= pitchChange*0.1f;
+            //pitch = Maths.clamp(pitch,0f,180f);
+        }
+    }
+    
+    private void calculateYaw(){
+        if (glfwGetMouseButton(DisplayManager.window,GLFW_MOUSE_BUTTON_LEFT) == GLFW_TRUE){
+            float pitchChange = Input.mouseDX;
+            yaw -= pitchChange*0.1f;
+            //pitch = Maths.clamp(pitch,0f,180f);
+        }
+    }
+    
     public Vector3f getPosition() {
         return position;
     }
