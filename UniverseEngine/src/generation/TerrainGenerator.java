@@ -53,12 +53,13 @@ public class TerrainGenerator implements Generator{
         }
         
         p=0;
-        int max = 0;
+        float max = 0;
         for (int i = 0; i < width+1; i++){
             for (int j = 0; j < height+1; j++) {
                 vertices[p++] = (i * size);
                 int h = new Random().nextInt(5);
                 max = java.lang.Math.max(max,h);
+                h=0;
                 vertices[p++] = h;
                 vertices[p++] = j*size;
                 //System.out.println((i * size) + " : " + 0 + " : " + (j * size));
@@ -68,15 +69,62 @@ public class TerrainGenerator implements Generator{
 
 
 
+
+        float disp = 0.3f;
+        
+        
+        for (int k = 0; k < 400; k++){
+            int rand1 = new Random().nextInt(vertices.length/3)*3;
+            int rand2 = new Random().nextInt(vertices.length/3)*3;
+            while(rand2 == rand1){
+                System.out.println("collision");
+                rand2 = new Random().nextInt(vertices.length/3)*3;
+            }
+            if(rand2 %3 != 0 || rand1 %3 != 0)
+                System.out.println("not mult of 3");
+//            float a = (vertices[rand2+2]-vertices[rand1+2]);
+//            float b = -(vertices[rand2]-vertices[rand1]);
+//            float c = -vertices[rand1]*(a)-vertices[rand1+2]*b;
+
+            float a = (vertices[rand2+2]-vertices[rand1+2]);
+            float b = -(vertices[rand2]-vertices[rand1]);
+            //float c = -vertices[rand1]*(a)-vertices[rand1+2]*b;
+            
+            
+            for (int i = 0; i < vertices.length-3; i+=3){
+                if( ((vertices[i]-vertices[rand1])*a+b*(vertices[i+2]-vertices[rand1+2])) > 0)
+                    vertices[i+1] += disp;
+                else
+                    vertices[i+1]-=disp;
+                max = Math.max(max,vertices[i+1]);
+            }
+        }
+
+
        
         for (int i = 0; i < colour.length-3; i+=3){
 //            colour[i]=1/5f*vertices[i+1];
 //            colour[i+1]=1/5f*vertices[i+1];
 //            colour[i+2]=1/5f*vertices[i+1]; 
-            colour[i]=1/5f*vertices[i+1];
-            colour[i+1]=1/5f*vertices[i+1];
-            colour[i+2]=1/5f*vertices[i+1];
+            if((vertices[i+1]/max) >= 0.47f) {
+                colour[i]=0.9f;
+                colour[i+1]=0.9f;
+                colour[i+2]=0.9f;
+            }else if((vertices[i+1]/max) >=0.2f ) {
+                colour[i] = 131/256f;
+                colour[i + 1] = 87/256f;
+                colour[i + 2] = 87/256f;
+            }else{
+                colour[i] = 96/256f;
+                colour[i + 1] = 135/256f;
+                colour[i + 2] = 232/256f;
+            }
+
+//            colour[i] = 1 / 5f * vertices[i + 1];
+//            colour[i + 1] = 1 / 5f * vertices[i + 1];
+//            colour[i + 2] = 1 / 5f * vertices[i + 1];
         }
+        
         
 
 

@@ -38,7 +38,7 @@ public class Engine {
 //        CubeEntity cube = new CubeEntity(cubeModel,loader.loadTexture("white"));
 
         
-//        IcosphereGenerator icosphereGenerator = new IcosphereGenerator(7);
+//        IcosphereGenerator icosphereGenerator = new IcosphereGenerator(4);
 //        icosphereGenerator.generate();
 //        ModelData icoData = new ModelData(icosphereGenerator.getVertices(),icosphereGenerator.getIndices(),icosphereGenerator.getTextureCoords(),icosphereGenerator.getColour(),3);
 //        Model icoModel = new Model(loader.loadToVAO(icoData),icoData.getCount());

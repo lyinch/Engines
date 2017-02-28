@@ -80,7 +80,7 @@ public class MasterRenderer {
             //glBindTexture(GL_TEXTURE_2D,entity.getTexture().getTextureID());
 
             glDrawElements(GL_TRIANGLES, entity.getModel().getCount(), GL11.GL_UNSIGNED_INT, 0);
-            entity.addRotation(0.0f,0,0);
+            entity.addRotation(0f,0,0);
         }
     }
 
