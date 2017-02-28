@@ -54,11 +54,13 @@ public class TerrainGenerator implements Generator{
         
         p=0;
         float max = 0;
+        float min = 0;
         for (int i = 0; i < width+1; i++){
             for (int j = 0; j < height+1; j++) {
                 vertices[p++] = (i * size);
                 int h = new Random().nextInt(5);
                 max = java.lang.Math.max(max,h);
+                min = Math.min(min,h);
                 h=0;
                 vertices[p++] = h;
                 vertices[p++] = j*size;
@@ -71,7 +73,6 @@ public class TerrainGenerator implements Generator{
 
 
         float disp = 0.3f;
-        
         
         for (int k = 0; k < 400; k++){
             int rand1 = new Random().nextInt(vertices.length/3)*3;
@@ -97,27 +98,41 @@ public class TerrainGenerator implements Generator{
                 else
                     vertices[i+1]-=disp;
                 max = Math.max(max,vertices[i+1]);
+                min = Math.min(min,vertices[i+1]);
             }
         }
 
+        //System.out.println(max + " : " + min);
+        float a = 0;
+        float b = 1;
+        float f = 12;
 
-       
+        //System.out.println((a * (1.0f - f)) + (b * f));
+        System.out.println(256f/256f);
+        System.out.println(0x51/256f);
+
         for (int i = 0; i < colour.length-3; i+=3){
 //            colour[i]=1/5f*vertices[i+1];
 //            colour[i+1]=1/5f*vertices[i+1];
 //            colour[i+2]=1/5f*vertices[i+1]; 
-            if((vertices[i+1]/max) >= 0.47f) {
-                colour[i]=0.9f;
-                colour[i+1]=0.9f;
-                colour[i+2]=0.9f;
-            }else if((vertices[i+1]/max) >=0.2f ) {
-                colour[i] = 131/256f;
-                colour[i + 1] = 87/256f;
-                colour[i + 2] = 87/256f;
+            //System.out.println(vertices[i+1]);
+            float h = lerp(min,0,max,1,vertices[i+1]);
+            //System.out.println(h);
+            if(h >= 0.45f) {
+                //white (0xffffff to brown 0x7e5151)
+                colour[i]=lerp(0.75f,256f/256f,0.45f,(0x7e/256f),h);
+                colour[i+1]=lerp(0.75f,256f/256f,0.45f,(0x51/256f),h);
+                colour[i+2]=lerp(0.75f,256f/256f,0.45f,(0x51/256f),h);
+            }else if(h >=0.40f ) {
+                //brown 0x7e5151 to green 0x2da552
+                colour[i] = lerp(0.45f,0x7e/256f,0.40f,0x2d/256f,h);
+                colour[i + 1] = lerp(0.45f,0x51/256f,0.40f,0xa5/256f,h);
+                colour[i + 2] = lerp(0.45f,0x51/256f,0.40f,0x52/256f,h);
             }else{
-                colour[i] = 96/256f;
-                colour[i + 1] = 135/256f;
-                colour[i + 2] = 232/256f;
+                //green 0x2da552 to blue 0x6087e8
+                colour[i] = 0x60/255f;
+                colour[i + 1] =  0x87/255f;
+                colour[i + 2] =  0xe8/255f;
             }
 
 //            colour[i] = 1 / 5f * vertices[i + 1];
@@ -131,6 +146,10 @@ public class TerrainGenerator implements Generator{
         for (int i = 0; i < textureCoords.length; i++){
             textureCoords[i] = 0.5f;
         }
+    }
+    
+    private float lerp(float x0, float y0, float x1, float y1, float x2){
+        return x2*((y1-y0)/(x1-x0))+y0-((y1-y0)/(x1-x0))*x0;
     }
 
     @Override
