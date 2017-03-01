@@ -72,35 +72,35 @@ public class TerrainGenerator implements Generator{
 
 
 
-        float disp = 0.3f;
-        
-        for (int k = 0; k < 400; k++){
-            int rand1 = new Random().nextInt(vertices.length/3)*3;
-            int rand2 = new Random().nextInt(vertices.length/3)*3;
-            while(rand2 == rand1){
-                System.out.println("collision");
-                rand2 = new Random().nextInt(vertices.length/3)*3;
-            }
-            if(rand2 %3 != 0 || rand1 %3 != 0)
-                System.out.println("not mult of 3");
+//        float disp = 0.3f;
+//        
+//        for (int k = 0; k < 400; k++){
+//            int rand1 = new Random().nextInt(vertices.length/3)*3;
+//            int rand2 = new Random().nextInt(vertices.length/3)*3;
+//            while(rand2 == rand1){
+//                System.out.println("collision");
+//                rand2 = new Random().nextInt(vertices.length/3)*3;
+//            }
+//            if(rand2 %3 != 0 || rand1 %3 != 0)
+//                System.out.println("not mult of 3");
+////            float a = (vertices[rand2+2]-vertices[rand1+2]);
+////            float b = -(vertices[rand2]-vertices[rand1]);
+////            float c = -vertices[rand1]*(a)-vertices[rand1+2]*b;
+//
 //            float a = (vertices[rand2+2]-vertices[rand1+2]);
 //            float b = -(vertices[rand2]-vertices[rand1]);
-//            float c = -vertices[rand1]*(a)-vertices[rand1+2]*b;
-
-            float a = (vertices[rand2+2]-vertices[rand1+2]);
-            float b = -(vertices[rand2]-vertices[rand1]);
-            //float c = -vertices[rand1]*(a)-vertices[rand1+2]*b;
-            
-            
-            for (int i = 0; i < vertices.length-3; i+=3){
-                if( ((vertices[i]-vertices[rand1])*a+b*(vertices[i+2]-vertices[rand1+2])) > 0)
-                    vertices[i+1] += disp;
-                else
-                    vertices[i+1]-=disp;
-                max = Math.max(max,vertices[i+1]);
-                min = Math.min(min,vertices[i+1]);
-            }
-        }
+//            //float c = -vertices[rand1]*(a)-vertices[rand1+2]*b;
+//            
+//            
+//            for (int i = 0; i < vertices.length-3; i+=3){
+//                if( ((vertices[i]-vertices[rand1])*a+b*(vertices[i+2]-vertices[rand1+2])) > 0)
+//                    vertices[i+1] += disp;
+//                else
+//                    vertices[i+1]-=disp;
+//                max = Math.max(max,vertices[i+1]);
+//                min = Math.min(min,vertices[i+1]);
+//            }
+//        }
 
         //System.out.println(max + " : " + min);
         float a = 0;
@@ -108,8 +108,7 @@ public class TerrainGenerator implements Generator{
         float f = 12;
 
         //System.out.println((a * (1.0f - f)) + (b * f));
-        System.out.println(256f/256f);
-        System.out.println(0x51/256f);
+
 
         for (int i = 0; i < colour.length-3; i+=3){
 //            colour[i]=1/5f*vertices[i+1];
@@ -142,7 +141,6 @@ public class TerrainGenerator implements Generator{
         
         
 
-
         for (int i = 0; i < textureCoords.length; i++){
             textureCoords[i] = 0.5f;
         }
@@ -151,6 +149,7 @@ public class TerrainGenerator implements Generator{
     private float lerp(float x0, float y0, float x1, float y1, float x2){
         return x2*((y1-y0)/(x1-x0))+y0-((y1-y0)/(x1-x0))*x0;
     }
+    
 
     @Override
     public int[] getIndices() {

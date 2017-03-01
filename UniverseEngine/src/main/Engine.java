@@ -17,6 +17,7 @@ import shaders.StaticShader;
 
 
 import static org.lwjgl.glfw.GLFW.*;
+import static utils.RayCasting.ray;
 
 /**
  * Created by backes on 24/02/17.
@@ -48,6 +49,7 @@ public class Engine {
 ////        renderer.addEntity(cube);
 //        renderer.addEntity(ico);
 
+
         TerrainGenerator terrainGenerator = new TerrainGenerator(40);
         terrainGenerator.generate();
         ModelData terrainData = new ModelData(terrainGenerator.getVertices(),terrainGenerator.getIndices(),terrainGenerator.getTextureCoords(),terrainGenerator.getColour(),3);
@@ -64,7 +66,7 @@ public class Engine {
         while (!glfwWindowShouldClose(DisplayManager.window) ) {
             camera.move();
             renderer.render(shader, camera);
-            
+            ray(camera,renderer);
 
             //glBindVertexArray(cube.getModel().getVaoID());
             

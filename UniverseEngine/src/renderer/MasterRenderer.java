@@ -47,7 +47,7 @@ public class MasterRenderer {
      * https://github.com/JOML-CI/JOML/wiki/JOML-and-modern-OpenGL
      * https://www.youtube.com/watch?v=50Y9u7K0PZo
      */
-    private Matrix4f createProjectionMatrix(){
+    public Matrix4f createProjectionMatrix(){
         float aspectRatio = (float) DisplayManager.getWIDTH() / DisplayManager.getHEIGHT();
         return new Matrix4f().perspective(FOV, aspectRatio,
                 Z_NEAR, Z_FAR);
