@@ -167,11 +167,11 @@ public class Loader {
         return new Texture(textureID,w,h);
     }
     
-    public void updateVBO(float[] data){
+    public void updateVBO(float[] data, int VBOid){
         FloatBuffer buffer = BufferUtils.createFloatBuffer(data.length);
         buffer.put(data);
         buffer.flip();
-        glBindBuffer(GL_ARRAY_BUFFER,1);
+        glBindBuffer(GL_ARRAY_BUFFER,VBOid);
         glBufferSubData(GL_ARRAY_BUFFER,0,buffer);
 
     }

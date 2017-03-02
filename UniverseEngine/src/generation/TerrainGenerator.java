@@ -16,77 +16,61 @@ public class TerrainGenerator implements Generator{
     private int size;
     private int tileSize = 40;
     
-    private int WIDTH;
-    private int HEIGHT;
+    private final int WIDTH;
+    private final int HEIGHT;
     
-    public TerrainGenerator(int size) {
+    public TerrainGenerator(int size, int width, int height) {
+        WIDTH = width;
+        HEIGHT = height;
         this.size = size;
-        this.textureCoords = new float[2*10];
+        this.textureCoords = new float[2*10]; //Texture is not implemented, yet
+        vertices = new float[(height+1)*(width+1)*3];
+        indices = new int[height*width*2*3];
+        this.colour = new float[(height+1)*(width+1)*3];
     }
 
     @Override
     public void generate() {
+        int ver_height = HEIGHT+1; //how many vertices we have for the height
         
-        //nbr. of squares with the given size
-        int width = 40;
-        int height = 40;
-        int size = 5;
-        WIDTH = width;
-        HEIGHT = height;
-
-        vertices = new float[(height+1)*(width+1)*3];
-        indices = new int[height*width*2*3];
-        this.colour = new float[(height+1)*(width+1)*3];
-
-        int ver_height = height+1; //how many vertices we have for the height
-        
+        //we create the indices quad by quad, filling first the height
         int p = 0;
-        for (int j = 0; j < width; j++) {
-            for (int i = 0; i < height ; i++) {
+        for (int j = 0; j < WIDTH; j++) {
+            for (int i = 0; i < HEIGHT ; i++) {
                 indices[p++] = (j*ver_height+i);
                 indices[p++] = (j*ver_height+i+1);
                 indices[p++] = ((j+1)*ver_height+i+1);
                 indices[p++] = (j*ver_height+i);
                 indices[p++] = ((j+1)*ver_height+i+1);
                 indices[p++] = ((j+1)*ver_height+i);
-//                p+=6;
-//                System.out.println(p);
-//
-//                System.out.println("[" + (j*ver_height+i) + "," + (j*ver_height+i+1) + "," + ((j+1)*ver_height+i+1) + "]");
-//                System.out.println("[" + (j*ver_height+i) + "," + ((j+1)*ver_height+i+1) + "," + ((j+1)*ver_height+i) + "]");
             }
         }
         
         p=0;
-        float max = 0;
-        float min = 0;
-        for (int i = 0; i < width+1; i++){
-            for (int j = 0; j < height+1; j++) {
+        for (int i = 0; i < WIDTH+1; i++){
+            for (int j = 0; j < HEIGHT+1; j++) {
                 vertices[p++] = (i * size);
-                int h = new Random().nextInt(5);
-                max = java.lang.Math.max(max,h);
-                min = Math.min(min,h);
-                h=0;
-                vertices[p++] = h;
+                vertices[p++] = 0;
                 vertices[p++] = j*size;
-                //System.out.println((i * size) + " : " + 0 + " : " + (j * size));
-                //System.out.println(i + ":" + j);
             }
         }
 
+        for (int i = 0; i < colour.length-3; i+=3) {
+            colour[i]   = 1;
+            colour[i+1] = 0;
+            colour[i+2] = 1;
+        }
 
+        
+        
 
-
-
-
-        //System.out.println(max + " : " + min);
-        float a = 0;
-        float b = 1;
-        float f = 12;
-
-        //System.out.println((a * (1.0f - f)) + (b * f));
-
-
+        //fill the texture coords with random value, to not have a null pointer exception. Not needed at the moment
+        for (int i = 0; i < textureCoords.length; i++){
+            textureCoords[i] = 0.5f;
+        }
+    }
+    
+    private void heightColour(float min, float max){
         for (int i = 0; i < colour.length-3; i+=3){
 //            colour[i]=1/5f*vertices[i+1];
 //            colour[i+1]=1/5f*vertices[i+1];
@@ -111,21 +95,15 @@ public class TerrainGenerator implements Generator{
                 colour[i + 2] =  0xe8/255f;
             }
 
-//            colour[i] = 1 / 5f * vertices[i + 1];
-//            colour[i + 1] = 1 / 5f * vertices[i + 1];
-//            colour[i + 2] = 1 / 5f * vertices[i + 1];
-        }
-        
-        
-
-        for (int i = 0; i < textureCoords.length; i++){
-            textureCoords[i] = 0.5f;
         }
     }
 
 
     /**
-     * 
+     * We create a line cutting trough the terrain modify the height of the points on the left/right of this line by a 
+     * fixed displacement. For each iteration, we generate a new line.
+     * The line is created by selecting two random distinct points on our terrain 
+     * At the end of the algorithm, we recreate the colour array, based on the new heights
      * http://www.lighthouse3d.com/opengl/terrain/index.php?impdetails
      * @param iterations
      */
@@ -134,22 +112,16 @@ public class TerrainGenerator implements Generator{
         
         float min = 0;
         float max = 0;
-        for (int k = 0; k < 400; k++){
+        for (int k = 0; k < iterations; k++){
+            //Select two random distinct points on the terrain.
             int rand1 = new Random().nextInt(vertices.length/3)*3;
             int rand2 = new Random().nextInt(vertices.length/3)*3;
             while(rand2 == rand1){
-                System.out.println("collision");
                 rand2 = new Random().nextInt(vertices.length/3)*3;
             }
-            if(rand2 %3 != 0 || rand1 %3 != 0)
-                System.out.println("not mult of 3");
-//            float a = (vertices[rand2+2]-vertices[rand1+2]);
-//            float b = -(vertices[rand2]-vertices[rand1]);
-//            float c = -vertices[rand1]*(a)-vertices[rand1+2]*b;
-
+            
             float a = (vertices[rand2+2]-vertices[rand1+2]);
             float b = -(vertices[rand2]-vertices[rand1]);
-            //float c = -vertices[rand1]*(a)-vertices[rand1+2]*b;
 
 
             for (int i = 0; i < vertices.length-3; i+=3){
@@ -161,6 +133,8 @@ public class TerrainGenerator implements Generator{
                 min = Math.min(min,vertices[i+1]);
             }
         }
+        
+        heightColour(min,max);
     }
 
     @Override
