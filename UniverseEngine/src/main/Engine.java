@@ -17,9 +17,13 @@ import shaders.StaticShader;
 import utils.Console;
 
 
+import java.nio.ByteBuffer;
+import java.nio.FloatBuffer;
 import java.util.Scanner;
 
 import static org.lwjgl.glfw.GLFW.*;
+import static org.lwjgl.opengl.GL15.*;
+import static org.lwjgl.opengl.GL44.glBufferStorage;
 import static utils.RayCasting.ray;
 
 /**
@@ -33,7 +37,6 @@ public class Engine {
 //        Thread consoleThread = new Thread(console);
 //        
 //        consoleThread.start();
-
 
  
         
@@ -74,20 +77,26 @@ public class Engine {
 //        console.context(DisplayManager.window);
 //        console.loadData(terrainGenerator,loader, terrainData, terrain);
         /** ================================================= **/
-        
+
 
         /** ================================================= **/
-        
+        boolean once = false;
         double t = System.nanoTime()/1e9;
         while (!glfwWindowShouldClose(DisplayManager.window) ) {
             double current = System.nanoTime()/1e9;
             
-            if (current-t >=1){
-//                terrainGenerator.randomHeight();
-//                terrainGenerator.generate();
-//                terrainGenerator.falseAlgorithm(200);
-//                loader.updateVBO(terrainData.getVertices(), terrain.getModel().getVerticesVBO());
-//                loader.updateVBO(terrainData.getColour(),  terrain.getModel().getColourVBO());
+            if (current-t >=1) {
+                if (once){
+                    FloatBuffer buffer = glMapBuffer(GL_ARRAY_BUFFER, GL_READ_WRITE).asFloatBuffer();
+                    buffer.put(0.1f);
+                    once = false;
+                }
+                terrainGenerator.randomHeight();
+                terrainGenerator.generate();
+                terrainGenerator.falseAlgorithm(200);
+                
+                loader.updateVBO(terrainData.getVertices(), terrain.getModel().getVerticesVBO());
+                loader.updateVBO(terrainData.getColour(),  terrain.getModel().getColourVBO());
 
                 t = System.nanoTime()/1e9;
             }

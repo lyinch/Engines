@@ -175,13 +175,19 @@ public class Loader {
 
         return new Texture(textureID,w,h);
     }
-    
-    public synchronized void updateVBO(float[] data, int VBOid){
-        FloatBuffer buffer = BufferUtils.createFloatBuffer(data.length);
-        buffer.put(data);
-        buffer.flip();
+
+    /**
+     * Replaces the data in the given buffer.
+     * @param data The data to be replaced
+     * @param VBOid the buffer ID to replace the data to
+     */
+    public void updateVBO(float[] data, int VBOid){
+        //ToDo: For frequent changes, use a persistent buffer, such as glMapBufferRange();
         glBindBuffer(GL_ARRAY_BUFFER,VBOid);
-        glBufferSubData(GL_ARRAY_BUFFER,0,buffer);
+        FloatBuffer buffer = glMapBuffer(GL_ARRAY_BUFFER, GL_WRITE_ONLY).asFloatBuffer();
+        buffer.put(data);
+        glUnmapBuffer(GL_ARRAY_BUFFER);
+        //glBufferSubData(GL_ARRAY_BUFFER,0,buffer);
 
     }
     
