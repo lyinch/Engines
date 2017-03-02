@@ -52,6 +52,7 @@ public class Engine {
 
         TerrainGenerator terrainGenerator = new TerrainGenerator(40);
         terrainGenerator.generate();
+        terrainGenerator.falseAlgorithm(100);
         ModelData terrainData = new ModelData(terrainGenerator.getVertices(),terrainGenerator.getIndices(),terrainGenerator.getTextureCoords(),terrainGenerator.getColour(),3);
         Model terrainModel = new Model(loader.loadToVAO(terrainData),terrainData.getCount());
         TerrainEntity terrain = new TerrainEntity(terrainModel);
@@ -63,18 +64,28 @@ public class Engine {
 
         /** ================================================= **/
         
+        double t = System.nanoTime()/1e9;
         while (!glfwWindowShouldClose(DisplayManager.window) ) {
+            double current = System.nanoTime()/1e9;
+            
+            if (current-t >=0.5){
+                terrainGenerator.randomHeight();
+                loader.updateVBO(terrainData.getVertices());
+                
+                t= System.nanoTime()/1e9;
+            }
+
             camera.move();
             renderer.render(shader, camera);
             ray(camera,renderer);
-
+            
             //glBindVertexArray(cube.getModel().getVaoID());
             
             //System.out.println(cube.getModel().getVaoID());
             //Matrix4f transformationMatrix= Maths.createTransformationMatrix(cube.getPosition(),cube.getRotation(),cube.getScale());
             //shader.loadTransformationMatrix(transformationMatrix);
             //glDrawArrays(GL_TRIANGLES, 0, 12*3); 
-
+            
         }
         shader.cleanUp();
         loader.cleanUP();

@@ -42,6 +42,6 @@ public class RayCasting {
         ray_world.normalize();
 
 
-        System.out.println(ray_world);
+        //System.out.println(ray_world);
     }
 }

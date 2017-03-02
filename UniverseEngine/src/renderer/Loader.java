@@ -77,6 +77,7 @@ public class Loader {
     private int storeDataInAttributeList(int attributeNumber, int coordSize, float[] data){
         int vboID = glGenBuffers();
         vbos.add(vboID);
+        System.out.println(vboID);
         glBindBuffer(GL_ARRAY_BUFFER,vboID);
         FloatBuffer buffer = storeDataInFloatBuffer(data);
         glBufferData(GL_ARRAY_BUFFER,buffer,GL_STATIC_DRAW);
@@ -164,6 +165,15 @@ public class Loader {
         textures.add(textureID);
 
         return new Texture(textureID,w,h);
+    }
+    
+    public void updateVBO(float[] data){
+        FloatBuffer buffer = BufferUtils.createFloatBuffer(data.length);
+        buffer.put(data);
+        buffer.flip();
+        glBindBuffer(GL_ARRAY_BUFFER,1);
+        glBufferSubData(GL_ARRAY_BUFFER,0,buffer);
+
     }
     
     /**

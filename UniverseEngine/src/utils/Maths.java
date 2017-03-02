@@ -58,4 +58,18 @@ public class Maths {
             return min;
         return var;
     }
+
+    /**
+     * Does a linear interpolation: We want, that f(x0)=y0 and f(x1) = y1, and y0 -> max and y1 -> min .
+     * Uses mx+p = y as a linear function, and return f(x2)
+     * @param x0
+     * @param y0
+     * @param x1
+     * @param y1
+     * @param x2
+     * @return
+     */
+    public static float lerp(float x0, float y0, float x1, float y1, float x2){
+        return x2*((y1-y0)/(x1-x0))+y0-((y1-y0)/(x1-x0))*x0;
+    }
 }
