@@ -14,7 +14,6 @@ public class TerrainGenerator implements Generator{
     private float[] textureCoords;
     private float[] colour;
     private int size;
-    private int tileSize = 40;
     
     private final int WIDTH;
     private final int HEIGHT;
@@ -55,7 +54,7 @@ public class TerrainGenerator implements Generator{
             }
         }
 
-        for (int i = 0; i < colour.length-3; i+=3) {
+        for (int i = 0; i <= colour.length-3; i+=3) {
             colour[i]   = 1;
             colour[i+1] = 0;
             colour[i+2] = 1;
@@ -76,7 +75,7 @@ public class TerrainGenerator implements Generator{
      * @param max
      */
     private void heightColour(float min, float max){
-        for (int i = 0; i < colour.length-3; i+=3){
+        for (int i = 0; i <= colour.length-3; i+=3){
 //            colour[i]=1/5f*vertices[i+1];
 //            colour[i+1]=1/5f*vertices[i+1];
 //            colour[i+2]=1/5f*vertices[i+1]; 
@@ -130,7 +129,7 @@ public class TerrainGenerator implements Generator{
             float b = -(vertices[rand2]-vertices[rand1]);
 
 
-            for (int i = 0; i < vertices.length-3; i+=3){
+            for (int i = 0; i <= vertices.length-3; i+=3){
                 if( ((vertices[i]-vertices[rand1])*a+b*(vertices[i+2]-vertices[rand1+2])) > 0)
                     vertices[i+1] += disp;
                 else

@@ -52,7 +52,7 @@ public class Engine {
 
         TerrainGenerator terrainGenerator = new TerrainGenerator(5,40,40);
         terrainGenerator.generate();
-        terrainGenerator.falseAlgorithm(100);
+        //terrainGenerator.falseAlgorithm(100);
         ModelData terrainData = new ModelData(terrainGenerator.getVertices(),terrainGenerator.getIndices(),terrainGenerator.getTextureCoords(),terrainGenerator.getColour(),3);
         Model terrainModel = new Model(loader.loadToVAO(terrainData),terrainData.getCount());
         TerrainEntity terrain = new TerrainEntity(terrainModel);
@@ -74,7 +74,7 @@ public class Engine {
                 terrainGenerator.falseAlgorithm(200);
                 loader.updateVBO(terrainData.getVertices(), terrain.getModel().getVerticesVBO());
                 loader.updateVBO(terrainData.getColour(),  terrain.getModel().getColourVBO());
-                
+
                 t = System.nanoTime()/1e9;
             }
 
