@@ -69,7 +69,12 @@ public class TerrainGenerator implements Generator{
             textureCoords[i] = 0.5f;
         }
     }
-    
+
+    /**
+     * 
+     * @param min
+     * @param max
+     */
     private void heightColour(float min, float max){
         for (int i = 0; i < colour.length-3; i+=3){
 //            colour[i]=1/5f*vertices[i+1];
@@ -108,6 +113,7 @@ public class TerrainGenerator implements Generator{
      * @param iterations
      */
     public void falseAlgorithm(int iterations){
+        //ToDo: dynamic displacement
         float disp = 0.3f;
         
         float min = 0;

@@ -47,14 +47,21 @@ public class Loader {
         return vaoID;
     }
 
-    public int loadToVAO(ModelData modelData){
-        int vaoID = createVAO();
-        storeDataInAttributeList(0,modelData.getDimension(),modelData.getVertices());
-        bindIndicesBuffer(modelData.getIndices());
-        storeDataInAttributeList(1,2,modelData.getTextureCoords());
-        storeDataInAttributeList(1,3,modelData.getColour());
+    /**
+     * 
+     * @param modelData
+     * @return array of vao and vbo ids. [0] = VAO [1] = vertices Buffer [2] = indices buffer [3] = texture coords [4] =
+     * colour VBO
+     */
+    public int[] loadToVAO(ModelData modelData){
+        int[] ids = new int[5];
+        ids[0] = createVAO();
+        ids[1] = storeDataInAttributeList(0,modelData.getDimension(),modelData.getVertices());
+        ids[2] = bindIndicesBuffer(modelData.getIndices());
+        ids[3] = storeDataInAttributeList(1,2,modelData.getTextureCoords());
+        ids[4] = storeDataInAttributeList(1,3,modelData.getColour());
 
-        return vaoID;
+        return ids;
     }
 
     public void loadToVAO(float[] vertices, float[] normals, float[] indices){
@@ -89,13 +96,15 @@ public class Loader {
     /**
      * Binds the indices buffer to the VAO
      * @param indices the indices array
+     * @return VBO ID
      */
-    private void bindIndicesBuffer(int[] indices){
+    private int bindIndicesBuffer(int[] indices){
         int vboIndicesID = glGenBuffers();
         vbos.add(vboIndicesID);
         glBindBuffer(GL_ELEMENT_ARRAY_BUFFER,vboIndicesID);
         IntBuffer buffer = storeDataInIntBuffer(indices);
         glBufferData(GL_ELEMENT_ARRAY_BUFFER,buffer,GL_STATIC_DRAW);
+        return vboIndicesID;
     }
 
     /**

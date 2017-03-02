@@ -50,7 +50,7 @@ public class Engine {
 //        renderer.addEntity(ico);
 
 
-        TerrainGenerator terrainGenerator = new TerrainGenerator(10,20,20);
+        TerrainGenerator terrainGenerator = new TerrainGenerator(5,40,40);
         terrainGenerator.generate();
         terrainGenerator.falseAlgorithm(100);
         ModelData terrainData = new ModelData(terrainGenerator.getVertices(),terrainGenerator.getIndices(),terrainGenerator.getTextureCoords(),terrainGenerator.getColour(),3);
@@ -69,13 +69,13 @@ public class Engine {
             double current = System.nanoTime()/1e9;
             
             if (current-t >=1){
-                //terrainGenerator.randomHeight();
+                terrainGenerator.randomHeight();
                 terrainGenerator.generate();
                 terrainGenerator.falseAlgorithm(200);
-                loader.updateVBO(terrainData.getVertices(), 1);
-                loader.updateVBO(terrainData.getColour(), 4);
+                loader.updateVBO(terrainData.getVertices(), terrain.getModel().getVerticesVBO());
+                loader.updateVBO(terrainData.getColour(),  terrain.getModel().getColourVBO());
                 
-                t= System.nanoTime()/1e9;
+                t = System.nanoTime()/1e9;
             }
 
             camera.move();
