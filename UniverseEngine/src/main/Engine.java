@@ -14,7 +14,10 @@ import renderer.DisplayManager;
 import renderer.Loader;
 import renderer.MasterRenderer;
 import shaders.StaticShader;
+import utils.Console;
 
+
+import java.util.Scanner;
 
 import static org.lwjgl.glfw.GLFW.*;
 import static utils.RayCasting.ray;
@@ -24,6 +27,16 @@ import static utils.RayCasting.ray;
  */
 public class Engine {
     public static void main(String[] args){
+
+//        Console console = new Console();
+//        
+//        Thread consoleThread = new Thread(console);
+//        
+//        consoleThread.start();
+
+
+ 
+        
         DisplayManager.createDisplay();
 
         Loader loader = new Loader();
@@ -58,7 +71,8 @@ public class Engine {
         TerrainEntity terrain = new TerrainEntity(terrainModel);
         renderer.addEntity(terrain);
         
-        
+//        console.context(DisplayManager.window);
+//        console.loadData(terrainGenerator,loader, terrainData, terrain);
         /** ================================================= **/
         
 
@@ -69,11 +83,11 @@ public class Engine {
             double current = System.nanoTime()/1e9;
             
             if (current-t >=1){
-                terrainGenerator.randomHeight();
-                terrainGenerator.generate();
-                terrainGenerator.falseAlgorithm(200);
-                loader.updateVBO(terrainData.getVertices(), terrain.getModel().getVerticesVBO());
-                loader.updateVBO(terrainData.getColour(),  terrain.getModel().getColourVBO());
+//                terrainGenerator.randomHeight();
+//                terrainGenerator.generate();
+//                terrainGenerator.falseAlgorithm(200);
+//                loader.updateVBO(terrainData.getVertices(), terrain.getModel().getVerticesVBO());
+//                loader.updateVBO(terrainData.getColour(),  terrain.getModel().getColourVBO());
 
                 t = System.nanoTime()/1e9;
             }
@@ -90,6 +104,16 @@ public class Engine {
             //glDrawArrays(GL_TRIANGLES, 0, 12*3); 
             
         }
+//        
+//        consoleThread.interrupt();
+//        
+//        try {
+//            consoleThread.join();
+//        } catch (InterruptedException e) {
+//            e.printStackTrace();
+//        }
+        
+        
         shader.cleanUp();
         loader.cleanUP();
     }

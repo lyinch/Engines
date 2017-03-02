@@ -176,7 +176,7 @@ public class Loader {
         return new Texture(textureID,w,h);
     }
     
-    public void updateVBO(float[] data, int VBOid){
+    public synchronized void updateVBO(float[] data, int VBOid){
         FloatBuffer buffer = BufferUtils.createFloatBuffer(data.length);
         buffer.put(data);
         buffer.flip();
