@@ -40,8 +40,20 @@ public class RayCasting {
         Vector4f tmp = new Vector4f(view.transform(ray_eye));
         Vector3f ray_world = new Vector3f(tmp.x,tmp.y,tmp.z);
         ray_world.normalize();
+        
 
-
-        //System.out.println(ray_world);
+        Vector3f camPos = camera.getPosition();
+        Vector3f start = new Vector3f(camPos.x, camPos.y, camPos.z);
+        Vector3f scaledRay = new Vector3f(ray_world.x * 0.4f, ray_world.y * 0.4f, ray_world.z * 0.4f);
+        Vector3f p = start.add(scaledRay);
+        
+        
+        //flat plane normal: (1,1,0);
+        double t = -p.y/ray_world.y;
+        double x_c = ray_world.x+p.x*t;
+        double y_c = ray_world.z+p.z*t;
+        
+        System.out.println(x_c + " : " + y_c);
     }
+    
 }

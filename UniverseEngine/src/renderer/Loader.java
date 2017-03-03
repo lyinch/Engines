@@ -59,7 +59,7 @@ public class Loader {
         ids[1] = storeDataInAttributeList(0,modelData.getDimension(),modelData.getVertices());
         ids[2] = bindIndicesBuffer(modelData.getIndices());
         ids[3] = storeDataInAttributeList(1,2,modelData.getTextureCoords());
-        ids[4] = storeDataInAttributeList(1,3,modelData.getColour());
+        ids[4] = storeDataInAttributeList(2,3,modelData.getColour());
 
         return ids;
     }
@@ -84,7 +84,6 @@ public class Loader {
     private int storeDataInAttributeList(int attributeNumber, int coordSize, float[] data){
         int vboID = glGenBuffers();
         vbos.add(vboID);
-        System.out.println(vboID);
         glBindBuffer(GL_ARRAY_BUFFER,vboID);
         FloatBuffer buffer = storeDataInFloatBuffer(data);
         glBufferData(GL_ARRAY_BUFFER,buffer,GL_STATIC_DRAW);

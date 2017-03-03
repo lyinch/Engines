@@ -1,11 +1,7 @@
 package main;
 
 import entities.Camera;
-import entities.CubeEntity;
-import entities.IconosphereEntity;
 import entities.TerrainEntity;
-import generation.CubeGenerator;
-import generation.IcosphereGenerator;
 import generation.TerrainGenerator;
 import models.Model;
 import models.ModelData;
@@ -14,16 +10,10 @@ import renderer.DisplayManager;
 import renderer.Loader;
 import renderer.MasterRenderer;
 import shaders.StaticShader;
-import utils.Console;
 
+import java.util.Arrays;
 
-import java.nio.ByteBuffer;
-import java.nio.FloatBuffer;
-import java.util.Scanner;
-
-import static org.lwjgl.glfw.GLFW.*;
-import static org.lwjgl.opengl.GL15.*;
-import static org.lwjgl.opengl.GL44.glBufferStorage;
+import static org.lwjgl.glfw.GLFW.glfwWindowShouldClose;
 import static utils.RayCasting.ray;
 
 /**
@@ -66,13 +56,14 @@ public class Engine {
 //        renderer.addEntity(ico);
 
 
-        TerrainGenerator terrainGenerator = new TerrainGenerator(5,40,40);
-        terrainGenerator.generate();
-        //terrainGenerator.falseAlgorithm(100);
-        ModelData terrainData = new ModelData(terrainGenerator.getVertices(),terrainGenerator.getIndices(),terrainGenerator.getTextureCoords(),terrainGenerator.getColour(),3);
-        Model terrainModel = new Model(loader.loadToVAO(terrainData),terrainData.getCount());
-        TerrainEntity terrain = new TerrainEntity(terrainModel);
-        renderer.addEntity(terrain);
+//        TerrainGenerator terrainGenerator = new TerrainGenerator(5,1,1);
+//        terrainGenerator.generate();
+//        //terrainGenerator.falseAlgorithm(100);
+//        ModelData terrainData = new ModelData(terrainGenerator.getVertices(),terrainGenerator.getIndices(),terrainGenerator.getTextureCoords(),terrainGenerator.getColour(),3);
+//        Model terrainModel = new Model(loader.loadToVAO(terrainData),terrainData.getCount());
+//        System.out.println(Arrays.toString(terrainData.getVertices()));
+//        TerrainEntity terrain = new TerrainEntity(terrainModel);
+//        renderer.addEntity(terrain);
         
 //        console.context(DisplayManager.window);
 //        console.loadData(terrainGenerator,loader, terrainData, terrain);
@@ -80,30 +71,26 @@ public class Engine {
 
 
         /** ================================================= **/
-        boolean once = false;
         double t = System.nanoTime()/1e9;
+        
         while (!glfwWindowShouldClose(DisplayManager.window) ) {
             double current = System.nanoTime()/1e9;
             
             if (current-t >=1) {
-                if (once){
-                    FloatBuffer buffer = glMapBuffer(GL_ARRAY_BUFFER, GL_READ_WRITE).asFloatBuffer();
-                    buffer.put(0.1f);
-                    once = false;
-                }
-                terrainGenerator.randomHeight();
-                terrainGenerator.generate();
-                terrainGenerator.falseAlgorithm(200);
-                
-                loader.updateVBO(terrainData.getVertices(), terrain.getModel().getVerticesVBO());
-                loader.updateVBO(terrainData.getColour(),  terrain.getModel().getColourVBO());
+//                terrainGenerator.randomHeight();
+//                terrainGenerator.generate();
+//                terrainGenerator.falseAlgorithm(200);
+//
+//                loader.updateVBO(terrainData.getVertices(), terrain.getModel().getVerticesVBO());
+//                loader.updateVBO(terrainData.getColour(),  terrain.getModel().getColourVBO());
 
+                ray(camera,renderer);
                 t = System.nanoTime()/1e9;
             }
 
             camera.move();
             renderer.render(shader, camera);
-            ray(camera,renderer);
+            //ray(camera,renderer);
             
             //glBindVertexArray(cube.getModel().getVaoID());
             

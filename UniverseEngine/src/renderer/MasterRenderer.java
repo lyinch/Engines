@@ -3,11 +3,14 @@ package renderer;
 import entities.Camera;
 import entities.Entity;
 import org.joml.Matrix4f;
+import org.joml.Vector3f;
+import org.lwjgl.BufferUtils;
 import org.lwjgl.opengl.GL11;
 import shaders.Shader;
 import shaders.StaticShader;
 import utils.Maths;
 
+import java.nio.FloatBuffer;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,7 +20,13 @@ import static org.lwjgl.opengl.GL11.*;
 import static org.lwjgl.opengl.GL11.GL_DEPTH_TEST;
 import static org.lwjgl.opengl.GL13.GL_TEXTURE0;
 import static org.lwjgl.opengl.GL13.glActiveTexture;
+import static org.lwjgl.opengl.GL15.*;
+import static org.lwjgl.opengl.GL15.GL_ELEMENT_ARRAY_BUFFER;
+import static org.lwjgl.opengl.GL15.GL_STATIC_DRAW;
+import static org.lwjgl.opengl.GL20.glEnableVertexAttribArray;
+import static org.lwjgl.opengl.GL20.glVertexAttribPointer;
 import static org.lwjgl.opengl.GL30.glBindVertexArray;
+import static org.lwjgl.opengl.GL30.glGenVertexArrays;
 
 /**
  * Created by backes on 25/02/17.
@@ -29,11 +38,31 @@ public class MasterRenderer {
 
     private List<Entity> entities;
     
+    
+    int VAO_ID;
     public MasterRenderer(StaticShader shader) {
         shader.start();
         shader.loadProjectionMatrix(createProjectionMatrix());
         shader.stop();
         entities = new ArrayList<>();
+        
+        VAO_ID = glGenVertexArrays();
+        glBindVertexArray(VAO_ID);
+        int vboID = glGenBuffers();
+        glBindBuffer(GL_ARRAY_BUFFER,vboID);
+        float[] data = new float[]{
+                0f,0f,0,
+                0,0,1,
+                -1,0,1,
+                -1,0,0
+                };
+        FloatBuffer buffer = BufferUtils.createFloatBuffer(data.length);
+        buffer.put(data);
+        buffer.flip();
+        glBufferData(GL_ARRAY_BUFFER,buffer,GL_STATIC_DRAW);
+        glVertexAttribPointer(0,3, GL_FLOAT,false,0,0);
+
+        glEnableVertexAttribArray(0);
 
         //glEnable(GL_CULL_FACE);
         //glCullFace(GL_BACK);
@@ -61,6 +90,12 @@ public class MasterRenderer {
         shader.start();
         shader.loadViewMatrix(camera);
         renderEntity(shader);
+        glBindVertexArray(VAO_ID);
+        //Matrix4f transformationMatrix= Maths.createTransformationMatrix(new Vector3f(0,0,0),new Vector3f(0,0,0),1);
+        //shader.loadTransformationMatrix(transformationMatrix);
+
+        glDrawArrays(GL_LINE_STRIP,0,4);
+        
         shader.stop();
         DisplayManager.update();
         //entities.clear();
