@@ -10,11 +10,11 @@ import renderer.DisplayManager;
 import renderer.Loader;
 import renderer.MasterRenderer;
 import shaders.StaticShader;
+import utils.RayCasting;
 
 import java.util.Arrays;
 
 import static org.lwjgl.glfw.GLFW.glfwWindowShouldClose;
-import static utils.RayCasting.ray;
 
 /**
  * Created by backes on 24/02/17.
@@ -56,14 +56,14 @@ public class Engine {
 //        renderer.addEntity(ico);
 
 
-//        TerrainGenerator terrainGenerator = new TerrainGenerator(5,1,1);
-//        terrainGenerator.generate();
-//        //terrainGenerator.falseAlgorithm(100);
-//        ModelData terrainData = new ModelData(terrainGenerator.getVertices(),terrainGenerator.getIndices(),terrainGenerator.getTextureCoords(),terrainGenerator.getColour(),3);
-//        Model terrainModel = new Model(loader.loadToVAO(terrainData),terrainData.getCount());
-//        System.out.println(Arrays.toString(terrainData.getVertices()));
-//        TerrainEntity terrain = new TerrainEntity(terrainModel);
-//        renderer.addEntity(terrain);
+        TerrainGenerator terrainGenerator = new TerrainGenerator(5,1,1);
+        terrainGenerator.generate();
+        //terrainGenerator.falseAlgorithm(100);
+        ModelData terrainData = new ModelData(terrainGenerator.getVertices(),terrainGenerator.getIndices(),terrainGenerator.getTextureCoords(),terrainGenerator.getColour(),3);
+        Model terrainModel = new Model(loader.loadToVAO(terrainData),terrainData.getCount());
+        System.out.println(Arrays.toString(terrainData.getVertices()));
+        TerrainEntity terrain = new TerrainEntity(terrainModel);
+        renderer.addEntity(terrain);
         
 //        console.context(DisplayManager.window);
 //        console.loadData(terrainGenerator,loader, terrainData, terrain);
@@ -72,7 +72,7 @@ public class Engine {
 
         /** ================================================= **/
         double t = System.nanoTime()/1e9;
-        
+        RayCasting ray = new RayCasting(camera,renderer);
         while (!glfwWindowShouldClose(DisplayManager.window) ) {
             double current = System.nanoTime()/1e9;
             
@@ -84,7 +84,7 @@ public class Engine {
 //                loader.updateVBO(terrainData.getVertices(), terrain.getModel().getVerticesVBO());
 //                loader.updateVBO(terrainData.getColour(),  terrain.getModel().getColourVBO());
 
-                ray(camera,renderer);
+                ray.update();
                 t = System.nanoTime()/1e9;
             }
 

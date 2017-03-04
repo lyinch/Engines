@@ -62,7 +62,24 @@ public class MasterRenderer {
         glBufferData(GL_ARRAY_BUFFER,buffer,GL_STATIC_DRAW);
         glVertexAttribPointer(0,3, GL_FLOAT,false,0,0);
 
+
+
+        vboID = glGenBuffers();
+        glBindBuffer(GL_ARRAY_BUFFER,vboID);
+        data = new float[]{
+                1,1,1,
+                0.5f,0.5f,0.5f,
+                1,0,1,
+                0,1,1
+        };
+        buffer = BufferUtils.createFloatBuffer(data.length);
+        buffer.put(data);
+        buffer.flip();
+        glBufferData(GL_ARRAY_BUFFER,buffer,GL_STATIC_DRAW);
+        glVertexAttribPointer(1,3, GL_FLOAT,false,0,0);
+
         glEnableVertexAttribArray(0);
+        glEnableVertexAttribArray(1);
 
         //glEnable(GL_CULL_FACE);
         //glCullFace(GL_BACK);
@@ -90,11 +107,12 @@ public class MasterRenderer {
         shader.start();
         shader.loadViewMatrix(camera);
         renderEntity(shader);
-        glBindVertexArray(VAO_ID);
-        //Matrix4f transformationMatrix= Maths.createTransformationMatrix(new Vector3f(0,0,0),new Vector3f(0,0,0),1);
-        //shader.loadTransformationMatrix(transformationMatrix);
-
-        glDrawArrays(GL_LINE_STRIP,0,4);
+        
+//        glBindVertexArray(VAO_ID);
+//        Matrix4f transformationMatrix= Maths.createTransformationMatrix(new Vector3f(0,0,0),new Vector3f(0,0,0),1);
+//        shader.loadTransformationMatrix(transformationMatrix);
+//
+//        glDrawArrays(GL_LINE_STRIP,0,4);
         
         shader.stop();
         DisplayManager.update();
@@ -117,6 +135,10 @@ public class MasterRenderer {
             glDrawElements(GL_TRIANGLES, entity.getModel().getCount(), GL11.GL_UNSIGNED_INT, 0);
             entity.addRotation(0f,0,0);
         }
+    }
+    
+    private void renderLine(StaticShader shader){
+        
     }
 
     /**
