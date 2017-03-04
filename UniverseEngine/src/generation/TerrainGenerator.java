@@ -140,7 +140,7 @@ public class TerrainGenerator implements Generator{
             }
         }
         
-        heightColour(min,max);
+        //heightColour(min,max);
     }
 
     @Override

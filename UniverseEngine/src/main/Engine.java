@@ -1,5 +1,5 @@
 package main;
-
+//Thank you almighty internet, for making this crap possible
 import entities.Camera;
 import entities.TerrainEntity;
 import generation.TerrainGenerator;
@@ -15,7 +15,7 @@ import utils.RayCasting;
 import java.util.Arrays;
 import java.util.List;
 
-import static org.lwjgl.glfw.GLFW.glfwWindowShouldClose;
+import static org.lwjgl.glfw.GLFW.*;
 
 /**
  * Created by backes on 24/02/17.
@@ -57,12 +57,11 @@ public class Engine {
 //        renderer.addEntity(ico);
 
 
-        TerrainGenerator terrainGenerator = new TerrainGenerator(5,10,10);
+        TerrainGenerator terrainGenerator = new TerrainGenerator(1,50,50);
         terrainGenerator.generate();
         //terrainGenerator.falseAlgorithm(100);
         ModelData terrainData = new ModelData(terrainGenerator.getVertices(),terrainGenerator.getIndices(),terrainGenerator.getTextureCoords(),terrainGenerator.getColour(),3);
         Model terrainModel = new Model(loader.loadToVAO(terrainData),terrainData.getCount());
-        System.out.println(Arrays.toString(terrainData.getVertices()));
         TerrainEntity terrain = new TerrainEntity(terrainModel);
         renderer.addEntity(terrain);
         
@@ -72,67 +71,25 @@ public class Engine {
 
 
         /** ================================================= **/
+        
         double t = System.nanoTime()/1e9;
+        
         RayCasting ray = new RayCasting(camera,renderer);
+        
         while (!glfwWindowShouldClose(DisplayManager.window) ) {
             double current = System.nanoTime()/1e9;
             
             if (current-t >=0.1) {
-//                terrainGenerator.randomHeight();
-//                terrainGenerator.generate();
-//                terrainGenerator.falseAlgorithm(200);
-//
-//                loader.updateVBO(terrainData.getVertices(), terrain.getModel().getVerticesVBO());
-                
 
                 ray.update();
-                //System.out.println(ray.getX() + " : " + ray.getZ());
-                int gridX = (int)(ray.getX()/5);
-                int gridZ = (int)(ray.getZ()/5);
-                System.out.println(gridX + ":" + gridZ );
-                float[] colour = Arrays.copyOf(terrainData.getColour(),terrainData.getColour().length);
-                
-                int pos = (gridX*10+gridZ+gridX)*3;
-                System.out.println(pos);
-                try {
-                    colour[pos + 0] = 1;
-                    colour[pos + 1] = 1;
-                    colour[pos + 2] = 1;
-
-                    colour[pos + 3] = 1;
-                    colour[pos + 4] = 1;
-                    colour[pos + 5] = 1;
-
-
-                    gridX += 1;
-                    pos = (gridX * 10 + gridZ + gridX) * 3;
-//
-                    colour[pos + 0] = 1;
-                    colour[pos + 1] = 1;
-                    colour[pos + 2] = 1;
-
-                    colour[pos + 3] = 1;
-                    colour[pos + 4] = 1;
-                    colour[pos + 5] = 1;
-                }catch (ArrayIndexOutOfBoundsException e){
-                    
-                }
-                
-                loader.updateVBO(colour,  terrain.getModel().getColourVBO());
+                terrain.markQuad(ray.getPointOnGround(),1,50,50,loader,Arrays.copyOf(terrainData.getColour(),terrainData.getColour().length));
+                terrain.modifyQuad(ray.getPointOnGround(),1,50,50,loader,terrainData.getVertices());
 
                 t = System.nanoTime()/1e9;
             }
 
             camera.move();
             renderer.render(shader, camera);
-            //ray(camera,renderer);
-            
-            //glBindVertexArray(cube.getModel().getVaoID());
-            
-            //System.out.println(cube.getModel().getVaoID());
-            //Matrix4f transformationMatrix= Maths.createTransformationMatrix(cube.getPosition(),cube.getRotation(),cube.getScale());
-            //shader.loadTransformationMatrix(transformationMatrix);
-            //glDrawArrays(GL_TRIANGLES, 0, 12*3); 
             
         }
 //        
