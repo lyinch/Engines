@@ -97,7 +97,7 @@ public class RayCasting {
     private Vector3f calculateMouseRay(){
         //Normalized Device Coordinates
         float x = (2f*Input.mouseX)/ DisplayManager.getWIDTH()-1f;
-        float y = (2*Input.mouseY)/DisplayManager.getHEIGHT()-1f;
+        float y = 1-(2f*Input.mouseY)/DisplayManager.getHEIGHT();
 
         Vector2f normalizedCoords = new Vector2f(x,y);
         Vector4f clipCoords = new Vector4f(normalizedCoords.x,normalizedCoords.y,-1f,1);
