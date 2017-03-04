@@ -13,6 +13,7 @@ import shaders.StaticShader;
 import utils.RayCasting;
 
 import java.util.Arrays;
+import java.util.List;
 
 import static org.lwjgl.glfw.GLFW.glfwWindowShouldClose;
 
@@ -56,7 +57,7 @@ public class Engine {
 //        renderer.addEntity(ico);
 
 
-        TerrainGenerator terrainGenerator = new TerrainGenerator(5,1,1);
+        TerrainGenerator terrainGenerator = new TerrainGenerator(5,10,10);
         terrainGenerator.generate();
         //terrainGenerator.falseAlgorithm(100);
         ModelData terrainData = new ModelData(terrainGenerator.getVertices(),terrainGenerator.getIndices(),terrainGenerator.getTextureCoords(),terrainGenerator.getColour(),3);
@@ -76,15 +77,49 @@ public class Engine {
         while (!glfwWindowShouldClose(DisplayManager.window) ) {
             double current = System.nanoTime()/1e9;
             
-            if (current-t >=1) {
+            if (current-t >=0.1) {
 //                terrainGenerator.randomHeight();
 //                terrainGenerator.generate();
 //                terrainGenerator.falseAlgorithm(200);
 //
 //                loader.updateVBO(terrainData.getVertices(), terrain.getModel().getVerticesVBO());
-//                loader.updateVBO(terrainData.getColour(),  terrain.getModel().getColourVBO());
+                
 
                 ray.update();
+                //System.out.println(ray.getX() + " : " + ray.getZ());
+                int gridX = (int)(ray.getX()/5);
+                int gridZ = (int)(ray.getZ()/5);
+                System.out.println(gridX + ":" + gridZ );
+                float[] colour = Arrays.copyOf(terrainData.getColour(),terrainData.getColour().length);
+                
+                int pos = (gridX*10+gridZ+gridX)*3;
+                System.out.println(pos);
+                try {
+                    colour[pos + 0] = 1;
+                    colour[pos + 1] = 1;
+                    colour[pos + 2] = 1;
+
+                    colour[pos + 3] = 1;
+                    colour[pos + 4] = 1;
+                    colour[pos + 5] = 1;
+
+
+                    gridX += 1;
+                    pos = (gridX * 10 + gridZ + gridX) * 3;
+//
+                    colour[pos + 0] = 1;
+                    colour[pos + 1] = 1;
+                    colour[pos + 2] = 1;
+
+                    colour[pos + 3] = 1;
+                    colour[pos + 4] = 1;
+                    colour[pos + 5] = 1;
+                }catch (ArrayIndexOutOfBoundsException e){
+                    
+                }
+                
+                loader.updateVBO(colour,  terrain.getModel().getColourVBO());
+
                 t = System.nanoTime()/1e9;
             }
 

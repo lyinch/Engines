@@ -67,19 +67,7 @@ public class TerrainGenerator implements Generator{
         for (int i = 0; i < textureCoords.length; i++){
             textureCoords[i] = 1f;
         }
-        
-        colour[0] = 1f;
-        colour[1] = 0f;
-        colour[2] = 0f;
 
-        colour[3] = 0f;
-        colour[4] = 1f;
-        colour[5] = 0f;
-
-
-        colour[6] = 0f;
-        colour[7] = 0f;
-        colour[8] = 0f;
     }
 
     /**

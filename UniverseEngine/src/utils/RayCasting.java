@@ -73,6 +73,9 @@ public class RayCasting {
     private Camera camera;
     private MasterRenderer masterRenderer;
 
+    
+    private double x;
+    private double z;
     public RayCasting(Camera camera, MasterRenderer masterRenderer) {
         this.camera = camera;
         this.masterRenderer = masterRenderer;
@@ -89,9 +92,18 @@ public class RayCasting {
         double t = -p.y/currentRay.y;
         double x_c = p.x+currentRay.x*t;
         double z_c = p.z+currentRay.z*t;
-        System.out.println(currentRay);
-        System.out.println(x_c + " : " + z_c);
+        x = x_c;
+        z = z_c;
+        //System.out.println(x_c + " : " + z_c + " Square: " + (int)(x_c/5) + ":" + (int)(z_c/5) );
         //System.out.println(calculateMouseRay());
+    }
+    
+    public double getX(){
+        return x;
+    }
+    
+    public double getZ(){
+        return z;
     }
 
     private Vector3f calculateMouseRay(){
