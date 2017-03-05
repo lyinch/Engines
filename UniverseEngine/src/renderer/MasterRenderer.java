@@ -2,6 +2,7 @@ package renderer;
 
 import entities.Camera;
 import entities.Entity;
+import gui.GuiComponent;
 import gui.GuiShader;
 import org.joml.Matrix4f;
 import org.joml.Vector3f;
@@ -38,6 +39,7 @@ public class MasterRenderer {
     private final float Z_FAR = 1000f;
 
     private List<Entity> entities;
+    private List<GuiComponent> guiComponents;
     
     
     int VAO_ID;
@@ -91,8 +93,8 @@ public class MasterRenderer {
         int vboID = glGenBuffers();
         glBindBuffer(GL_ARRAY_BUFFER,vboID);
         float[] data = new float[]{
-                -1f,1f,
-                -1,-1,
+                0.6f,1f,
+                0.6f,-1,
                 1,1,
                 1,-1,
                 };
@@ -157,7 +159,7 @@ public class MasterRenderer {
         GuiShader guiS = new GuiShader();
         guiS.start();
         glBindVertexArray(VAO_ID);
-        Matrix4f transformationMatrix= Maths.createTransformationMatrix(new Vector3f(0,0,0),new Vector3f(0,0,0),0.5f);
+        Matrix4f transformationMatrix= Maths.createTransformationMatrix(new Vector3f(0,0,0),new Vector3f(0,0,0),1f);
         shader.loadTransformationMatrix(transformationMatrix);
 
         glDrawArrays(GL_TRIANGLE_STRIP,0,4);
@@ -186,6 +188,16 @@ public class MasterRenderer {
     
     private void renderLine(StaticShader shader){
         
+    }
+    
+    private void renderGui(StaticShader shader){
+        for (GuiComponent gui:guiComponents){
+            glBindVertexArray(gui.getGuiModel().getVaoID());
+            Matrix4f transformationMatrix= Maths.createTransformationMatrix(new Vector3f(0,0,0),new Vector3f(0,0,0),1f);
+            shader.loadTransformationMatrix(transformationMatrix);
+            glDrawArrays(GL_TRIANGLE_STRIP,0,4);
+
+        }
     }
 
     /**

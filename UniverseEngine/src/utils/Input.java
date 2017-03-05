@@ -1,5 +1,7 @@
 package utils;
 
+import renderer.DisplayManager;
+
 /**
  * Created by backes on 24/02/17.
  */
@@ -23,6 +25,10 @@ public class Input {
         mouseDY = mouseY-(float)y;
         mouseX = (float)x;
         mouseY = (float)y;
+
+        if (((2f*Input.mouseX)/ DisplayManager.getWIDTH()-1f) > 0.6f){
+            System.out.println("GUI");
+        }
     }
 
     /**

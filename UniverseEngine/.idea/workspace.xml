@@ -2,17 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="24d73b68-6e3b-4bd7-9171-d3f9579aae58" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/gui/GuiFragmentShader.frag" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/gui/GuiShader.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/gui/GuiVertexShader.vert" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/UniverseEngine/entities/TerrainEntity.class" afterPath="$PROJECT_DIR$/out/production/UniverseEngine/entities/TerrainEntity.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/UniverseEngine/main/Engine.class" afterPath="$PROJECT_DIR$/out/production/UniverseEngine/main/Engine.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/UniverseEngine/renderer/Loader.class" afterPath="$PROJECT_DIR$/out/production/UniverseEngine/renderer/Loader.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/gui/GuiComponent.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/gui/GuiData.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/gui/GuiModel.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/UniverseEngine/renderer/MasterRenderer.class" afterPath="$PROJECT_DIR$/out/production/UniverseEngine/renderer/MasterRenderer.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/UniverseEngine/utils/Input.class" afterPath="$PROJECT_DIR$/out/production/UniverseEngine/utils/Input.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/entities/TerrainEntity.java" afterPath="$PROJECT_DIR$/src/entities/TerrainEntity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/renderer/Loader.java" afterPath="$PROJECT_DIR$/src/renderer/Loader.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/renderer/MasterRenderer.java" afterPath="$PROJECT_DIR$/src/renderer/MasterRenderer.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/utils/Input.java" afterPath="$PROJECT_DIR$/src/utils/Input.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -28,18 +25,6 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Engine.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/Engine.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="241">
-              <caret line="84" column="23" lean-forward="false" selection-start-line="84" selection-start-column="16" selection-end-line="84" selection-end-column="23" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="TerrainGenerator.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/generation/TerrainGenerator.java">
           <provider selected="true" editor-type-id="text-editor">
@@ -52,11 +37,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MasterRenderer.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="MasterRenderer.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/renderer/MasterRenderer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="343">
-              <caret line="121" column="33" lean-forward="false" selection-start-line="121" selection-start-column="8" selection-end-line="121" selection-end-column="33" />
+            <state relative-caret-position="301">
+              <caret line="198" column="0" lean-forward="false" selection-start-line="198" selection-start-column="0" selection-end-line="198" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -64,11 +49,82 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="GuiShader.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Input.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/utils/Input.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="91">
+              <caret line="29" column="38" lean-forward="false" selection-start-line="29" selection-start-column="38" selection-end-line="29" selection-end-column="38" />
+              <folding>
+                <element signature="e#1122#1123#0" expanded="true" />
+                <element signature="e#1150#1151#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="GuiData.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/gui/GuiData.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="210">
+              <caret line="14" column="34" lean-forward="false" selection-start-line="14" selection-start-column="34" selection-end-line="14" selection-end-column="34" />
+              <folding>
+                <element signature="e#337#338#0" expanded="true" />
+                <element signature="e#371#372#0" expanded="true" />
+                <element signature="e#400#401#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="GuiModel.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/gui/GuiModel.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="75">
+              <caret line="5" column="16" lean-forward="false" selection-start-line="5" selection-start-column="16" selection-end-line="5" selection-end-column="16" />
+              <folding>
+                <element signature="e#173#174#0" expanded="true" />
+                <element signature="e#205#206#0" expanded="true" />
+                <element signature="e#234#235#0" expanded="true" />
+                <element signature="e#262#263#0" expanded="true" />
+                <element signature="e#294#295#0" expanded="true" />
+                <element signature="e#321#322#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="GuiComponent.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/gui/GuiComponent.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="210">
+              <caret line="14" column="5" lean-forward="true" selection-start-line="14" selection-start-column="5" selection-end-line="14" selection-end-column="5" />
+              <folding>
+                <element signature="e#159#160#0" expanded="true" />
+                <element signature="e#199#200#0" expanded="true" />
+                <element signature="e#236#237#0" expanded="true" />
+                <element signature="e#267#268#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="RayCasting.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/utils/RayCasting.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="315">
+              <caret line="59" column="65" lean-forward="false" selection-start-line="59" selection-start-column="18" selection-end-line="59" selection-end-column="65" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="GuiShader.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/gui/GuiShader.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="361">
-              <caret line="28" column="0" lean-forward="false" selection-start-line="28" selection-start-column="0" selection-end-line="28" selection-end-column="0" />
+            <state relative-caret-position="196">
+              <caret line="17" column="5" lean-forward="true" selection-start-line="17" selection-start-column="5" selection-end-line="17" selection-end-column="5" />
               <folding>
                 <element signature="e#414#415#0" expanded="true" />
                 <element signature="e#463#464#0" expanded="true" />
@@ -92,26 +148,6 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="60">
               <caret line="4" column="0" lean-forward="false" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="StaticShader.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/shaders/StaticShader.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="135">
-              <caret line="11" column="0" lean-forward="false" selection-start-line="11" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Loader.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/renderer/Loader.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="270">
-              <caret line="51" column="45" lean-forward="false" selection-start-line="51" selection-start-column="37" selection-end-line="51" selection-end-column="45" />
               <folding />
             </state>
           </provider>
@@ -181,7 +217,6 @@
       <list>
         <option value="$PROJECT_DIR$/src/models/RawModel.java" />
         <option value="$PROJECT_DIR$/src/shaders/Shader.java" />
-        <option value="$PROJECT_DIR$/src/utils/Input.java" />
         <option value="$PROJECT_DIR$/src/generation/Generator.java" />
         <option value="$PROJECT_DIR$/src/textures/Texture.java" />
         <option value="$PROJECT_DIR$/src/generation/CubeGenerator.java" />
@@ -203,11 +238,15 @@
         <option value="$PROJECT_DIR$/src/gui/GuiTexture.java" />
         <option value="$PROJECT_DIR$/src/renderer/Loader.java" />
         <option value="$PROJECT_DIR$/src/shaders/VertexShader.vert" />
-        <option value="$PROJECT_DIR$/src/renderer/MasterRenderer.java" />
         <option value="$PROJECT_DIR$/src/shaders/FragmentShader.frag" />
         <option value="$PROJECT_DIR$/src/gui/GuiVertexShader.vert" />
         <option value="$PROJECT_DIR$/src/gui/GuiFragmentShader.frag" />
         <option value="$PROJECT_DIR$/src/gui/GuiShader.java" />
+        <option value="$PROJECT_DIR$/src/utils/Input.java" />
+        <option value="$PROJECT_DIR$/src/gui/GuiData.java" />
+        <option value="$PROJECT_DIR$/src/gui/GuiModel.java" />
+        <option value="$PROJECT_DIR$/src/gui/GuiComponent.java" />
+        <option value="$PROJECT_DIR$/src/renderer/MasterRenderer.java" />
       </list>
     </option>
   </component>
@@ -390,10 +429,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="generation" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -850,12 +885,12 @@
       <option name="presentableId" value="Default" />
       <updated>1487970436796</updated>
       <workItem from="1487970438417" duration="18730000" />
-      <workItem from="1488058042780" duration="126186000" />
+      <workItem from="1488058042780" duration="129196000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="144916000" />
+    <option name="totallyTimeSpent" value="147926000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1280" height="773" extended-state="6" />
@@ -911,53 +946,12 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/entities/CubeEntity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
-          <caret line="15" column="40" lean-forward="false" selection-start-line="15" selection-start-column="40" selection-end-line="15" selection-end-column="40" />
-          <folding>
-            <element signature="e#384#385#0" expanded="true" />
-            <element signature="e#493#494#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/shaders/VertexShader.vert">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="10" column="58" lean-forward="false" selection-start-line="10" selection-start-column="38" selection-end-line="10" selection-end-column="58" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/shaders/StaticShader.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="510">
-          <caret line="38" column="50" lean-forward="false" selection-start-line="38" selection-start-column="25" selection-end-line="38" selection-end-column="50" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#1820#1821#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/models/RawModel.java" />
     <entry file="jar://$PROJECT_DIR$/../../lwjgl/joml-1.9.2-sources.jar!/org/joml/Intersectiond.java" />
     <entry file="jar://$PROJECT_DIR$/../../lwjgl/joml-1.9.2-sources.jar!/org/joml/FrustumRayBuilder.java" />
     <entry file="jar://$PROJECT_DIR$/../../lwjgl/joml-1.9.2-sources.jar!/org/joml/GeometryUtils.java" />
     <entry file="jar://$PROJECT_DIR$/../../lwjgl/joml-1.9.2-sources.jar!/org/joml/Matrix4f.java" />
     <entry file="jar://$PROJECT_DIR$/../../lwjgl/joml-1.9.2-sources.jar!/org/joml/Matrix4fc.java" />
-    <entry file="file://$PROJECT_DIR$/src/utils/Input.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="615">
-          <caret line="41" column="21" lean-forward="false" selection-start-line="41" selection-start-column="21" selection-end-line="41" selection-end-column="21" />
-          <folding>
-            <element signature="e#968#969#0" expanded="false" />
-            <element signature="e#996#997#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$PROJECT_DIR$/../../../lwjgl/joml-1.9.2-sources.jar!/org/joml/Vector3f.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="168">
@@ -1021,26 +1015,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/generation/Generator.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="5" column="17" lean-forward="false" selection-start-line="5" selection-start-column="17" selection-end-line="5" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/generation/CubeGenerator.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="195">
           <caret line="13" column="0" lean-forward="false" selection-start-line="13" selection-start-column="0" selection-end-line="85" selection-end-column="10" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/models/ModelData.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="5" column="13" lean-forward="false" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
           <folding />
         </state>
       </provider>
@@ -1240,33 +1218,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/utils/RayCasting.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="48" column="39" lean-forward="true" selection-start-line="48" selection-start-column="39" selection-end-line="48" selection-end-column="39" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#3180#3181#0" expanded="true" />
-            <element signature="e#3206#3207#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/gui/GuiTexture.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="195">
           <caret line="13" column="31" lean-forward="false" selection-start-line="13" selection-start-column="31" selection-end-line="13" selection-end-column="31" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/generation/TerrainGenerator.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="930">
-          <caret line="142" column="10" lean-forward="false" selection-start-line="142" selection-start-column="10" selection-end-line="142" selection-end-column="10" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1304,24 +1260,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/renderer/MasterRenderer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="343">
-          <caret line="121" column="33" lean-forward="false" selection-start-line="121" selection-start-column="8" selection-end-line="121" selection-end-column="33" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/gui/GuiVertexShader.vert">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="6" column="19" lean-forward="false" selection-start-line="6" selection-start-column="9" selection-end-line="6" selection-end-column="19" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/shaders/FragmentShader.frag">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="180">
@@ -1340,11 +1278,116 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/gui/GuiShader.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="361">
-          <caret line="28" column="0" lean-forward="false" selection-start-line="28" selection-start-column="0" selection-end-line="28" selection-end-column="0" />
+        <state relative-caret-position="196">
+          <caret line="17" column="5" lean-forward="true" selection-start-line="17" selection-start-column="5" selection-end-line="17" selection-end-column="5" />
           <folding>
             <element signature="e#414#415#0" expanded="true" />
             <element signature="e#463#464#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/gui/GuiVertexShader.vert">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="6" column="19" lean-forward="false" selection-start-line="6" selection-start-column="9" selection-end-line="6" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/generation/TerrainGenerator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="930">
+          <caret line="142" column="10" lean-forward="false" selection-start-line="142" selection-start-column="10" selection-end-line="142" selection-end-column="10" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/utils/RayCasting.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="315">
+          <caret line="59" column="65" lean-forward="false" selection-start-line="59" selection-start-column="18" selection-end-line="59" selection-end-column="65" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/generation/Generator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="5" column="17" lean-forward="false" selection-start-line="5" selection-start-column="17" selection-end-line="5" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/models/ModelData.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-149">
+          <caret line="5" column="13" lean-forward="false" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/utils/Input.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="91">
+          <caret line="29" column="38" lean-forward="false" selection-start-line="29" selection-start-column="38" selection-end-line="29" selection-end-column="38" />
+          <folding>
+            <element signature="e#1122#1123#0" expanded="true" />
+            <element signature="e#1150#1151#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/gui/GuiData.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="14" column="34" lean-forward="false" selection-start-line="14" selection-start-column="34" selection-end-line="14" selection-end-column="34" />
+          <folding>
+            <element signature="e#337#338#0" expanded="true" />
+            <element signature="e#371#372#0" expanded="true" />
+            <element signature="e#400#401#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/gui/GuiComponent.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="14" column="5" lean-forward="true" selection-start-line="14" selection-start-column="5" selection-end-line="14" selection-end-column="5" />
+          <folding>
+            <element signature="e#159#160#0" expanded="true" />
+            <element signature="e#199#200#0" expanded="true" />
+            <element signature="e#236#237#0" expanded="true" />
+            <element signature="e#267#268#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/gui/GuiModel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="5" column="16" lean-forward="false" selection-start-line="5" selection-start-column="16" selection-end-line="5" selection-end-column="16" />
+          <folding>
+            <element signature="e#173#174#0" expanded="true" />
+            <element signature="e#205#206#0" expanded="true" />
+            <element signature="e#234#235#0" expanded="true" />
+            <element signature="e#262#263#0" expanded="true" />
+            <element signature="e#294#295#0" expanded="true" />
+            <element signature="e#321#322#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/renderer/MasterRenderer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="301">
+          <caret line="198" column="0" lean-forward="false" selection-start-line="198" selection-start-column="0" selection-end-line="198" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
