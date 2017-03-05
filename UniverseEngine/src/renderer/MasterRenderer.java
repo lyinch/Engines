@@ -6,29 +6,16 @@ import gui.GuiComponent;
 import gui.GuiShader;
 import org.joml.Matrix4f;
 import org.joml.Vector3f;
-import org.lwjgl.BufferUtils;
 import org.lwjgl.opengl.GL11;
-import shaders.Shader;
 import shaders.StaticShader;
 import utils.Maths;
 
-import java.nio.FloatBuffer;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Stack;
 
-import static org.lwjgl.glfw.GLFW.glfwPollEvents;
-import static org.lwjgl.glfw.GLFW.glfwSwapBuffers;
 import static org.lwjgl.opengl.GL11.*;
-import static org.lwjgl.opengl.GL11.GL_DEPTH_TEST;
-import static org.lwjgl.opengl.GL13.GL_TEXTURE0;
-import static org.lwjgl.opengl.GL13.glActiveTexture;
-import static org.lwjgl.opengl.GL15.*;
-import static org.lwjgl.opengl.GL15.GL_ELEMENT_ARRAY_BUFFER;
-import static org.lwjgl.opengl.GL15.GL_STATIC_DRAW;
-import static org.lwjgl.opengl.GL20.glEnableVertexAttribArray;
-import static org.lwjgl.opengl.GL20.glVertexAttribPointer;
 import static org.lwjgl.opengl.GL30.glBindVertexArray;
-import static org.lwjgl.opengl.GL30.glGenVertexArrays;
 
 /**
  * Created by backes on 25/02/17.
@@ -39,7 +26,7 @@ public class MasterRenderer {
     private final float Z_FAR = 1000f;
 
     private List<Entity> entities;
-    private List<GuiComponent> guiComponents;
+    private Stack<GuiComponent> guiComponents;
     
     
   
@@ -48,7 +35,7 @@ public class MasterRenderer {
         shader.loadProjectionMatrix(createProjectionMatrix());
         shader.stop();
         entities = new ArrayList<>();
-        guiComponents = new ArrayList<>();
+        guiComponents = new Stack<>();
 //        VAO_ID = glGenVertexArrays();
 //        glBindVertexArray(VAO_ID);
 //        int vboID = glGenBuffers();
@@ -149,11 +136,12 @@ public class MasterRenderer {
     }
     
     private void renderGui(StaticShader shader){
-        for (GuiComponent gui:guiComponents){
+        while (!guiComponents.isEmpty()){
+            GuiComponent gui = guiComponents.pop();
             glBindVertexArray(gui.getGuiModel().getVaoID());
-            Matrix4f transformationMatrix= Maths.createTransformationMatrix(new Vector3f(0,0,0),new Vector3f(0,0,0),1f);
+            Matrix4f transformationMatrix= Maths.createTransformationMatrix(gui.getPosition(),new Vector3f(0,0,0),1f);
             shader.loadTransformationMatrix(transformationMatrix);
-            glDrawArrays(GL_TRIANGLE_STRIP,0,4);
+            glDrawArrays(GL_TRIANGLE_STRIP,0,gui.getGuiModel().getCount());
 
         }
     }

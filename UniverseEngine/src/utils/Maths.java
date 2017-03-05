@@ -72,4 +72,8 @@ public class Maths {
     public static float lerp(float x0, float y0, float x1, float y1, float x2){
         return x2*((y1-y0)/(x1-x0))+y0-((y1-y0)/(x1-x0))*x0;
     }
+    
+    public static float normCol(int colour){
+        return colour/256f;
+    }
 }

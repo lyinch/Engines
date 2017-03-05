@@ -13,8 +13,10 @@ import renderer.DisplayManager;
 import renderer.Loader;
 import renderer.MasterRenderer;
 import shaders.StaticShader;
+import utils.Maths;
 import utils.RayCasting;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -77,15 +79,41 @@ public class Engine {
                 1,1,
                 1,-1,
         },  new float[]{
-                1,1,1,
-                0.5f,0.5f,0.5f,
-                1,0,1,
-                0,1,1
+                0,0,0,
+                0,0,0,
+                0,0,0,
+                0,0,0,
         });
 
-        GuiModel sidebarModel = new GuiModel(sidebarData,loader.loadToVao(sidebarData),4);
+        
+        List<GuiComponent> components = new ArrayList<>();
+        
+        GuiModel sidebarModel = new GuiModel(sidebarData,loader.loadToVao(sidebarData),sidebarData.getVertices().length/2);
         GuiComponent sidebar = new GuiComponent(sidebarModel);
-        renderer.addGui(sidebar);
+        components.add(sidebar);
+        float[] buttonV = new float[]{
+                0.7f,0.7f,
+                0.7f,0.6f,
+                0.9f,0.7f,
+                0.9f,0.6f,
+        };
+        
+        float [] buttonC = new float[]{
+                Maths.normCol(215), Maths.normCol(115), Maths.normCol(43),
+                Maths.normCol(215), Maths.normCol(115), Maths.normCol(43),
+                Maths.normCol(215), Maths.normCol(115), Maths.normCol(43),
+                Maths.normCol(215), Maths.normCol(115), Maths.normCol(43),
+        };
+        
+        GuiData buttonData = new GuiData(buttonV,buttonC);
+        GuiModel buttonModel = new GuiModel(buttonData,loader.loadToVao(buttonData),buttonData.getVertices().length/2);
+        GuiComponent button = new GuiComponent(buttonModel);
+        components.add(button);
+
+        GuiComponent button2 = new GuiComponent(buttonModel);
+        button.setPosition(0,0.14f,0);
+        components.add(button2);
+        
         /** ================================================= **/
 
 
@@ -108,6 +136,8 @@ public class Engine {
             }
 
             camera.move();
+            for (GuiComponent g:components)
+                renderer.addGui(g);
             renderer.render(shader, camera);
             
         }
