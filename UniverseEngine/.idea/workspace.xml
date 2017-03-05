@@ -2,23 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="24d73b68-6e3b-4bd7-9171-d3f9579aae58" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hs_err_pid25182.log" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hs_err_pid25226.log" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hs_err_pid25548.log" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hs_err_pid25566.log" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hs_err_pid25762.log" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hs_err_pid99490.log" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hs_err_pid99504.log" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hs_err_pid99549.log" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hs_err_pid99578.log" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/UniverseEngine/main/Engine.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/UniverseEngine/utils/RayCasting.class" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/UniverseEngine/generation/TerrainGenerator.class" afterPath="$PROJECT_DIR$/out/production/UniverseEngine/generation/TerrainGenerator.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/gui/GuiFragmentShader.frag" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/gui/GuiShader.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/gui/GuiVertexShader.vert" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/UniverseEngine/entities/TerrainEntity.class" afterPath="$PROJECT_DIR$/out/production/UniverseEngine/entities/TerrainEntity.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/UniverseEngine/main/Engine.class" afterPath="$PROJECT_DIR$/out/production/UniverseEngine/main/Engine.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/UniverseEngine/renderer/Loader.class" afterPath="$PROJECT_DIR$/out/production/UniverseEngine/renderer/Loader.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/UniverseEngine/renderer/MasterRenderer.class" afterPath="$PROJECT_DIR$/out/production/UniverseEngine/renderer/MasterRenderer.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/entities/TerrainEntity.java" afterPath="$PROJECT_DIR$/src/entities/TerrainEntity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/generation/TerrainGenerator.java" afterPath="$PROJECT_DIR$/src/generation/TerrainGenerator.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/Engine.java" afterPath="$PROJECT_DIR$/src/main/Engine.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/utils/RayCasting.java" afterPath="$PROJECT_DIR$/src/utils/RayCasting.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/renderer/Loader.java" afterPath="$PROJECT_DIR$/src/renderer/Loader.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/renderer/MasterRenderer.java" afterPath="$PROJECT_DIR$/src/renderer/MasterRenderer.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -34,39 +28,13 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Engine.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Engine.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/Engine.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="721">
-              <caret line="91" column="44" lean-forward="false" selection-start-line="91" selection-start-column="44" selection-end-line="91" selection-end-column="44" />
+            <state relative-caret-position="241">
+              <caret line="84" column="23" lean-forward="false" selection-start-line="84" selection-start-column="16" selection-end-line="84" selection-end-column="23" />
               <folding>
                 <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="TerrainEntity.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/entities/TerrainEntity.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="374">
-              <caret line="92" column="9" lean-forward="false" selection-start-line="92" selection-start-column="9" selection-end-line="92" selection-end-column="9" />
-              <folding>
-                <marker date="1488663827000" expanded="true" signature="2848:3173" ph="..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="RayCasting.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/utils/RayCasting.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="105">
-              <caret line="45" column="115" lean-forward="false" selection-start-line="45" selection-start-column="115" selection-end-line="45" selection-end-column="115" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#3180#3181#0" expanded="true" />
-                <element signature="e#3206#3207#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -75,7 +43,7 @@
       <file leaf-file-name="TerrainGenerator.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/generation/TerrainGenerator.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="690">
+            <state relative-caret-position="930">
               <caret line="142" column="10" lean-forward="false" selection-start-line="142" selection-start-column="10" selection-end-line="142" selection-end-column="10" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -87,8 +55,8 @@
       <file leaf-file-name="MasterRenderer.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/renderer/MasterRenderer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="245">
-              <caret line="99" column="5" lean-forward="true" selection-start-line="99" selection-start-column="5" selection-end-line="99" selection-end-column="5" />
+            <state relative-caret-position="343">
+              <caret line="121" column="33" lean-forward="false" selection-start-line="121" selection-start-column="8" selection-end-line="121" selection-end-column="33" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -96,31 +64,34 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Loader.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/renderer/Loader.java">
+      <file leaf-file-name="GuiShader.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/gui/GuiShader.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="210">
-              <caret line="189" column="0" lean-forward="true" selection-start-line="189" selection-start-column="0" selection-end-line="189" selection-end-column="0" />
+            <state relative-caret-position="361">
+              <caret line="28" column="0" lean-forward="false" selection-start-line="28" selection-start-column="0" selection-end-line="28" selection-end-column="0" />
+              <folding>
+                <element signature="e#414#415#0" expanded="true" />
+                <element signature="e#463#464#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="GuiVertexShader.vert" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/gui/GuiVertexShader.vert">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="90">
+              <caret line="6" column="19" lean-forward="false" selection-start-line="6" selection-start-column="9" selection-end-line="6" selection-end-column="19" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="FragmentShader.frag" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/shaders/FragmentShader.frag">
+      <file leaf-file-name="GuiFragmentShader.frag" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/gui/GuiFragmentShader.frag">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="240">
-              <caret line="16" column="0" lean-forward="true" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="VertexShader.vert" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/shaders/VertexShader.vert">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="17" column="7" lean-forward="true" selection-start-line="17" selection-start-column="7" selection-end-line="17" selection-end-column="7" />
+            <state relative-caret-position="60">
+              <caret line="4" column="0" lean-forward="false" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -129,8 +100,18 @@
       <file leaf-file-name="StaticShader.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/shaders/StaticShader.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="333">
-              <caret line="65" column="33" lean-forward="false" selection-start-line="65" selection-start-column="33" selection-end-line="65" selection-end-column="33" />
+            <state relative-caret-position="135">
+              <caret line="11" column="0" lean-forward="false" selection-start-line="11" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Loader.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/renderer/Loader.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="270">
+              <caret line="51" column="45" lean-forward="false" selection-start-line="51" selection-start-column="37" selection-end-line="51" selection-end-column="45" />
               <folding />
             </state>
           </provider>
@@ -148,7 +129,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>int h</find>
       <find>determi</find>
       <find>det</find>
       <find>max</find>
@@ -178,6 +158,7 @@
       <find>system.</find>
       <find>projection</find>
       <find>colour</find>
+      <find>shader.</find>
     </findStrings>
     <replaceStrings>
       <replace>0x256</replace>
@@ -214,15 +195,19 @@
         <option value="$PROJECT_DIR$/src/utils/Maths.java" />
         <option value="$PROJECT_DIR$/src/models/Model.java" />
         <option value="$PROJECT_DIR$/src/utils/Console.java" />
-        <option value="$PROJECT_DIR$/src/renderer/Loader.java" />
-        <option value="$PROJECT_DIR$/src/shaders/VertexShader.vert" />
-        <option value="$PROJECT_DIR$/src/shaders/FragmentShader.frag" />
-        <option value="$PROJECT_DIR$/src/renderer/MasterRenderer.java" />
         <option value="$PROJECT_DIR$/src/shaders/StaticShader.java" />
         <option value="$PROJECT_DIR$/src/generation/TerrainGenerator.java" />
-        <option value="$PROJECT_DIR$/src/utils/RayCasting.java" />
-        <option value="$PROJECT_DIR$/src/entities/TerrainEntity.java" />
         <option value="$PROJECT_DIR$/src/main/Engine.java" />
+        <option value="$PROJECT_DIR$/src/entities/TerrainEntity.java" />
+        <option value="$PROJECT_DIR$/src/utils/RayCasting.java" />
+        <option value="$PROJECT_DIR$/src/gui/GuiTexture.java" />
+        <option value="$PROJECT_DIR$/src/renderer/Loader.java" />
+        <option value="$PROJECT_DIR$/src/shaders/VertexShader.vert" />
+        <option value="$PROJECT_DIR$/src/renderer/MasterRenderer.java" />
+        <option value="$PROJECT_DIR$/src/shaders/FragmentShader.frag" />
+        <option value="$PROJECT_DIR$/src/gui/GuiVertexShader.vert" />
+        <option value="$PROJECT_DIR$/src/gui/GuiFragmentShader.frag" />
+        <option value="$PROJECT_DIR$/src/gui/GuiShader.java" />
       </list>
     </option>
   </component>
@@ -373,6 +358,24 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="UniverseEngine" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="UniverseEngine" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="gui" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -847,12 +850,12 @@
       <option name="presentableId" value="Default" />
       <updated>1487970436796</updated>
       <workItem from="1487970438417" duration="18730000" />
-      <workItem from="1488058042780" duration="121230000" />
+      <workItem from="1488058042780" duration="126186000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="139960000" />
+    <option name="totallyTimeSpent" value="144916000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1280" height="773" extended-state="6" />
@@ -908,47 +911,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/shaders/Shader.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="21" column="97" lean-forward="false" selection-start-line="21" selection-start-column="93" selection-end-line="21" selection-end-column="97" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/renderer/DisplayManager.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1005">
-          <caret line="80" column="30" lean-forward="false" selection-start-line="80" selection-start-column="22" selection-end-line="80" selection-end-column="30" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/entities/Entity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="405">
-          <caret line="34" column="5" lean-forward="true" selection-start-line="34" selection-start-column="5" selection-end-line="34" selection-end-column="5" />
-          <folding>
-            <element signature="e#1501#1502#0" expanded="true" />
-            <element signature="e#1529#1530#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/utils/Maths.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="375">
-          <caret line="27" column="22" lean-forward="false" selection-start-line="27" selection-start-column="22" selection-end-line="27" selection-end-column="22" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/entities/CubeEntity.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="195">
@@ -1247,38 +1209,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/renderer/Loader.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="189" column="0" lean-forward="true" selection-start-line="189" selection-start-column="0" selection-end-line="189" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/shaders/FragmentShader.frag">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="16" column="0" lean-forward="true" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/shaders/VertexShader.vert">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="17" column="7" lean-forward="true" selection-start-line="17" selection-start-column="7" selection-end-line="17" selection-end-column="7" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/shaders/StaticShader.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="333">
-          <caret line="65" column="33" lean-forward="false" selection-start-line="65" selection-start-column="33" selection-end-line="65" selection-end-column="33" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$PROJECT_DIR$/../../../lwjgl/joml-1.9.2-sources.jar!/org/joml/Matrix4f.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="168">
@@ -1286,16 +1216,6 @@
           <folding>
             <element signature="e#181658#181659#0" expanded="true" />
             <element signature="e#181698#181699#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/renderer/MasterRenderer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="245">
-          <caret line="99" column="5" lean-forward="true" selection-start-line="99" selection-start-column="5" selection-end-line="99" selection-end-column="5" />
-          <folding>
-            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1310,20 +1230,20 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/generation/TerrainGenerator.java">
+    <entry file="file://$PROJECT_DIR$/src/entities/TerrainEntity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="690">
-          <caret line="142" column="10" lean-forward="false" selection-start-line="142" selection-start-column="10" selection-end-line="142" selection-end-column="10" />
+        <state relative-caret-position="269">
+          <caret line="36" column="60" lean-forward="false" selection-start-line="36" selection-start-column="60" selection-end-line="36" selection-end-column="60" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <marker date="1488664888000" expanded="true" signature="2909:3234" ph="..." />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/utils/RayCasting.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="45" column="115" lean-forward="false" selection-start-line="45" selection-start-column="115" selection-end-line="45" selection-end-column="115" />
+        <state relative-caret-position="150">
+          <caret line="48" column="39" lean-forward="true" selection-start-line="48" selection-start-column="39" selection-end-line="48" selection-end-column="39" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#3180#3181#0" expanded="true" />
@@ -1332,22 +1252,99 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/entities/TerrainEntity.java">
+    <entry file="file://$PROJECT_DIR$/src/gui/GuiTexture.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="92" column="9" lean-forward="false" selection-start-line="92" selection-start-column="9" selection-end-line="92" selection-end-column="9" />
+        <state relative-caret-position="195">
+          <caret line="13" column="31" lean-forward="false" selection-start-line="13" selection-start-column="31" selection-end-line="13" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/generation/TerrainGenerator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="930">
+          <caret line="142" column="10" lean-forward="false" selection-start-line="142" selection-start-column="10" selection-end-line="142" selection-end-column="10" />
           <folding>
-            <marker date="1488663827000" expanded="true" signature="2848:3173" ph="..." />
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/Engine.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="721">
-          <caret line="91" column="44" lean-forward="false" selection-start-line="91" selection-start-column="44" selection-end-line="91" selection-end-column="44" />
+        <state relative-caret-position="241">
+          <caret line="84" column="23" lean-forward="false" selection-start-line="84" selection-start-column="16" selection-end-line="84" selection-end-column="23" />
           <folding>
             <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/shaders/VertexShader.vert">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="195">
+          <caret line="13" column="72" lean-forward="false" selection-start-line="13" selection-start-column="52" selection-end-line="13" selection-end-column="72" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/renderer/Loader.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="51" column="45" lean-forward="false" selection-start-line="51" selection-start-column="37" selection-end-line="51" selection-end-column="45" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/shaders/StaticShader.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="11" column="0" lean-forward="false" selection-start-line="11" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/renderer/MasterRenderer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="343">
+          <caret line="121" column="33" lean-forward="false" selection-start-line="121" selection-start-column="8" selection-end-line="121" selection-end-column="33" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/gui/GuiVertexShader.vert">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="6" column="19" lean-forward="false" selection-start-line="6" selection-start-column="9" selection-end-line="6" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/shaders/FragmentShader.frag">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="12" column="6" lean-forward="false" selection-start-line="12" selection-start-column="6" selection-end-line="12" selection-end-column="6" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/gui/GuiFragmentShader.frag">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="4" column="0" lean-forward="false" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/gui/GuiShader.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="361">
+          <caret line="28" column="0" lean-forward="false" selection-start-line="28" selection-start-column="0" selection-end-line="28" selection-end-column="0" />
+          <folding>
+            <element signature="e#414#415#0" expanded="true" />
+            <element signature="e#463#464#0" expanded="true" />
           </folding>
         </state>
       </provider>

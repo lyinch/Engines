@@ -34,6 +34,7 @@ public class TerrainEntity extends Entity {
      * @param data A deep copy of the colour array, to prevent visited quads from staying marked
      */
     public void markQuad(Vector3f point, int length, int width, int height, Loader loader, float[] data){
+        //ToDo: Add support for cases, where width != height
         int gridX = (int)(point.x/length);
         int gridZ = (int)(point.z/length);
         

@@ -2,6 +2,7 @@ package renderer;
 
 import entities.Camera;
 import entities.Entity;
+import gui.GuiShader;
 import org.joml.Matrix4f;
 import org.joml.Vector3f;
 import org.lwjgl.BufferUtils;
@@ -46,21 +47,60 @@ public class MasterRenderer {
         shader.stop();
         entities = new ArrayList<>();
         
+//        VAO_ID = glGenVertexArrays();
+//        glBindVertexArray(VAO_ID);
+//        int vboID = glGenBuffers();
+//        glBindBuffer(GL_ARRAY_BUFFER,vboID);
+//        float[] data = new float[]{
+//                0f,0f,0,
+//                0,0,1,
+//                -1,0,1,
+//                -1,0,0
+//                };
+//        FloatBuffer buffer = BufferUtils.createFloatBuffer(data.length);
+//        buffer.put(data);
+//        buffer.flip();
+//        glBufferData(GL_ARRAY_BUFFER,buffer,GL_STATIC_DRAW);
+//        glVertexAttribPointer(0,3, GL_FLOAT,false,0,0);
+//
+//
+//
+//        vboID = glGenBuffers();
+//        glBindBuffer(GL_ARRAY_BUFFER,vboID);
+//        data = new float[]{
+//                1,1,1,
+//                0.5f,0.5f,0.5f,
+//                1,0,1,
+//                0,1,1
+//        };
+//        buffer = BufferUtils.createFloatBuffer(data.length);
+//        buffer.put(data);
+//        buffer.flip();
+//        glBufferData(GL_ARRAY_BUFFER,buffer,GL_STATIC_DRAW);
+//        glVertexAttribPointer(1,3, GL_FLOAT,false,0,0);
+//
+//        glEnableVertexAttribArray(0);
+//        glEnableVertexAttribArray(1);
+
+        //glEnable(GL_CULL_FACE);
+        //glCullFace(GL_BACK);
+
+
         VAO_ID = glGenVertexArrays();
         glBindVertexArray(VAO_ID);
         int vboID = glGenBuffers();
         glBindBuffer(GL_ARRAY_BUFFER,vboID);
         float[] data = new float[]{
-                0f,0f,0,
-                0,0,1,
-                -1,0,1,
-                -1,0,0
+                -1f,1f,
+                -1,-1,
+                1,1,
+                1,-1,
                 };
         FloatBuffer buffer = BufferUtils.createFloatBuffer(data.length);
         buffer.put(data);
         buffer.flip();
         glBufferData(GL_ARRAY_BUFFER,buffer,GL_STATIC_DRAW);
-        glVertexAttribPointer(0,3, GL_FLOAT,false,0,0);
+        glVertexAttribPointer(0,2, GL_FLOAT,false,0,0);
 
 
 
@@ -80,9 +120,8 @@ public class MasterRenderer {
 
         glEnableVertexAttribArray(0);
         glEnableVertexAttribArray(1);
-
-        //glEnable(GL_CULL_FACE);
-        //glCullFace(GL_BACK);
+        
+        
     }
 
     /**
@@ -113,8 +152,16 @@ public class MasterRenderer {
 //        shader.loadTransformationMatrix(transformationMatrix);
 //
 //        glDrawArrays(GL_LINE_STRIP,0,4);
-        
         shader.stop();
+        
+        GuiShader guiS = new GuiShader();
+        guiS.start();
+        glBindVertexArray(VAO_ID);
+        Matrix4f transformationMatrix= Maths.createTransformationMatrix(new Vector3f(0,0,0),new Vector3f(0,0,0),0.5f);
+        shader.loadTransformationMatrix(transformationMatrix);
+
+        glDrawArrays(GL_TRIANGLE_STRIP,0,4);
+        guiS.stop();
         DisplayManager.update();
         //entities.clear();
     }

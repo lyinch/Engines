@@ -46,6 +46,12 @@ public class Loader {
         bindIndicesBuffer(indices);
         return vaoID;
     }
+    
+    public int loadToVao(float[] vertices){
+        int vao = createVAO();
+        storeDataInAttributeList(0,2,vertices);
+        return vao;
+    }
 
     /**
      * 
@@ -63,17 +69,8 @@ public class Loader {
 
         return ids;
     }
-
-    public void loadToVAO(float[] vertices, float[] normals, float[] indices){
-
-    }
     
     
-    public void loadToVAO(float[] vertices,float[] textureCoords, float[] normals, float[] indices){
-
-    }
-
-
     /**
      * Creates a new VBO and stores the data in it
      * @param attributeNumber The attribute where the VBO is stored
