@@ -3,6 +3,9 @@ package main;
 import entities.Camera;
 import entities.TerrainEntity;
 import generation.TerrainGenerator;
+import gui.GuiComponent;
+import gui.GuiData;
+import gui.GuiModel;
 import models.Model;
 import models.ModelData;
 import org.joml.Vector3f;
@@ -67,6 +70,22 @@ public class Engine {
         
 //        console.context(DisplayManager.window);
 //        console.loadData(terrainGenerator,loader, terrainData, terrain);
+
+        GuiData sidebarData = new GuiData(new float[]{
+                0.6f,1f,
+                0.6f,-1,
+                1,1,
+                1,-1,
+        },  new float[]{
+                1,1,1,
+                0.5f,0.5f,0.5f,
+                1,0,1,
+                0,1,1
+        });
+
+        GuiModel sidebarModel = new GuiModel(sidebarData,loader.loadToVao(sidebarData),4);
+        GuiComponent sidebar = new GuiComponent(sidebarModel);
+        renderer.addGui(sidebar);
         /** ================================================= **/
 
 

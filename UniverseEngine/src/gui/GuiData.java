@@ -3,7 +3,7 @@ package gui;
 /**
  * Created by backes on 05/03/17.
  */
-public abstract class GuiData {
+public class GuiData {
     private float vertices[];
     private float colour[];
 

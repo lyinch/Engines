@@ -1,5 +1,6 @@
 package renderer;
 
+import gui.GuiData;
 import models.ModelData;
 import org.lwjgl.BufferUtils;
 import textures.Texture;
@@ -68,6 +69,14 @@ public class Loader {
         ids[4] = storeDataInAttributeList(2,3,modelData.getColour());
 
         return ids;
+    }
+    
+    public int loadToVao(GuiData guiData){
+        int vaoID = createVAO();
+        storeDataInAttributeList(0,2,guiData.getVertices());
+        storeDataInAttributeList(1,3,guiData.getColour());
+        
+        return vaoID;
     }
     
     

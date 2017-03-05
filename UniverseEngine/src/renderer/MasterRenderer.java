@@ -42,13 +42,13 @@ public class MasterRenderer {
     private List<GuiComponent> guiComponents;
     
     
-    int VAO_ID;
+  
     public MasterRenderer(StaticShader shader) {
         shader.start();
         shader.loadProjectionMatrix(createProjectionMatrix());
         shader.stop();
         entities = new ArrayList<>();
-        
+        guiComponents = new ArrayList<>();
 //        VAO_ID = glGenVertexArrays();
 //        glBindVertexArray(VAO_ID);
 //        int vboID = glGenBuffers();
@@ -86,44 +86,6 @@ public class MasterRenderer {
 
         //glEnable(GL_CULL_FACE);
         //glCullFace(GL_BACK);
-
-
-        VAO_ID = glGenVertexArrays();
-        glBindVertexArray(VAO_ID);
-        int vboID = glGenBuffers();
-        glBindBuffer(GL_ARRAY_BUFFER,vboID);
-        float[] data = new float[]{
-                0.6f,1f,
-                0.6f,-1,
-                1,1,
-                1,-1,
-                };
-        FloatBuffer buffer = BufferUtils.createFloatBuffer(data.length);
-        buffer.put(data);
-        buffer.flip();
-        glBufferData(GL_ARRAY_BUFFER,buffer,GL_STATIC_DRAW);
-        glVertexAttribPointer(0,2, GL_FLOAT,false,0,0);
-
-
-
-        vboID = glGenBuffers();
-        glBindBuffer(GL_ARRAY_BUFFER,vboID);
-        data = new float[]{
-                1,1,1,
-                0.5f,0.5f,0.5f,
-                1,0,1,
-                0,1,1
-        };
-        buffer = BufferUtils.createFloatBuffer(data.length);
-        buffer.put(data);
-        buffer.flip();
-        glBufferData(GL_ARRAY_BUFFER,buffer,GL_STATIC_DRAW);
-        glVertexAttribPointer(1,3, GL_FLOAT,false,0,0);
-
-        glEnableVertexAttribArray(0);
-        glEnableVertexAttribArray(1);
-        
-        
     }
 
     /**
@@ -158,11 +120,7 @@ public class MasterRenderer {
         
         GuiShader guiS = new GuiShader();
         guiS.start();
-        glBindVertexArray(VAO_ID);
-        Matrix4f transformationMatrix= Maths.createTransformationMatrix(new Vector3f(0,0,0),new Vector3f(0,0,0),1f);
-        shader.loadTransformationMatrix(transformationMatrix);
-
-        glDrawArrays(GL_TRIANGLE_STRIP,0,4);
+        renderGui(shader);
         guiS.stop();
         DisplayManager.update();
         //entities.clear();
@@ -210,5 +168,9 @@ public class MasterRenderer {
 
     public void addEntity(Entity entity) {
         entities.add(entity);
+    }
+    
+    public void addGui(GuiComponent gui) {
+        guiComponents.add(gui);
     }
 }
