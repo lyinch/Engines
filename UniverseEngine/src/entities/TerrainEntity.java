@@ -78,7 +78,7 @@ public class TerrainEntity extends Entity {
         //position of the two upper vertices
         int pos2 = ((gridX+1) * width + gridZ + (gridX+1)) * 3;
 
-        float h = 0.8f;
+        float h = 0.4f;
         try {
             if (glfwGetMouseButton(DisplayManager.window,GLFW_MOUSE_BUTTON_RIGHT) == GLFW_TRUE) {    
                 data[pos+1]+=h;

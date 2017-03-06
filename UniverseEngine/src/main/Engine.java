@@ -111,8 +111,8 @@ public class Engine {
         components.add(button);
 
         GuiComponent button2 = new GuiComponent(buttonModel);
-        button.setPosition(0,0.14f,0);
-        components.add(button2);
+        //button.setPosition(0,0.14f,0);
+        //components.add(button2);
         
         /** ================================================= **/
 
@@ -126,7 +126,7 @@ public class Engine {
         while (!glfwWindowShouldClose(DisplayManager.window) ) {
             double current = System.nanoTime()/1e9;
             
-            if (current-t >=0.1) {
+            if (current-t >=1/30f) {
 
                 ray.update();
                 terrain.markQuad(ray.getPointOnGround(),1,50,50,loader,Arrays.copyOf(terrainData.getColour(),terrainData.getColour().length));
