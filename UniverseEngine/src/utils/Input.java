@@ -1,8 +1,12 @@
 package utils;
 
+import fsm.Events;
+import fsm.Observer;
+import fsm.Subject;
 import renderer.DisplayManager;
 
-import java.util.Observer;
+import java.util.ArrayList;
+import java.util.List;
 
 import static org.lwjgl.glfw.GLFW.GLFW_MOUSE_BUTTON_LEFT;
 import static org.lwjgl.glfw.GLFW.GLFW_TRUE;
@@ -11,7 +15,9 @@ import static org.lwjgl.glfw.GLFW.glfwGetMouseButton;
 /**
  * Created by backes on 24/02/17.
  */
-public class Input{
+public class Input implements Subject{
+    
+    static List<Observer> observers = new ArrayList<>();
     
     public static float mouseX;
     public static float mouseY;
@@ -20,7 +26,11 @@ public class Input{
     
     public static float wheelY;
     public static float wheelDY;
-    
+
+
+    public Input() {
+        
+    }
 
     /**
      * The mouse position and the offset since the last position is saved.
@@ -45,6 +55,9 @@ public class Input{
                 
             }
         }
+        for (Observer o: observers){
+            o.onNotify(Events.MOUSE_MOVED);
+        }
     }
 
     /**
@@ -62,5 +75,15 @@ public class Input{
     
     public static boolean isPressed(int key){
         return false;
+    }
+
+    @Override
+    public void addObserver(Observer o) {
+        this.observers.add(o);
+    }
+
+    @Override
+    public void removeObserver(Observer o) {
+        this.observers.remove(o);
     }
 }

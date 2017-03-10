@@ -2,6 +2,8 @@ package main;
 //Thank you almighty internet, for making this crap possible
 import entities.Camera;
 import entities.TerrainEntity;
+import fsm.FSM;
+import fsm.StaticStates;
 import generation.TerrainGenerator;
 import gui.GuiComponent;
 import gui.GuiData;
@@ -13,6 +15,7 @@ import renderer.DisplayManager;
 import renderer.Loader;
 import renderer.MasterRenderer;
 import shaders.StaticShader;
+import utils.Input;
 import utils.Maths;
 import utils.RayCasting;
 
@@ -34,7 +37,6 @@ public class Engine {
 //        
 //        consoleThread.start();
 
- 
         
         DisplayManager.createDisplay();
 
@@ -116,6 +118,11 @@ public class Engine {
         
         /** ================================================= **/
 
+
+        Input input = new Input();
+        FSM fsm = new FSM(StaticStates.gameState);
+        input.addObserver(fsm);
+        
 
         /** ================================================= **/
         
