@@ -1,5 +1,9 @@
 package tileMap;
 
+import org.joml.Math;
+
+import java.util.Random;
+
 /**
  * Created by backes on 19/03/17.
  */
@@ -48,10 +52,11 @@ public class TileMap {
             }
         }
 
+        Random random = new Random();
         for (int i = 0; i <= colour.length-3; i+=3) {
-            colour[i]   = 1;
-            colour[i+1] = 0;
-            colour[i+2] = 1;
+            colour[i]   = random.nextFloat();
+            colour[i+1] = random.nextFloat();
+            colour[i+2] = random.nextFloat();
         }
 
         
@@ -67,5 +72,9 @@ public class TileMap {
 
     public int[] getIndices() {
         return indices;
+    }
+
+    public float[] getColour() {
+        return colour;
     }
 }

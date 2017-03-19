@@ -2,19 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e9a68e46-6ddb-4021-b63b-ebf6a2a4ae7b" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/core/Camera.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/tileMap/TileMap.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/tileMap/TileRenderer.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Curiosity2D/core/DisplayManager.class" afterPath="$PROJECT_DIR$/out/production/Curiosity2D/core/DisplayManager.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Curiosity2D/curiosity/Main.class" afterPath="$PROJECT_DIR$/out/production/Curiosity2D/curiosity/Main.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Curiosity2D/shaders/fragmentShader.frag" afterPath="$PROJECT_DIR$/out/production/Curiosity2D/shaders/fragmentShader.frag" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Curiosity2D/shaders/vertexShader.vert" afterPath="$PROJECT_DIR$/out/production/Curiosity2D/shaders/vertexShader.vert" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/core/DisplayManager.java" afterPath="$PROJECT_DIR$/src/core/DisplayManager.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/core/Camera.java" afterPath="$PROJECT_DIR$/src/core/Camera.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/curiosity/Main.java" afterPath="$PROJECT_DIR$/src/curiosity/Main.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/entities/Entity.java" afterPath="$PROJECT_DIR$/src/entities/Entity.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/shaders/fragmentShader.frag" afterPath="$PROJECT_DIR$/src/shaders/fragmentShader.frag" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/shaders/vertexShader.vert" afterPath="$PROJECT_DIR$/src/shaders/vertexShader.vert" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/tileMap/TileMap.java" afterPath="$PROJECT_DIR$/src/tileMap/TileMap.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../UniverseEngine/.idea/workspace.xml" afterPath="$PROJECT_DIR$/../UniverseEngine/.idea/workspace.xml" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -34,7 +26,7 @@
       <file leaf-file-name="Entity.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/entities/Entity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="375">
+            <state relative-caret-position="316">
               <caret line="25" column="4" lean-forward="false" selection-start-line="25" selection-start-column="4" selection-end-line="25" selection-end-column="4" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -45,11 +37,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Main.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Main.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/curiosity/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="90">
-              <caret line="76" column="39" lean-forward="false" selection-start-line="76" selection-start-column="39" selection-end-line="76" selection-end-column="39" />
+            <state relative-caret-position="196">
+              <caret line="34" column="10" lean-forward="false" selection-start-line="34" selection-start-column="10" selection-end-line="34" selection-end-column="10" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -57,12 +49,17 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Camera.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Camera.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/core/Camera.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="75">
-              <caret line="5" column="19" lean-forward="false" selection-start-line="5" selection-start-column="19" selection-end-line="5" selection-end-column="19" />
-              <folding />
+            <state relative-caret-position="225">
+              <caret line="15" column="25" lean-forward="false" selection-start-line="15" selection-start-column="25" selection-end-line="15" selection-end-column="25" />
+              <folding>
+                <element signature="e#194#195#0" expanded="true" />
+                <element signature="e#225#226#0" expanded="true" />
+                <element signature="e#254#255#0" expanded="true" />
+                <element signature="e#293#294#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -80,13 +77,15 @@
       <file leaf-file-name="TileMap.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/tileMap/TileMap.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="271">
-              <caret line="46" column="33" lean-forward="false" selection-start-line="46" selection-start-column="33" selection-end-line="46" selection-end-column="33" />
+            <state relative-caret-position="391">
+              <caret line="76" column="32" lean-forward="false" selection-start-line="76" selection-start-column="32" selection-end-line="76" selection-end-column="32" />
               <folding>
-                <element signature="e#1956#1957#0" expanded="true" />
-                <element signature="e#1987#1988#0" expanded="true" />
-                <element signature="e#2020#2021#0" expanded="true" />
-                <element signature="e#2050#2051#0" expanded="true" />
+                <element signature="imports" expanded="true" />
+                <element signature="e#2094#2095#0" expanded="true" />
+                <element signature="e#2125#2126#0" expanded="true" />
+                <element signature="e#2158#2159#0" expanded="true" />
+                <element signature="e#2188#2189#0" expanded="true" />
+                <element signature="e#2251#2252#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -96,7 +95,7 @@
         <entry file="file://$PROJECT_DIR$/src/shaders/fragmentShader.frag">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="105">
-              <caret line="7" column="32" lean-forward="false" selection-start-line="7" selection-start-column="32" selection-end-line="7" selection-end-column="32" />
+              <caret line="7" column="9" lean-forward="false" selection-start-line="7" selection-start-column="9" selection-end-line="7" selection-end-column="9" />
               <folding />
             </state>
           </provider>
@@ -105,8 +104,8 @@
       <file leaf-file-name="vertexShader.vert" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/shaders/vertexShader.vert">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="105">
-              <caret line="7" column="36" lean-forward="false" selection-start-line="7" selection-start-column="36" selection-end-line="7" selection-end-column="36" />
+            <state relative-caret-position="150">
+              <caret line="10" column="28" lean-forward="false" selection-start-line="10" selection-start-column="18" selection-end-line="10" selection-end-column="28" />
               <folding />
             </state>
           </provider>
@@ -149,9 +148,10 @@
         <option value="$PROJECT_DIR$/src/core/DisplayManager.java" />
         <option value="$PROJECT_DIR$/src/entities/Entity.java" />
         <option value="$PROJECT_DIR$/src/tileMap/TileRenderer.java" />
-        <option value="$PROJECT_DIR$/src/shaders/fragmentShader.frag" />
         <option value="$PROJECT_DIR$/src/shaders/vertexShader.vert" />
         <option value="$PROJECT_DIR$/src/tileMap/TileMap.java" />
+        <option value="$PROJECT_DIR$/src/shaders/fragmentShader.frag" />
+        <option value="$PROJECT_DIR$/src/core/Camera.java" />
         <option value="$PROJECT_DIR$/src/curiosity/Main.java" />
       </list>
     </option>
@@ -787,12 +787,12 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1489444949354</updated>
-      <workItem from="1489444951049" duration="10653000" />
+      <workItem from="1489444951049" duration="12100000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="10653000" />
+    <option name="totallyTimeSpent" value="12100000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="3" y="23" width="1280" height="773" extended-state="6" />
@@ -960,22 +960,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/shaders/fragmentShader.frag">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="7" column="32" lean-forward="false" selection-start-line="7" selection-start-column="32" selection-end-line="7" selection-end-column="32" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/shaders/vertexShader.vert">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="7" column="36" lean-forward="false" selection-start-line="7" selection-start-column="36" selection-end-line="7" selection-end-column="36" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/tileMap/TileRenderer.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="120">
@@ -986,20 +970,51 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/tileMap/TileMap.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="271">
-          <caret line="46" column="33" lean-forward="false" selection-start-line="46" selection-start-column="33" selection-end-line="46" selection-end-column="33" />
+        <state relative-caret-position="391">
+          <caret line="76" column="32" lean-forward="false" selection-start-line="76" selection-start-column="32" selection-end-line="76" selection-end-column="32" />
           <folding>
-            <element signature="e#1956#1957#0" expanded="true" />
-            <element signature="e#1987#1988#0" expanded="true" />
-            <element signature="e#2020#2021#0" expanded="true" />
-            <element signature="e#2050#2051#0" expanded="true" />
+            <element signature="imports" expanded="true" />
+            <element signature="e#2094#2095#0" expanded="true" />
+            <element signature="e#2125#2126#0" expanded="true" />
+            <element signature="e#2158#2159#0" expanded="true" />
+            <element signature="e#2188#2189#0" expanded="true" />
+            <element signature="e#2251#2252#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/shaders/vertexShader.vert">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="10" column="28" lean-forward="false" selection-start-line="10" selection-start-column="18" selection-end-line="10" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/shaders/fragmentShader.frag">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="7" column="9" lean-forward="false" selection-start-line="7" selection-start-column="9" selection-end-line="7" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/core/Camera.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="15" column="25" lean-forward="false" selection-start-line="15" selection-start-column="25" selection-end-line="15" selection-end-column="25" />
+          <folding>
+            <element signature="e#194#195#0" expanded="true" />
+            <element signature="e#225#226#0" expanded="true" />
+            <element signature="e#254#255#0" expanded="true" />
+            <element signature="e#293#294#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/entities/Entity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="375">
+        <state relative-caret-position="316">
           <caret line="25" column="4" lean-forward="false" selection-start-line="25" selection-start-column="4" selection-end-line="25" selection-end-column="4" />
           <folding>
             <element signature="imports" expanded="true" />
@@ -1011,19 +1026,11 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/curiosity/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="76" column="39" lean-forward="false" selection-start-line="76" selection-start-column="39" selection-end-line="76" selection-end-column="39" />
+        <state relative-caret-position="196">
+          <caret line="34" column="10" lean-forward="false" selection-start-line="34" selection-start-column="10" selection-end-line="34" selection-end-column="10" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/core/Camera.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="5" column="19" lean-forward="false" selection-start-line="5" selection-start-column="19" selection-end-line="5" selection-end-column="19" />
-          <folding />
         </state>
       </provider>
     </entry>

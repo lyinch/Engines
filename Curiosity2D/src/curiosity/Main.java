@@ -1,6 +1,10 @@
 package curiosity;
 
+import core.Camera;
 import core.DisplayManager;
+import org.joml.Math;
+import org.joml.Matrix4f;
+import org.joml.Vector3f;
 import org.lwjgl.BufferUtils;
 import org.lwjgl.opengl.GL11;
 import tileMap.TileMap;
@@ -28,7 +32,7 @@ import static org.lwjgl.opengl.GL30.glGenVertexArrays;
 public class Main {
     public static void main(String[] args) {
         DisplayManager.createDisplay();
-        glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+        //glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 
         /** ================================================= **/
         
@@ -88,6 +92,16 @@ public class Main {
 
 
         vboID = glGenBuffers();
+        glBindBuffer(GL_ARRAY_BUFFER,vboID);
+        buffer = BufferUtils.createFloatBuffer(tileMap.getColour().length);
+        buffer.put(tileMap.getColour());
+        buffer.flip();
+        glBufferData(GL_ARRAY_BUFFER,buffer,GL_STATIC_DRAW);
+        glVertexAttribPointer(1,3, GL_FLOAT,false,0,0);
+        glEnableVertexAttribArray(1);
+        
+
+        vboID = glGenBuffers();
         glBindBuffer(GL_ELEMENT_ARRAY_BUFFER,vboID);
         IntBuffer buffer2 = BufferUtils.createIntBuffer(tileMap.getIndices().length);
         buffer2.put(tileMap.getIndices());
@@ -107,15 +121,26 @@ public class Main {
         glAttachShader(programID,vertexShaderID);
         glAttachShader(programID,fragmentShaderID);
         glBindAttribLocation(programID,0,"vertices");
-        //glBindAttribLocation(programID,1,"colour");
+        glBindAttribLocation(programID,1,"colour");
         glLinkProgram(programID);
         glValidateProgram(programID);
-        
-        
+
+       FloatBuffer matrixBuffer = BufferUtils.createFloatBuffer(16); //needed to load 4*4 matrices
+
+        int cameraLocation = glGetUniformLocation(programID,"viewMatrix");
+        Camera camera = new Camera();
+        Matrix4f view = createViewMatrix(camera);
+        view.get(matrixBuffer);
+        glUniformMatrix4fv(cameraLocation,false,matrixBuffer);
+
         while (!glfwWindowShouldClose(DisplayManager.window) ) {
             glUseProgram(programID);
             glBindVertexArray(vaoID);
             //renderer.render();
+            view = createViewMatrix(camera);
+            view.get(matrixBuffer);
+            glUniformMatrix4fv(cameraLocation,false,matrixBuffer);
+            camera.addX();
             glDrawElements(GL_TRIANGLES,tileMap.getIndices().length, GL11.GL_UNSIGNED_INT, 0);
             //glDrawArrays(GL_TRIANGLE_STRIP,0,4);
             DisplayManager.update();
@@ -152,6 +177,21 @@ public class Main {
             throw new RuntimeException("Shader could not be compiled!");
         }
         return shaderID;
+    }
+
+
+    /**
+     * Creates the Camera Matrix. This matrix moves the world in the opposite direction, and thus creating the illusion
+     * of a camera, therefore the negative position translation
+     * @param camera The camera
+     * @return The view Matrix
+     */
+    public static Matrix4f createViewMatrix(Camera camera){
+        Matrix4f viewMatrix = new Matrix4f();
+        Vector3f cameraPos = camera.getPosition();
+        Vector3f negativeCameraPos = new Vector3f(-cameraPos.x,-cameraPos.y,-cameraPos.z);
+        viewMatrix.translate(negativeCameraPos);
+        return viewMatrix;
     }
 
 
