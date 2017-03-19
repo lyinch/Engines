@@ -2,12 +2,16 @@ package curiosity;
 
 import core.DisplayManager;
 import org.lwjgl.BufferUtils;
+import org.lwjgl.opengl.GL11;
+import tileMap.TileMap;
+import tileMap.TileRenderer;
 
 
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.nio.FloatBuffer;
+import java.nio.IntBuffer;
 
 import static org.lwjgl.glfw.GLFW.glfwWindowShouldClose;
 import static org.lwjgl.opengl.GL11.*;
@@ -24,46 +28,98 @@ import static org.lwjgl.opengl.GL30.glGenVertexArrays;
 public class Main {
     public static void main(String[] args) {
         DisplayManager.createDisplay();
+        glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 
         /** ================================================= **/
         
         float[] vertices = new float[]{
-                0.7f,0.7f,
-                0.7f,0.6f,
-                0.9f,0.7f,
-                0.9f,0.6f,
+                -0.5f,0.5f,
+                -0.5f,-0.5f,
+                0.5f,0.5f,
+                0.5f,-0.5f,
         };
+        float[] colour = new float[]{
+                1,0,1,
+                0,1,1,
+                1,1,1,
+                0.5f,0.5f,0,
+        };
+        
         int vaoID = glGenVertexArrays();
         glBindVertexArray(vaoID);
+        
+//        int vboID = glGenBuffers();
+//        glBindBuffer(GL_ARRAY_BUFFER,vboID);
+//        FloatBuffer buffer = BufferUtils.createFloatBuffer(vertices.length);
+//        buffer.put(vertices);
+//        buffer.flip();
+//        glBufferData(GL_ARRAY_BUFFER,buffer,GL_STATIC_DRAW);
+//        glVertexAttribPointer(0,2, GL_FLOAT,false,0,0);
+//        glEnableVertexAttribArray(0);
+//
+//
+//        vboID = glGenBuffers();
+//        glBindBuffer(GL_ARRAY_BUFFER,vboID);
+//        buffer = BufferUtils.createFloatBuffer(colour.length);
+//        buffer.put(vertices);
+//        buffer.flip();
+//        glBufferData(GL_ARRAY_BUFFER,buffer,GL_STATIC_DRAW);
+//        glVertexAttribPointer(1,3, GL_FLOAT,false,0,0);
+//        glEnableVertexAttribArray(1);
+
+
+
+        /** ================================================= **/
+
+
+        TileRenderer renderer = new TileRenderer();
+
+        TileMap tileMap = new TileMap(1,40,40);
+        tileMap.generateMap();
+
         int vboID = glGenBuffers();
         glBindBuffer(GL_ARRAY_BUFFER,vboID);
-        FloatBuffer buffer = BufferUtils.createFloatBuffer(vertices.length);
-        buffer.put(vertices);
+        FloatBuffer buffer = BufferUtils.createFloatBuffer(tileMap.getVertices().length);
+        buffer.put(tileMap.getVertices());
         buffer.flip();
         glBufferData(GL_ARRAY_BUFFER,buffer,GL_STATIC_DRAW);
-        glVertexAttribPointer(0,2, GL_FLOAT,false,0,0);
+        glVertexAttribPointer(0,3, GL_FLOAT,false,0,0);
         glEnableVertexAttribArray(0);
+
+
+        vboID = glGenBuffers();
+        glBindBuffer(GL_ELEMENT_ARRAY_BUFFER,vboID);
+        IntBuffer buffer2 = BufferUtils.createIntBuffer(tileMap.getIndices().length);
+        buffer2.put(tileMap.getIndices());
+        buffer2.flip();
+        glBufferData(GL_ELEMENT_ARRAY_BUFFER,buffer2,GL_STATIC_DRAW);
+        //glVertexAttribPointer(1,3, GL_FLOAT,false,0,0);
+
 
 
 
         final String VERTEX_FILE = "./src/shaders/vertexShader.vert";
         final String FRAGMENT_FILE = "./src/shaders/fragmentShader.frag";
-        
+
         int vertexShaderID = loadShader(VERTEX_FILE,GL_VERTEX_SHADER);
         int fragmentShaderID = loadShader(FRAGMENT_FILE,GL_FRAGMENT_SHADER);
         int programID = glCreateProgram();
         glAttachShader(programID,vertexShaderID);
         glAttachShader(programID,fragmentShaderID);
         glBindAttribLocation(programID,0,"vertices");
+        //glBindAttribLocation(programID,1,"colour");
         glLinkProgram(programID);
         glValidateProgram(programID);
-        /** ================================================= **/
-
+        
+        
         while (!glfwWindowShouldClose(DisplayManager.window) ) {
             glUseProgram(programID);
-            DisplayManager.update();
             glBindVertexArray(vaoID);
-            glDrawArrays(GL_TRIANGLE_STRIP,0,4);
+            //renderer.render();
+            glDrawElements(GL_TRIANGLES,tileMap.getIndices().length, GL11.GL_UNSIGNED_INT, 0);
+            //glDrawArrays(GL_TRIANGLE_STRIP,0,4);
+            DisplayManager.update();
+
         }
         
     }

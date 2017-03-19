@@ -3,8 +3,7 @@ package core;
 import org.lwjgl.opengl.GL;
 
 import static org.lwjgl.glfw.GLFW.*;
-import static org.lwjgl.opengl.GL11.GL_TRUE;
-import static org.lwjgl.opengl.GL11.glClearColor;
+import static org.lwjgl.opengl.GL11.*;
 import static org.lwjgl.system.MemoryUtil.NULL;
 
 /**
@@ -66,6 +65,8 @@ public class DisplayManager {
     public static void update(){
         glfwSwapBuffers(window);
         glfwPollEvents();
+        glClear(GL_COLOR_BUFFER_BIT); // clear the framebuffer
+
     }
 
     public static int getWIDTH() {

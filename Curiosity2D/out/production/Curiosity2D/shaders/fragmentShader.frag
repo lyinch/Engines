@@ -1,6 +1,6 @@
 #version 410
 
-in vec2 vertices_out;
+in vec3 c_out;
 
 out vec4 out_colour;
 

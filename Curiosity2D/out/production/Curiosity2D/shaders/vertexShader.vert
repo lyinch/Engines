@@ -1,9 +1,10 @@
 #version 410
 
 in vec2 vertices;
-out vec2 vertices_out;
+in vec3 colour;
+out vec3 c_out;
 
 void main(void){
     gl_Position = vec4(vertices.xy,0.0,1.0);
-    vertices_out = vertices;
+    c_out = colour;
 }
