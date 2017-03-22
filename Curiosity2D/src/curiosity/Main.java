@@ -32,7 +32,7 @@ import static org.lwjgl.opengl.GL30.glGenVertexArrays;
 public class Main {
     public static void main(String[] args) {
         DisplayManager.createDisplay();
-        //glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+        glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 
         /** ================================================= **/
         
