@@ -12,12 +12,12 @@ public class TileMap {
     private int[] indices;
     private float[] textureCoords;
     private float[] colour;
-    private int size;
+    private float size;
 
     private final int WIDTH;
     private final int HEIGHT;
 
-    public TileMap(int size, int width, int height) {
+    public TileMap(float size, int width, int height) {
         WIDTH = width;
         HEIGHT = height;
         this.size = size;

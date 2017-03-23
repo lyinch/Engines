@@ -22,7 +22,12 @@ public class Math {
         viewMatrix.translate(negativeCameraPos);
         return viewMatrix;
     }
-    
+
+    /**
+     * Creates a projection matrix, which modifies the whole world (i.e. scaling, rotating)
+     * @param scale The scale to modify the world
+     * @return
+     */
     public static Matrix4f createProjectionMatrix(float scale){
         Matrix4f proj = new Matrix4f();
         proj.scale(scale);

@@ -7,6 +7,7 @@ import org.joml.Matrix4f;
 import org.joml.Vector3f;
 import org.lwjgl.BufferUtils;
 import org.lwjgl.opengl.GL11;
+import renderer.Loader;
 import shaders.WorldShader;
 import tileMap.TileMap;
 import tileMap.TileRenderer;
@@ -47,7 +48,7 @@ public class Main {
 
         TileRenderer renderer = new TileRenderer();
 
-        TileMap tileMap = new TileMap(1,40,40);
+        TileMap tileMap = new TileMap(0.2f,40,40);
         tileMap.generateMap();
 
         int vboID = glGenBuffers();
@@ -70,29 +71,92 @@ public class Main {
         glEnableVertexAttribArray(1);
         
 
-        vboID = glGenBuffers();
-        glBindBuffer(GL_ELEMENT_ARRAY_BUFFER,vboID);
-        IntBuffer buffer2 = BufferUtils.createIntBuffer(tileMap.getIndices().length);
-        buffer2.put(tileMap.getIndices());
-        buffer2.flip();
-        glBufferData(GL_ELEMENT_ARRAY_BUFFER,buffer2,GL_STATIC_DRAW);
+
         //glVertexAttribPointer(1,3, GL_FLOAT,false,0,0);
 
         WorldShader shader = new WorldShader();
         Camera camera = new Camera();
         shader.loadViewMatrix(camera);
+        
+        int HEIGHT = (int)(1/0.2f)*2;
+        int WIDTH = (int)(1/0.2f)*2;
+        System.out.println(WIDTH);
+        int[] indices = new int[HEIGHT*WIDTH*2*3];
+
+        int ver_height = 40+1; //how many vertices we have for the height
+
+        //we create the indices quad by quad, filling first the height
+        int p = 0;
+        int offX = (int)(camera.getPosition().x-1), offY = (int)(camera.getPosition().y-1);
+
+        //noinspection Duplicates
+        for (int j = offX; j < WIDTH+offX; j++) {
+            for (int i = offY; i < HEIGHT+offY ; i++) {
+                indices[p++] = (j*ver_height+i);
+                indices[p++] = (j*ver_height+i+1);
+                indices[p++] = ((j+1)*ver_height+i+1);
+                
+                indices[p++] = (j*ver_height+i);
+                indices[p++] = ((j+1)*ver_height+i+1);
+                indices[p++] = ((j+1)*ver_height+i);
+            }
+        }
+
+
+        vboID = glGenBuffers();
+        glBindBuffer(GL_ELEMENT_ARRAY_BUFFER,vboID);
+        IntBuffer buffer2 = BufferUtils.createIntBuffer(indices.length);
+        buffer2.put(indices);
+        buffer2.flip();
+        glBufferData(GL_ELEMENT_ARRAY_BUFFER,buffer2,GL_DYNAMIC_DRAW);
+        System.out.println(vboID);
+
+        System.out.println(camera.getPosition());
+        Loader loader = new Loader();
+
         while (!glfwWindowShouldClose(DisplayManager.window) ) {
             shader.start();
             glBindVertexArray(vaoID);
             //renderer.render();
             shader.loadViewMatrix(camera);
             camera.addX();
+            indices = calcIndices((int)((camera.getPosition().x-1)/0.2),(int)(camera.getPosition().y-1),camera);
+            //System.out.println((DisplayManager.WIDTH*(camera.getPosition().x-1))/0.2);
+            loader.updateTileMap(indices);
+            //System.out.println(camera.getPosition());
+
             glDrawElements(GL_TRIANGLES,tileMap.getIndices().length, GL11.GL_UNSIGNED_INT, 0);
             //glDrawArrays(GL_TRIANGLE_STRIP,0,4);
             DisplayManager.update();
             shader.stop();
         }
         
+    }
+    
+    public static int[] calcIndices(int offX, int offY,Camera camera){
+        int HEIGHT = (int)(1/0.2f)*2;
+        int WIDTH = (int)(1/0.2f)*2;
+        int[] indices = new int[HEIGHT*WIDTH*2*3];
+        
+        int ver_height = 40+1; //how many vertices we have for the height
+        //offX= (int)((DisplayManager.WIDTH*(camera.getPosition().x-1))/0.2 - WIDTH);
+        //System.out.println(offX);
+        //we create the indices quad by quad, filling first the height
+        int p = 0;
+        //offX+=1;
+        //noinspection Duplicates
+        for (int j = offX; j < WIDTH+offX; j++) {
+            for (int i = offY; i < HEIGHT+offY ; i++) {
+                indices[p++] = (j*ver_height+i);
+                indices[p++] = (j*ver_height+i+1);
+                indices[p++] = ((j+1)*ver_height+i+1);
+
+                indices[p++] = (j*ver_height+i);
+                indices[p++] = ((j+1)*ver_height+i+1);
+                indices[p++] = ((j+1)*ver_height+i);
+            }
+        }
+        return indices;
     }
 
 }
