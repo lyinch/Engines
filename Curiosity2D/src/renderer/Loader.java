@@ -39,7 +39,8 @@ public class Loader {
         int vboVertices = storeDataInAttributeList(0,3,tileMap.getVertices());
         int vboColour = storeDataInAttributeList(1,3,tileMap.getColour());
         int vioID = bindIndicesBuffer(tileMap.getIndices());
-        b = glMapBufferRange(GL_ELEMENT_ARRAY_BUFFER, 0, 600 * 4, GL_MAP_WRITE_BIT).asIntBuffer();
+        System.out.println(vioID);
+        //b = glMapBufferRange(GL_ELEMENT_ARRAY_BUFFER, 0, 600 * 4, GL_MAP_WRITE_BIT).asIntBuffer();
 
         return new int[]{vaoID};
     }
@@ -51,6 +52,11 @@ public class Loader {
         b.put(data);
         b.flip();
         //System.out.println("worked");
+    }
+    
+    public IntBuffer createPersistentIntBuffer(int vboID,int length){
+        glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, vboID);
+        return glMapBufferRange(GL_ELEMENT_ARRAY_BUFFER, 0, length * 4, GL_MAP_WRITE_BIT).asIntBuffer();
     }
 
     /**
@@ -121,7 +127,7 @@ public class Loader {
         buffer.flip();
         return buffer;
     }
-
+    
     /**
      * Deletes all the VAOs VBOs and Textures
      */
