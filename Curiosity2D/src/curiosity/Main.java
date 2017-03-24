@@ -50,28 +50,7 @@ public class Main {
 
         TileMap tileMap = new TileMap(0.2f,40,40);
         tileMap.generateMap();
-
-        int vboID = glGenBuffers();
-        glBindBuffer(GL_ARRAY_BUFFER,vboID);
-        FloatBuffer buffer = BufferUtils.createFloatBuffer(tileMap.getVertices().length);
-        buffer.put(tileMap.getVertices());
-        buffer.flip();
-        glBufferData(GL_ARRAY_BUFFER,buffer,GL_STATIC_DRAW);
-        glVertexAttribPointer(0,3, GL_FLOAT,false,0,0);
-        glEnableVertexAttribArray(0);
-
-
-        vboID = glGenBuffers();
-        glBindBuffer(GL_ARRAY_BUFFER,vboID);
-        buffer = BufferUtils.createFloatBuffer(tileMap.getColour().length);
-        buffer.put(tileMap.getColour());
-        buffer.flip();
-        glBufferData(GL_ARRAY_BUFFER,buffer,GL_STATIC_DRAW);
-        glVertexAttribPointer(1,3, GL_FLOAT,false,0,0);
-        glEnableVertexAttribArray(1);
         
-
-
         //glVertexAttribPointer(1,3, GL_FLOAT,false,0,0);
 
         WorldShader shader = new WorldShader();
@@ -103,17 +82,11 @@ public class Main {
         }
 
 
-        vboID = glGenBuffers();
-        glBindBuffer(GL_ELEMENT_ARRAY_BUFFER,vboID);
-        IntBuffer buffer2 = BufferUtils.createIntBuffer(indices.length);
-        buffer2.put(indices);
-        buffer2.flip();
-        glBufferData(GL_ELEMENT_ARRAY_BUFFER,buffer2,GL_DYNAMIC_DRAW);
-        System.out.println(vboID);
 
-        System.out.println(camera.getPosition());
+
         Loader loader = new Loader();
-
+        int[] d = loader.loadTileMap(tileMap);
+        vaoID = d[0];
         while (!glfwWindowShouldClose(DisplayManager.window) ) {
             shader.start();
             glBindVertexArray(vaoID);
@@ -130,6 +103,8 @@ public class Main {
             DisplayManager.update();
             shader.stop();
         }
+        
+        loader.cleanUP();
         
     }
     
