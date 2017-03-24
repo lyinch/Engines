@@ -2,6 +2,7 @@ package tileMap;
 
 import core.Camera;
 import renderer.Loader;
+import utils.Math;
 
 import java.nio.IntBuffer;
 import java.util.Random;
@@ -27,7 +28,7 @@ public class TileMap{
         this.size = size;
         this.textureCoords = new float[2*10]; //Texture is not implemented, yet
         vertices = new float[(height+1)*(width+1)*3];
-        indices = new int[(int)(1/0.2f)*2*(int)(1/0.2f)*2*2*3];
+        indices = new int[(int)(1/0.2f+1)*2*(int)(1/0.2f+1)*2*2*3];
         this.colour = new float[(height+1)*(width+1)*3];
     }
     
@@ -61,11 +62,16 @@ public class TileMap{
         int ver_height = HEIGHT+1; //how many vertices we have for the height
         //we create the indices quad by quad, filling first the height
         int p = 0;
-        int HEIGHT = (int)(1/0.2f)*2;
-        int WIDTH = (int)(1/0.2f)*2;
-        //System.out.println(offX + " " + offY);
-        for (int j = offX; j < WIDTH+offX; j++) {
-            for (int i = offY; i < HEIGHT+offY ; i++) {
+        int HEIGHT = java.lang.Math.round(1/0.2f)*2;
+        int WIDTH = java.lang.Math.round(1/0.2f)*2;
+        int offXHigh = offX+1;
+        int offYHigh = offY+1;
+        offXHigh = Math.clamp(offXHigh,0,this.WIDTH);
+        offYHigh = Math.clamp(offYHigh,0,this.HEIGHT);
+        offX = Math.clamp(offX,0,this.WIDTH);
+        offY = Math.clamp(offY,0,this.HEIGHT);
+        for (int j = offX; j < WIDTH+offXHigh; j++) {
+            for (int i = offY; i < HEIGHT+offYHigh ; i++) {
                 indices[p++] = (j*ver_height+i);
                 indices[p++] = (j*ver_height+i+1);
                 indices[p++] = ((j+1)*ver_height+i+1);

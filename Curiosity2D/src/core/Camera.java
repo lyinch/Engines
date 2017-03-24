@@ -13,6 +13,6 @@ public class Camera {
     }
     
     public void addX(){
-        position.add(0.005f,0,0);
+        position.add(0.009f,0,0);
     }
 }
