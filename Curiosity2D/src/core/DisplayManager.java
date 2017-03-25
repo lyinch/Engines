@@ -40,7 +40,7 @@ public class DisplayManager {
         glfwMakeContextCurrent(window);
 
         //activates vsync
-        glfwSwapInterval(1);
+        glfwSwapInterval(0);
 
         glfwShowWindow(window);
         GL.createCapabilities();
@@ -63,9 +63,8 @@ public class DisplayManager {
      * updates the display, swaps the buffer and pulls the events
      */
     public static void update(){
-        glfwSwapBuffers(window);
+        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT); // clear the framebuffer
         glfwPollEvents();
-        glClear(GL_COLOR_BUFFER_BIT); // clear the framebuffer
 
     }
 
