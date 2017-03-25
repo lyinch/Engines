@@ -1,18 +1,24 @@
 package renderer;
 
 import org.lwjgl.BufferUtils;
+import textures.Texture;
 import tileMap.TileMap;
 
+import java.nio.ByteBuffer;
 import java.nio.FloatBuffer;
 import java.nio.IntBuffer;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.lwjgl.opengl.GL11.GL_FLOAT;
+import static org.lwjgl.opengl.GL11.*;
+import static org.lwjgl.opengl.GL12.GL_CLAMP_TO_EDGE;
 import static org.lwjgl.opengl.GL15.*;
 import static org.lwjgl.opengl.GL20.glEnableVertexAttribArray;
 import static org.lwjgl.opengl.GL20.glVertexAttribPointer;
 import static org.lwjgl.opengl.GL30.*;
+import static org.lwjgl.opengles.GLES20.GL_MIRRORED_REPEAT;
+import static org.lwjgl.stb.STBImage.stbi_image_free;
+import static org.lwjgl.stb.STBImage.stbi_load;
 
 /**
  * Created by backes on 16/03/17.
@@ -28,6 +34,12 @@ public class Loader {
         vaos = new ArrayList<>();
         vbos = new ArrayList<>();
     }
+    
+    public int attributeLess(int[] data){
+        int vaoID = createVAO();
+        int iboID = bindIndicesBuffer(data);
+        return vaoID;
+    }
 
     /**
      * Loads the tilemap
@@ -39,6 +51,7 @@ public class Loader {
         int vboVertices = storeDataInAttributeList(0,3,tileMap.getVertices());
         int vboColour = storeDataInAttributeList(1,3,tileMap.getColour());
         int vioID = bindIndicesBuffer(tileMap.getIndices());
+        int vboTex = storeDataInAttributeList(2,2,tileMap.getTextureCoords());
         System.out.println(vioID);
         //b = glMapBufferRange(GL_ELEMENT_ARRAY_BUFFER, 0, 600 * 4, GL_MAP_WRITE_BIT).asIntBuffer();
 
@@ -69,6 +82,42 @@ public class Loader {
         glBindVertexArray(vaoID);
         vaos.add(vaoID);
         return vaoID;
+    }
+
+    /**
+     * Loads a .png file as a texture with stbi, and binds the textureID. Returns the texture object
+     * @param filename the filename of the texture, without a path or file ending
+     * @return the Texture object
+     */
+    public Texture loadTexture(String filename){
+        int textureID;
+        IntBuffer width = BufferUtils.createIntBuffer(1);
+        IntBuffer height = BufferUtils.createIntBuffer(1);
+        IntBuffer components = BufferUtils.createIntBuffer(1);
+        ByteBuffer data = stbi_load("./res/"+filename+".png",width,height,components,4);
+
+        if (data == null)
+            throw new RuntimeException("Could not load texture!");
+
+        textureID = glGenTextures();
+
+        int w = width.get();
+        int h = height.get();
+
+        glBindTexture(GL_TEXTURE_2D,textureID);
+
+        glTexParameterf(GL_TEXTURE_2D,GL_TEXTURE_MIN_FILTER,GL_NEAREST);
+        glTexParameterf(GL_TEXTURE_2D,GL_TEXTURE_MAG_FILTER,GL_NEAREST);
+
+//        glTexParameterf(GL_TEXTURE_2D,GL_TEXTURE_WRAP_S,GL_CLAMP);
+//        glTexParameterf(GL_TEXTURE_2D,GL_TEXTURE_WRAP_T,GL_MIRRORED_REPEAT);
+
+        glTexImage2D(GL_TEXTURE_2D,0,GL_RGBA,w,h,0,GL_RGBA,GL_UNSIGNED_BYTE,data);
+
+        stbi_image_free(data);
+        //textures.add(textureID);
+
+        return new Texture(textureID,w,h);
     }
 
 

@@ -26,9 +26,9 @@ public class TileMap{
         WIDTH = width;
         HEIGHT = height;
         this.size = size;
-        this.textureCoords = new float[2*10]; //Texture is not implemented, yet
+        this.textureCoords = new float[(height+1)*(width+1)*2];
         vertices = new float[(height+1)*(width+1)*3];
-        indices = new int[(int)(1/0.2f+1)*2*(int)(1/0.2f+1)*2*2*3];
+        indices = new int[(int)(1/size+1)*2*(int)(1/size+1)*2*2*3];
         this.colour = new float[(height+1)*(width+1)*3];
     }
     
@@ -52,18 +52,106 @@ public class TileMap{
         }
 
         
-        //fill the texture coords with random value, to not have a null pointer exception. Not needed at the moment
-        for (int i = 0; i < textureCoords.length; i++){
-            textureCoords[i] = 1f;
-        } 
+        float x = 736/32;
+        float y = 672/32;
+//        for (int i = 0; i <= textureCoords.length-8; i+=8){
+//            textureCoords[i] = 0f;
+//            textureCoords[i+1] = 1f;
+//            textureCoords[i+2] = 0f;
+//            textureCoords[i+3] = 0f;
+//            textureCoords[i+4] = 1f;
+//            textureCoords[i+5] = 0f;
+//            textureCoords[i+6] = 1f;
+//            textureCoords[i+7] = 1f;
+//        }
+        
+        for (int i = 0; i < textureCoords.length; i++)
+            textureCoords[i] = 0;
+        
+        textureCoords[0] = 0;
+        textureCoords[1] = 0;
+        
+        textureCoords[2] = 0;
+        textureCoords[3] = 1;
+        
+        textureCoords[4] = 0;
+        textureCoords[5] = 0;
+        
+        textureCoords[6] = 0;
+        textureCoords[7] = 1;
+        // --------------- //
+        textureCoords[8] = 1;
+        textureCoords[9] = 0;
+        
+        textureCoords[10] = 1;
+        textureCoords[11] = 1;
+
+        textureCoords[12] = 1;
+        textureCoords[13] = 0;
+
+        textureCoords[14] = 1;
+        textureCoords[15] = 1;
+        // --------------- //
+        textureCoords[16] = 0;
+        textureCoords[17] = 0;
+
+        textureCoords[18] = 0;
+        textureCoords[19] = 1;
+
+        textureCoords[20] = 0;
+        textureCoords[21] = 0;
+
+        textureCoords[22] = 0;
+        textureCoords[23] = 1;
+        
+        colour[0] = 1;
+        colour[1] = 1;
+        colour[2] = 1;
+        
+        colour[3] = 1;
+        colour[4] = 1;
+        colour[5] = 1;
+
+        colour[6] = 1;
+        colour[7] = 1;
+        colour[8] = 1;
+
+        colour[9] = 1;
+        colour[10] = 1;
+        colour[11] = 1;
+
+        colour[12] = 1;
+        colour[13] = 1;
+        colour[14] = 1;
+
+        
+//        
+//        int first = 0;
+//        for (int i = 0; i <= textureCoords.length-4; i+=4){
+//            if (first == 0) {
+//                textureCoords[i + 0] = 0f;
+//                textureCoords[i + 1] = 0f;
+//                textureCoords[i + 2] = 1f;
+//                textureCoords[i + 3] = 0f;
+//                if (i%HEIGHT == 0)
+//                    first = 1;
+//            }else{
+//                textureCoords[i + 0] = 1f;
+//                textureCoords[i + 1] = 1f;
+//                textureCoords[i + 2] = 0f;
+//                textureCoords[i + 3] = 1f;
+//                if (i%HEIGHT == 0)
+//                    first = 0;
+//            }
+//        }
     }
     
     public void calcIndices(int offX, int offY){
         int ver_height = HEIGHT+1; //how many vertices we have for the height
         //we create the indices quad by quad, filling first the height
         int p = 0;
-        int HEIGHT = java.lang.Math.round(1/0.2f)*2;
-        int WIDTH = java.lang.Math.round(1/0.2f)*2;
+        int HEIGHT = java.lang.Math.round(1/size)*2;
+        int WIDTH = java.lang.Math.round(1/size)*2;
         int offXHigh = offX+1;
         int offYHigh = offY+1;
         offXHigh = Math.clamp(offXHigh,0,this.WIDTH);
@@ -103,6 +191,10 @@ public class TileMap{
 
     public int[] getIndices() {
         return indices;
+    }
+
+    public float[] getTextureCoords() {
+        return textureCoords;
     }
 
     public float[] getColour() {

@@ -38,5 +38,6 @@ public class WorldShader extends Shader {
     public void bindAttributes() {
         super.bindAttribute(0,"vertices");
         super.bindAttribute(1,"colour");
+        super.bindAttribute(2,"t");
     }
 }
