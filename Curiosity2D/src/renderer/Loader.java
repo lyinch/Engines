@@ -1,8 +1,10 @@
 package renderer;
 
+import entities.Entity;
 import org.lwjgl.BufferUtils;
 import textures.Texture;
 import tileMap.TileMap;
+import tileMap.TileMap_OLD;
 
 import java.nio.ByteBuffer;
 import java.nio.FloatBuffer;
@@ -11,12 +13,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.lwjgl.opengl.GL11.*;
-import static org.lwjgl.opengl.GL12.GL_CLAMP_TO_EDGE;
 import static org.lwjgl.opengl.GL15.*;
 import static org.lwjgl.opengl.GL20.glEnableVertexAttribArray;
 import static org.lwjgl.opengl.GL20.glVertexAttribPointer;
 import static org.lwjgl.opengl.GL30.*;
-import static org.lwjgl.opengles.GLES20.GL_MIRRORED_REPEAT;
 import static org.lwjgl.stb.STBImage.stbi_image_free;
 import static org.lwjgl.stb.STBImage.stbi_load;
 
@@ -46,16 +46,30 @@ public class Loader {
      *
      * @return Array of VAO/VBOs
      */
-    public int[] loadTileMap(TileMap tileMap) {
+    public int[] loadTileMap(TileMap_OLD tileMapOLD) {
         int vaoID = createVAO();
-        int vboVertices = storeDataInAttributeList(0,3,tileMap.getVertices());
-        int vboColour = storeDataInAttributeList(1,3,tileMap.getColour());
-        int vioID = bindIndicesBuffer(tileMap.getIndices());
-        int vboTex = storeDataInAttributeList(2,2,tileMap.getTextureCoords());
+        int vboVertices = storeDataInAttributeList(0,3, tileMapOLD.getVertices());
+        int vboColour = storeDataInAttributeList(1,3, tileMapOLD.getColour());
+        int vioID = bindIndicesBuffer(tileMapOLD.getIndices());
+        int vboTex = storeDataInAttributeList(2,2, tileMapOLD.getTextureCoords());
         System.out.println(vioID);
         //b = glMapBufferRange(GL_ELEMENT_ARRAY_BUFFER, 0, 600 * 4, GL_MAP_WRITE_BIT).asIntBuffer();
 
         return new int[]{vaoID};
+    }
+    
+    public int loadEmpty(TileMap tileMap){
+        int vaoID = createVAO();
+        int vboVertices = storeDataInAttributeList(0,2,tileMap.getVertices());
+        int vboColour = storeDataInAttributeList(1,3,tileMap.getColour());
+        return vaoID;
+    }
+
+    public int loadEntity(Entity entity){
+        int vaoID = createVAO();
+        int vboVertices = storeDataInAttributeList(0,2,entity.getVertices());
+        int vboIndices = bindIndicesBuffer(entity.getIndices());
+        return vaoID;
     }
 
     public void updateTileMap(int[] data) {

@@ -2,6 +2,7 @@ package utils;
 
 import core.Camera;
 import org.joml.Matrix4f;
+import org.joml.Vector2f;
 import org.joml.Vector3f;
 
 /**
@@ -48,6 +49,21 @@ public class Math {
         else if (var.compareTo(min) < 0)
             return min;
         return var;
+    }
+
+    /**
+     * Creates the transformation matrix of the position, the rotation and the scale
+     * @param position The new position
+     * @param rotation The rotation in degrees of the three axis
+     * @param scale The scale
+     * @return 4 Dimensional Transformation Matrix
+     * https://github.com/JOML-CI/JOML/wiki/JOML-and-modern-OpenGL
+     */
+    public static Matrix4f createTransformationMatrix(Vector2f position, Vector2f rotation, float scale){
+        return new Matrix4f().translate(new Vector3f(position.x,position.y,0))
+                .rotate((float) org.joml.Math.toRadians(rotation.x), new Vector3f(1,0,0))
+                .rotate((float) org.joml.Math.toRadians(rotation.y), new Vector3f(0,1,0))
+                .scale(scale);
     }
     
 }

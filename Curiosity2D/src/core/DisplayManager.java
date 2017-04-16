@@ -40,7 +40,7 @@ public class DisplayManager {
         glfwMakeContextCurrent(window);
 
         //activates vsync
-        glfwSwapInterval(0);
+        glfwSwapInterval(1);
 
         glfwShowWindow(window);
         GL.createCapabilities();
