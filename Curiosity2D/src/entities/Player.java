@@ -1,12 +1,10 @@
 package entities;
 
 import core.DisplayManager;
-import org.joml.Matrix4f;
-import org.joml.Vector2f;
-import org.joml.Vector3f;
-import org.joml.Vector4f;
+import org.joml.*;
 import org.lwjgl.glfw.GLFW;
 import textures.Texture;
+import tileMap.TileMap;
 import utils.Math;
 
 import java.util.Random;
@@ -19,102 +17,108 @@ import static org.lwjgl.glfw.GLFW.*;
 public class Player extends Entity{
     private boolean moving = false;
     private int frameDown = 0;
-    
+    private int downSpeed = 0;
     private float currentMoveX = 0;
     private float currentMoveY = 0;
+    private TileMap tileMap;
     
-    public Player(Vector2f position, Vector2f rotation, float scale, Texture texture) {
+    private enum direction  {UP,DOWN,LEFT,RIGHT,NONE};
+    private direction currentMovement;
+    public Player(Vector2f position, Vector2f rotation, float scale, Texture texture, TileMap tileMap) {
         super(position, rotation, scale, texture);
+        this.tileMap = tileMap;
+        downSpeed = 20;
     }
     
     public void move(){
-        getCell();
+        //System.out.println(getCurrentCell());
         float speedX = (128/(float)DisplayManager.WIDTH);
         float speedY = (128/(float)DisplayManager.HEIGHT);
 
         if (!moving) {
+            //grav();
             if (glfwGetKey(DisplayManager.window, GLFW_KEY_D) == GLFW_TRUE) {
-                currentMoveX += speedX;
-                currentMoveY += 0;
-                animMove();
+                if (isValidMove(getCurrentCell().x+1,getCurrentCell().y)) {
+                    currentMoveX += speedX;
+                    currentMoveY += 0;
+                    animMove();
+                }
                 //this.addPosition(speedX, 0);
             }
             else if (glfwGetKey(DisplayManager.window, GLFW_KEY_A) == GLFW_TRUE) {
-                currentMoveX += -speedX;
-                currentMoveY += 0;
-                animMove();
+                if (isValidMove(getCurrentCell().x-1,getCurrentCell().y)) {
+                    currentMoveX += -speedX;
+                    currentMoveY += 0;
+                    animMove();
+                }
             }
             else if (glfwGetKey(DisplayManager.window, GLFW_KEY_S) == GLFW_TRUE) {
-                currentMoveX += 0;
-                currentMoveY += -speedY;
-                animMove();
+                if (isValidMove(getCurrentCell().x,getCurrentCell().y+1)) {
+                    setCellSpeed(getCurrentCell().x,getCurrentCell().y+1);
+                    currentMoveX += 0;
+                    currentMoveY += -speedY;
+                    currentMovement = direction.DOWN;
+                    animMove();
+                    System.out.println("Down: " + getCurrentCell().x + ":" + (getCurrentCell().y+1));
+                }
             }
             else if (glfwGetKey(DisplayManager.window, GLFW_KEY_W) == GLFW_TRUE) {
-                currentMoveX += 0;
-                currentMoveY += speedY;
-                animMove();
+                if (isValidMove(getCurrentCell().x,getCurrentCell().y-1)) {
+                    currentMoveX += 0;
+                    currentMoveY += speedY;
+                    animMove();
+                    //tileMap.changeColour(getCurrentCell().x,getCurrentCell().y-1);
+                }
             }
         }else
             animMove();
-
+    }
+    
+    private void grav(){
+        if (isValidMove(getCurrentCell().x,getCurrentCell().y+1)){
+            if (tileMap.getTileType(getCurrentCell().x,getCurrentCell().y+1) == 3){
+                this.addPosition(0,-0.01f);
+                
+            }
+        }
+    }
+    
+    private void setCellSpeed(int x, int y){
+        int type = tileMap.getTileType(x,y);
+        switch (type){
+            case 0: downSpeed = 80; break;
+            case 1: downSpeed = 55; break;
+            case 2: downSpeed = 40; break;
+            case 3: downSpeed = 10; break;
+        }
+    }
+    
+    private boolean isValidMove(int x, int y){
+        return !(x < 0 || x > 40 || y < 0 || y > 40);
     }
     
     private void animMove(){
-        int speed = 20;
         moving = true;
         frameDown++;
-        this.addPosition(currentMoveX/speed,currentMoveY/speed);
-        if (frameDown == speed){
+        this.addPosition(currentMoveX/downSpeed,currentMoveY/downSpeed);
+        if (frameDown == downSpeed){
             moving = false;
             currentMoveY = 0;
             currentMoveX = 0;
             frameDown = 0;
+            downSpeed = 20;
+            if (currentMovement == direction.DOWN)
+                tileMap.changeColour(getCurrentCell().x,getCurrentCell().y);
+            currentMovement = direction.NONE;
         }
     }
     
-    private void moveDown(){
-        moving = true;
-        frameDown++;
-        this.addPosition(0,-0.002f);
-        if (frameDown == 1) {
-            moving = false;
-            frameDown = 0;
-        }
-    }
-    
-    public void moveSpecial(){
-        Random random = new Random();
-        int num = random.nextInt(4);
-        float speedX = (128/(float)DisplayManager.WIDTH);
-        float speedY = (128/(float)DisplayManager.HEIGHT);
-
-        switch (num){
-            case 0: this.addPosition(0, speedY); break;
-            case 1: this.addPosition(0, -speedY); break;
-            case 2: this.addPosition(speedX, 0); break;
-            case 3: this.addPosition(-speedX, 0); break;
-
-        }
-    }
-    
-    private void getCell(){
-        
+    private Vector2i getCurrentCell(){
         float posX = (getPosition().x+(128/(float)DisplayManager.WIDTH)/2)/(128/(float)DisplayManager.WIDTH);
         float posY = 1-(getPosition().y+(128/(float)DisplayManager.HEIGHT)/2)/(128/(float)DisplayManager.HEIGHT);
-        System.out.println("Current Tile: [" + (int)org.joml.Math.floor(posX) + " : " + (int)org.joml.Math.floor(posY) + "]");
-
+        //System.out.println("Current Tile: [" + (int)org.joml.Math.floor(posX) + " : " + (int)org.joml.Math.floor(posY) + "]");
+        return new Vector2i((int)org.joml.Math.floor(posX),(int)org.joml.Math.floor(posY));
     }
-
-    /**
-     * We invert the view Matrix, i.e. the Camera
-     * @param eyeCoords
-     * @return
-     */
-    private Vector3f toWorldSpace(Vector4f eyeCoords){
-        Matrix4f invertedView = new Matrix4f();
-        //viewMatrix.invert(invertedView);
-        Vector4f rayWorld = invertedView.transform(eyeCoords);
-        return new Vector3f(rayWorld.x,rayWorld.y,rayWorld.z).normalize();
-    }
+    
     
 }

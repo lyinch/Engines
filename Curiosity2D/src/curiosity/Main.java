@@ -52,14 +52,15 @@ public class Main {
         double last = System.nanoTime()/1e9;
         int frames = 0;
         
-        TileMap tileMap = new TileMap(40,40);
+        TileMap tileMap = new TileMap(30,30);
         tileMap.generateMap();
-        tileMap.setVaoID(loader.loadEmpty(tileMap));
+        tileMap.load(loader.loadEmpty(tileMap));
+        tileMap.createBuffer(loader.createPersistentFloatBuffer(tileMap.getVboColour(),tileMap.getColour().length));
         tileRenderer.addMap(tileMap);
         
         //worldShader.start();
 
-        Player player = new Player(new Vector2f(0,0), new Vector2f(0,0),1,loader.loadTexture("character"));
+        Player player = new Player(new Vector2f(0,0), new Vector2f(0,0),1,loader.loadTexture("character"),tileMap);
         player.setVaoID(loader.loadEntity(player));
 
         EntityRenderer entityRenderer = new EntityRenderer(entityShader,camera);
@@ -84,7 +85,7 @@ public class Main {
             camera.move(player);
             frames++;
             if (current-last>=1){
-                System.out.println(frames);
+                //System.out.println("Frames: " + frames);
                 frames = 0;
                 last = current;
                 //player.moveSpecial();

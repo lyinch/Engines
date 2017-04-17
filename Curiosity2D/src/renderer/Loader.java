@@ -58,11 +58,12 @@ public class Loader {
         return new int[]{vaoID};
     }
     
-    public int loadEmpty(TileMap tileMap){
-        int vaoID = createVAO();
+    public int[] loadEmpty(TileMap tileMap){
+        int[] data = new int[2];
+         data[0] = createVAO();
         int vboVertices = storeDataInAttributeList(0,2,tileMap.getVertices());
-        int vboColour = storeDataInAttributeList(1,3,tileMap.getColour());
-        return vaoID;
+        data[1] = storeDataInAttributeList(1,3,tileMap.getColour());
+        return data;
     }
     
     public int loadPoints(float[] data){
@@ -90,6 +91,11 @@ public class Loader {
     public IntBuffer createPersistentIntBuffer(int vboID,int length){
         glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, vboID);
         return glMapBufferRange(GL_ELEMENT_ARRAY_BUFFER, 0, length * 4, GL_MAP_WRITE_BIT).asIntBuffer();
+    }
+
+    public FloatBuffer createPersistentFloatBuffer(int vboID,int length){
+        glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, vboID);
+        return glMapBufferRange(GL_ELEMENT_ARRAY_BUFFER, 0, length * 4, GL_MAP_WRITE_BIT).asFloatBuffer();
     }
 
     /**
