@@ -9,6 +9,8 @@ import org.lwjgl.glfw.GLFW;
 import textures.Texture;
 import utils.Math;
 
+import java.util.Random;
+
 import static org.lwjgl.glfw.GLFW.*;
 
 /**
@@ -17,55 +19,90 @@ import static org.lwjgl.glfw.GLFW.*;
 public class Player extends Entity{
     private boolean moving = false;
     private int frameDown = 0;
+    
+    private float currentMoveX = 0;
+    private float currentMoveY = 0;
+    
     public Player(Vector2f position, Vector2f rotation, float scale, Texture texture) {
         super(position, rotation, scale, texture);
     }
     
     public void move(){
         getCell();
-        float speed = 0.01f;
+        float speedX = (128/(float)DisplayManager.WIDTH);
+        float speedY = (128/(float)DisplayManager.HEIGHT);
+
         if (!moving) {
             if (glfwGetKey(DisplayManager.window, GLFW_KEY_D) == GLFW_TRUE) {
-                this.addPosition(speed, 0);
+                currentMoveX += speedX;
+                currentMoveY += 0;
+                animMove();
+                //this.addPosition(speedX, 0);
             }
-            if (glfwGetKey(DisplayManager.window, GLFW_KEY_A) == GLFW_TRUE) {
-                this.addPosition(-speed, 0);
+            else if (glfwGetKey(DisplayManager.window, GLFW_KEY_A) == GLFW_TRUE) {
+                currentMoveX += -speedX;
+                currentMoveY += 0;
+                animMove();
             }
-            if (glfwGetKey(DisplayManager.window, GLFW_KEY_S) == GLFW_TRUE) {
-                moveDown();
+            else if (glfwGetKey(DisplayManager.window, GLFW_KEY_S) == GLFW_TRUE) {
+                currentMoveX += 0;
+                currentMoveY += -speedY;
+                animMove();
             }
-            if (glfwGetKey(DisplayManager.window, GLFW_KEY_W) == GLFW_TRUE) {
-                this.addPosition(0, speed);
+            else if (glfwGetKey(DisplayManager.window, GLFW_KEY_W) == GLFW_TRUE) {
+                currentMoveX += 0;
+                currentMoveY += speedY;
+                animMove();
             }
         }else
-            moveDown();
+            animMove();
 
+    }
+    
+    private void animMove(){
+        int speed = 20;
+        moving = true;
+        frameDown++;
+        this.addPosition(currentMoveX/speed,currentMoveY/speed);
+        if (frameDown == speed){
+            moving = false;
+            currentMoveY = 0;
+            currentMoveX = 0;
+            frameDown = 0;
+        }
     }
     
     private void moveDown(){
         moving = true;
         frameDown++;
-        this.addPosition(0.01f,-0.01f);
+        this.addPosition(0,-0.002f);
         if (frameDown == 1) {
             moving = false;
             frameDown = 0;
         }
     }
     
-    private void getCell(){
-        float x = (2f*getPosition().x)/DisplayManager.WIDTH-1f;
-        float y = 1-(2f*getPosition().y)/DisplayManager.getHEIGHT();
-        Vector2f normalizedCoords = new Vector2f(x,y);
-        Vector4f clipCoords = new Vector4f(normalizedCoords.x,normalizedCoords.y,-1f,1);
-        //Vector4f eyeSpcae = toEyeSpace(clipCoords);
+    public void moveSpecial(){
+        Random random = new Random();
+        int num = random.nextInt(4);
+        float speedX = (128/(float)DisplayManager.WIDTH);
+        float speedY = (128/(float)DisplayManager.HEIGHT);
 
-        System.out.println(clipCoords.x + " :" +  clipCoords.y);
-        System.out.println(this.getPosition());
-        Matrix4f transform = Math.createTransformationMatrix(this.getPosition(),this.getRotation(),1);
-        transform.invert();
-        Vector4f postmp = new Vector4f(getPosition().x,getPosition().y,1.0f,1.0f);
-        postmp.mul(transform);
-        //System.out.println(postmp);
+        switch (num){
+            case 0: this.addPosition(0, speedY); break;
+            case 1: this.addPosition(0, -speedY); break;
+            case 2: this.addPosition(speedX, 0); break;
+            case 3: this.addPosition(-speedX, 0); break;
+
+        }
+    }
+    
+    private void getCell(){
+        
+        float posX = (getPosition().x+(128/(float)DisplayManager.WIDTH)/2)/(128/(float)DisplayManager.WIDTH);
+        float posY = 1-(getPosition().y+(128/(float)DisplayManager.HEIGHT)/2)/(128/(float)DisplayManager.HEIGHT);
+        System.out.println("Current Tile: [" + (int)org.joml.Math.floor(posX) + " : " + (int)org.joml.Math.floor(posY) + "]");
+
     }
 
     /**

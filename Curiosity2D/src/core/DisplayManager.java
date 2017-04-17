@@ -34,6 +34,7 @@ public class DisplayManager {
             if ( key == GLFW_KEY_ESCAPE && action == GLFW_RELEASE )
                 glfwSetWindowShouldClose(window, true);
         });
+        
 
 
 

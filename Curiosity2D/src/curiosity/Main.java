@@ -8,6 +8,7 @@ import org.joml.Vector2f;
 import org.joml.Vector3f;
 import renderer.EntityRenderer;
 import renderer.Loader;
+import renderer.PointRenderer;
 import shaders.EntityShader;
 import shaders.WorldShader;
 import tileMap.TileMap;
@@ -32,8 +33,6 @@ public class Main {
         //glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 
         /** ================================================= **/
-        
-
         
 
         
@@ -65,11 +64,22 @@ public class Main {
 
         EntityRenderer entityRenderer = new EntityRenderer(entityShader,camera);
         entityRenderer.addEntity(player);
+
+
+        float[] points = {
+                -1.0f,1.0f-((float)128/(float)DisplayManager.HEIGHT),
+                -1.0f+((float)128/(float)DisplayManager.WIDTH),1.0f-((float)128/(float)DisplayManager.HEIGHT),
+        };
+        System.out.println( ((float)128/(float)DisplayManager.WIDTH));
+        PointRenderer pointRenderer = new PointRenderer(entityShader,camera);
+        pointRenderer.addPoints(loader.loadPoints(points));
+        
         while (!glfwWindowShouldClose(DisplayManager.window) ) {
             double current = System.nanoTime()/1e9;
             DisplayManager.update();
             tileRenderer.render();
             entityRenderer.render();
+            pointRenderer.render();
             player.move();
             camera.move(player);
             frames++;
@@ -77,6 +87,7 @@ public class Main {
                 System.out.println(frames);
                 frames = 0;
                 last = current;
+                //player.moveSpecial();
             }
             glfwSwapBuffers(DisplayManager.window);
 

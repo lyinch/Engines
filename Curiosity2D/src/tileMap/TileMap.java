@@ -59,8 +59,8 @@ public class TileMap {
                 vertices[p++] = x + lookup[k].x*sizeX;
                 vertices[p++] = y + lookup[k].y*sizeY;
                 colour[c_p++] = colR;
-                colour[c_p++] = colG;
-                colour[c_p++] = colB;
+                colour[c_p++] = colR;
+                colour[c_p++] = colR;
             }
         }
     }

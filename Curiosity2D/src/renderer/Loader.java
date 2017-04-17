@@ -64,6 +64,12 @@ public class Loader {
         int vboColour = storeDataInAttributeList(1,3,tileMap.getColour());
         return vaoID;
     }
+    
+    public int loadPoints(float[] data){
+        int vaoID = createVAO();
+        int vboVertices = storeDataInAttributeList(0,2,data);
+        return vaoID;
+    }
 
     public int loadEntity(Entity entity){
         int vaoID = createVAO();

@@ -5,7 +5,6 @@ import entities.Entity;
 import org.joml.Matrix4f;
 import org.lwjgl.opengl.GL11;
 import shaders.EntityShader;
-import shaders.WorldShader;
 import utils.Math;
 
 import java.util.ArrayList;
@@ -17,31 +16,30 @@ import static org.lwjgl.opengl.GL30.glBindVertexArray;
 /**
  * Created by backes on 15/04/17.
  */
-public class EntityRenderer {
-    public List<Entity> entities;
+public class PointRenderer {
+    public List<Integer> points;
     EntityShader shader;
     Camera camera;
-    public EntityRenderer(EntityShader shader, Camera camera) {
-        entities = new ArrayList<>();
+    public PointRenderer(EntityShader shader, Camera camera) {
+        points = new ArrayList<>();
         this.shader = shader;
         this.camera = camera;
     }
     
     public void render(){
         shader.start();
-        for (Entity entity:entities){
+        for (int p:points){
+            glBindVertexArray(p);
             shader.loadViewMatrix(camera);
-            glBindVertexArray(entity.getVaoID());
-            Matrix4f transformation = Math.createTransformationMatrix(entity.getPosition(),entity.getRotation(),1);
-            
+            Matrix4f transformation = new Matrix4f();
             shader.loadTransformationMatrix(transformation);
-            glDrawElements(GL_TRIANGLES, 6, GL11.GL_UNSIGNED_INT, 0);
+            glDrawArrays(GL_LINE_STRIP,0,2);
         }
         shader.stop();
     }
     
-    public void addEntity(Entity entity){
-        entities.add(entity);
+    public void addPoints(int vaoid){
+        points.add(vaoid);
     }
 
     

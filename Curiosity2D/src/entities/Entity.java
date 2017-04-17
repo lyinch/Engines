@@ -50,13 +50,21 @@ public abstract class Entity {
         float pixel = 128;
         float width = 1;
         float height = 1;
-        float sX = width*(pixel/(float)DisplayManager.WIDTH)/2;
-        float sY = height*(pixel/(float)DisplayManager.HEIGHT)/2;
+        float sX = width*(pixel/(float)DisplayManager.WIDTH);
+        float sY = height*(pixel/(float)DisplayManager.HEIGHT);
+//        vertices = new float[]{
+//                -sX, sY, 
+//                -sX, -sY,
+//                sX, sY,
+//                sX, -sY
+//        };
+
+        //anchor: top left
         vertices = new float[]{
-                -sX, sY, 
-                -sX, -sY,
-                sX, sY,
-                sX, -sY
+                -1, 1,
+                -1, 1-sY,
+                -1+sX, 1,
+                -1+sX, 1-sY
         };
         
 
