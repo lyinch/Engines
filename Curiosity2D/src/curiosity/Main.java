@@ -14,6 +14,8 @@ import shaders.WorldShader;
 import tileMap.TileMap;
 import renderer.TileRenderer;
 
+import static curiosity.World.HEIGHT;
+import static curiosity.World.WIDTH;
 import static org.lwjgl.glfw.GLFW.glfwSwapBuffers;
 import static org.lwjgl.glfw.GLFW.glfwWindowShouldClose;
 import static org.lwjgl.opengl.GL11.GL_FRONT_AND_BACK;
@@ -26,7 +28,7 @@ import static org.lwjgl.opengl.GL30.glGenVertexArrays;
  */
 public class Main {
     
-    public final static int pixels = 128;
+
     
     public static void main(String[] args) {
         DisplayManager.createDisplay();
@@ -52,10 +54,10 @@ public class Main {
         double last = System.nanoTime()/1e9;
         int frames = 0;
         
-        TileMap tileMap = new TileMap(30,30);
+        TileMap tileMap = new TileMap(WIDTH,HEIGHT);
         tileMap.generateMap();
-        tileMap.load(loader.loadEmpty(tileMap));
-        tileMap.createBuffer(loader.createPersistentFloatBuffer(tileMap.getVboColour(),tileMap.getColour().length));
+        tileMap.loadToVAO(loader.loadTileMap(tileMap));
+        tileMap.assignPersistentColourBuffer(loader.createPersistentFloatBuffer(tileMap.getCboID(),tileMap.getColour().length));
         tileRenderer.addMap(tileMap);
         
         //worldShader.start();

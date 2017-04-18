@@ -18,7 +18,8 @@ public class Math {
      */
     public static Matrix4f createViewMatrix(Camera camera){
         Matrix4f viewMatrix = new Matrix4f();
-        Vector3f cameraPos = camera.getPosition();
+        Vector2f cameraPosOri = camera.getPosition();
+        Vector3f cameraPos =  new Vector3f(cameraPosOri.x,cameraPosOri.y,0.0f);
         Vector3f negativeCameraPos = new Vector3f(-cameraPos.x,-cameraPos.y,-cameraPos.z);
         viewMatrix.translate(negativeCameraPos);
         return viewMatrix;

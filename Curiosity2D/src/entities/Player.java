@@ -1,6 +1,7 @@
 package entities;
 
 import core.DisplayManager;
+import curiosity.World;
 import org.joml.*;
 import org.lwjgl.glfw.GLFW;
 import textures.Texture;
@@ -9,6 +10,9 @@ import utils.Math;
 
 import java.util.Random;
 
+import static curiosity.World.HEIGHT;
+import static curiosity.World.PIXELS;
+import static curiosity.World.WIDTH;
 import static org.lwjgl.glfw.GLFW.*;
 
 /**
@@ -21,6 +25,8 @@ public class Player extends Entity{
     private float currentMoveX = 0;
     private float currentMoveY = 0;
     private TileMap tileMap;
+    
+    private int[] stats = new int[4];
     
     private enum direction  {UP,DOWN,LEFT,RIGHT,NONE};
     private direction currentMovement;
@@ -59,7 +65,7 @@ public class Player extends Entity{
                     currentMoveY += -speedY;
                     currentMovement = direction.DOWN;
                     animMove();
-                    System.out.println("Down: " + getCurrentCell().x + ":" + (getCurrentCell().y+1));
+                    //System.out.println("Down: " + getCurrentCell().x + ":" + (getCurrentCell().y+1));
                 }
             }
             else if (glfwGetKey(DisplayManager.window, GLFW_KEY_W) == GLFW_TRUE) {
@@ -94,7 +100,7 @@ public class Player extends Entity{
     }
     
     private boolean isValidMove(int x, int y){
-        return !(x < 0 || x > 40 || y < 0 || y > 40);
+        return !(x < 0 || x > WIDTH-1 || y < 0 || y > HEIGHT-1);
     }
     
     private void animMove(){
@@ -107,15 +113,22 @@ public class Player extends Entity{
             currentMoveX = 0;
             frameDown = 0;
             downSpeed = 20;
-            if (currentMovement == direction.DOWN)
-                tileMap.changeColour(getCurrentCell().x,getCurrentCell().y);
+            if (currentMovement == direction.DOWN) {
+                stats[tileMap.getTileType(getCurrentCell().x, getCurrentCell().y)]++;
+                tileMap.consumeTile(getCurrentCell().x, getCurrentCell().y);
+                String str = "";
+                for (int i = 0; i < stats.length; i++){
+                    str+= "("+i+")" + ": " + stats[i] + " ";
+                }
+                System.out.print("\r" + str);
+            }
             currentMovement = direction.NONE;
         }
     }
     
     private Vector2i getCurrentCell(){
-        float posX = (getPosition().x+(128/(float)DisplayManager.WIDTH)/2)/(128/(float)DisplayManager.WIDTH);
-        float posY = 1-(getPosition().y+(128/(float)DisplayManager.HEIGHT)/2)/(128/(float)DisplayManager.HEIGHT);
+        float posX = (getPosition().x+(PIXELS/(float)DisplayManager.WIDTH)/2)/(PIXELS/(float)DisplayManager.WIDTH);
+        float posY = 1-(getPosition().y+(PIXELS/(float)DisplayManager.HEIGHT)/2)/(PIXELS/(float)DisplayManager.HEIGHT);
         //System.out.println("Current Tile: [" + (int)org.joml.Math.floor(posX) + " : " + (int)org.joml.Math.floor(posY) + "]");
         return new Vector2i((int)org.joml.Math.floor(posX),(int)org.joml.Math.floor(posY));
     }

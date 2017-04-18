@@ -58,9 +58,9 @@ public class Loader {
         return new int[]{vaoID};
     }
     
-    public int[] loadEmpty(TileMap tileMap){
+    public int[] loadTileMap(TileMap tileMap){
         int[] data = new int[2];
-         data[0] = createVAO();
+        data[0] = createVAO();
         int vboVertices = storeDataInAttributeList(0,2,tileMap.getVertices());
         data[1] = storeDataInAttributeList(1,3,tileMap.getColour());
         return data;
