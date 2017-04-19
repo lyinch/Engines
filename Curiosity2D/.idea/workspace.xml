@@ -2,19 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e9a68e46-6ddb-4021-b63b-ebf6a2a4ae7b" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/curiosity/World.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Curiosity2D/core/Camera.class" afterPath="$PROJECT_DIR$/out/production/Curiosity2D/core/Camera.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Curiosity2D/entities/Player$direction.class" afterPath="$PROJECT_DIR$/out/production/Curiosity2D/entities/Player$direction.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Curiosity2D/curiosity/Main.class" afterPath="$PROJECT_DIR$/out/production/Curiosity2D/curiosity/Main.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Curiosity2D/curiosity/World.class" afterPath="$PROJECT_DIR$/out/production/Curiosity2D/curiosity/World.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Curiosity2D/entities/Player.class" afterPath="$PROJECT_DIR$/out/production/Curiosity2D/entities/Player.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Curiosity2D/tileMap/TileMap.class" afterPath="$PROJECT_DIR$/out/production/Curiosity2D/tileMap/TileMap.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../UniverseEngine/out/production/UniverseEngine/renderer/Loader.class" afterPath="$PROJECT_DIR$/../UniverseEngine/out/production/UniverseEngine/renderer/Loader.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/core/Camera.java" afterPath="$PROJECT_DIR$/src/core/Camera.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/curiosity/Main.java" afterPath="$PROJECT_DIR$/src/curiosity/Main.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/entities/Player.java" afterPath="$PROJECT_DIR$/src/entities/Player.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/renderer/Loader.java" afterPath="$PROJECT_DIR$/src/renderer/Loader.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/curiosity/World.java" afterPath="$PROJECT_DIR$/src/curiosity/World.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/tileMap/TileMap.java" afterPath="$PROJECT_DIR$/src/tileMap/TileMap.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/utils/Math.java" afterPath="$PROJECT_DIR$/src/utils/Math.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../UniverseEngine/.idea/workspace.xml" afterPath="$PROJECT_DIR$/../UniverseEngine/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../UniverseEngine/src/renderer/Loader.java" afterPath="$PROJECT_DIR$/../UniverseEngine/src/renderer/Loader.java" />
     </list>
@@ -35,7 +32,7 @@
       <file leaf-file-name="Main.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/curiosity/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="167">
+            <state relative-caret-position="92">
               <caret line="58" column="44" lean-forward="false" selection-start-line="58" selection-start-column="44" selection-end-line="58" selection-end-column="44" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -47,18 +44,18 @@
       <file leaf-file-name="TileMap.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/tileMap/TileMap.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="301">
-              <caret line="71" column="10" lean-forward="true" selection-start-line="71" selection-start-column="10" selection-end-line="71" selection-end-column="10" />
+            <state relative-caret-position="256">
+              <caret line="50" column="36" lean-forward="false" selection-start-line="50" selection-start-column="36" selection-end-line="50" selection-end-column="36" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#3395#3396#0" expanded="true" />
-                <element signature="e#3442#3443#0" expanded="true" />
-                <element signature="e#3942#3943#0" expanded="true" />
-                <element signature="e#3971#3972#0" expanded="true" />
-                <element signature="e#4018#4019#0" expanded="true" />
-                <element signature="e#4052#4053#0" expanded="true" />
-                <element signature="e#4081#4082#0" expanded="true" />
-                <element signature="e#4110#4111#0" expanded="true" />
+                <element signature="e#3438#3439#0" expanded="true" />
+                <element signature="e#3485#3486#0" expanded="true" />
+                <element signature="e#3985#3986#0" expanded="true" />
+                <element signature="e#4014#4015#0" expanded="true" />
+                <element signature="e#4061#4062#0" expanded="true" />
+                <element signature="e#4095#4096#0" expanded="true" />
+                <element signature="e#4124#4125#0" expanded="true" />
+                <element signature="e#4153#4154#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -67,8 +64,8 @@
       <file leaf-file-name="World.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/curiosity/World.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="75">
-              <caret line="5" column="13" lean-forward="false" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
+            <state relative-caret-position="180">
+              <caret line="12" column="0" lean-forward="true" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -77,8 +74,8 @@
       <file leaf-file-name="Camera.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/core/Camera.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="316">
-              <caret line="24" column="18" lean-forward="false" selection-start-line="24" selection-start-column="18" selection-end-line="24" selection-end-column="18" />
+            <state relative-caret-position="331">
+              <caret line="31" column="18" lean-forward="false" selection-start-line="31" selection-start-column="18" selection-end-line="31" selection-end-column="18" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -199,12 +196,12 @@
         <option value="$PROJECT_DIR$/src/renderer/PointRenderer.java" />
         <option value="$PROJECT_DIR$/src/entities/Entity.java" />
         <option value="$PROJECT_DIR$/src/utils/Math.java" />
-        <option value="$PROJECT_DIR$/src/curiosity/World.java" />
-        <option value="$PROJECT_DIR$/src/tileMap/TileMap.java" />
         <option value="$PROJECT_DIR$/src/curiosity/Main.java" />
         <option value="$PROJECT_DIR$/src/renderer/Loader.java" />
-        <option value="$PROJECT_DIR$/src/core/Camera.java" />
         <option value="$PROJECT_DIR$/src/entities/Player.java" />
+        <option value="$PROJECT_DIR$/src/curiosity/World.java" />
+        <option value="$PROJECT_DIR$/src/tileMap/TileMap.java" />
+        <option value="$PROJECT_DIR$/src/core/Camera.java" />
       </list>
     </option>
   </component>
@@ -870,12 +867,12 @@
       <workItem from="1491900055964" duration="454000" />
       <workItem from="1491942645123" duration="534000" />
       <workItem from="1492092049837" duration="169000" />
-      <workItem from="1492117243384" duration="66346000" />
+      <workItem from="1492117243384" duration="68194000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="129776000" />
+    <option name="totallyTimeSpent" value="131624000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1280" height="773" extended-state="6" />
@@ -1326,16 +1323,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/renderer/TileRenderer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="271">
-          <caret line="33" column="25" lean-forward="true" selection-start-line="33" selection-start-column="25" selection-end-line="33" selection-end-column="25" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/utils/Math.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="208">
@@ -1354,42 +1341,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/curiosity/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="167">
-          <caret line="58" column="44" lean-forward="false" selection-start-line="58" selection-start-column="44" selection-end-line="58" selection-end-column="44" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/tileMap/TileMap.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="301">
-          <caret line="71" column="10" lean-forward="true" selection-start-line="71" selection-start-column="10" selection-end-line="71" selection-end-column="10" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#3395#3396#0" expanded="true" />
-            <element signature="e#3442#3443#0" expanded="true" />
-            <element signature="e#3942#3943#0" expanded="true" />
-            <element signature="e#3971#3972#0" expanded="true" />
-            <element signature="e#4018#4019#0" expanded="true" />
-            <element signature="e#4052#4053#0" expanded="true" />
-            <element signature="e#4081#4082#0" expanded="true" />
-            <element signature="e#4110#4111#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/curiosity/World.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="5" column="13" lean-forward="false" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/entities/Player.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-148">
@@ -1402,10 +1353,56 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/renderer/TileRenderer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="271">
+          <caret line="33" column="25" lean-forward="true" selection-start-line="33" selection-start-column="25" selection-end-line="33" selection-end-column="25" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/curiosity/World.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="12" column="0" lean-forward="true" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/tileMap/TileMap.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="256">
+          <caret line="50" column="36" lean-forward="false" selection-start-line="50" selection-start-column="36" selection-end-line="50" selection-end-column="36" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#3438#3439#0" expanded="true" />
+            <element signature="e#3485#3486#0" expanded="true" />
+            <element signature="e#3985#3986#0" expanded="true" />
+            <element signature="e#4014#4015#0" expanded="true" />
+            <element signature="e#4061#4062#0" expanded="true" />
+            <element signature="e#4095#4096#0" expanded="true" />
+            <element signature="e#4124#4125#0" expanded="true" />
+            <element signature="e#4153#4154#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/curiosity/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="92">
+          <caret line="58" column="44" lean-forward="false" selection-start-line="58" selection-start-column="44" selection-end-line="58" selection-end-column="44" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/core/Camera.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="316">
-          <caret line="24" column="18" lean-forward="false" selection-start-line="24" selection-start-column="18" selection-end-line="24" selection-end-column="18" />
+        <state relative-caret-position="331">
+          <caret line="31" column="18" lean-forward="false" selection-start-line="31" selection-start-column="18" selection-end-line="31" selection-end-column="18" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

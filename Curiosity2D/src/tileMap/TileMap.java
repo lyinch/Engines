@@ -47,7 +47,7 @@ public class TileMap {
     private void fillCells(){
         for (int i = 0; i < WIDTH; i ++){
             for(int j = 0; j < HEIGHT; j++){
-                if (j == 0)
+                if (j == 0 || i == WIDTH-1 || j == HEIGHT-1 || i == 0)
                     tiles[i][j] = 3;
                 else
                     tiles[i][j] = rand.nextInt(4);
