@@ -28,8 +28,12 @@ public abstract class Entity {
     public Vector2f getPosition() {
         return position;
     }
-    
-    
+
+    public void setPosition(float x, float y) {
+        this.position.x = x;
+        this.position.y = y;
+    }
+
     public Vector2f getRotation() {
         return rotation;
     }
