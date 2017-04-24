@@ -5,6 +5,8 @@ import org.joml.*;
 import textures.Texture;
 import tileMap.TileMap;
 
+import java.lang.Math;
+
 import static curiosity.World.HEIGHT;
 import static curiosity.World.PIXELS;
 import static curiosity.World.WIDTH;
@@ -55,94 +57,132 @@ public class Player extends Entity{
     
     public void move(){
         //System.out.println(getCurrentTile());
-        float speedXBase = (128/(float)DisplayManager.WIDTH);
-        float speedYBase = (128/(float)DisplayManager.HEIGHT);
+        float speedXBase = (PIXELS/(float)DisplayManager.WIDTH);
+        float speedYBase = (PIXELS/(float)DisplayManager.HEIGHT);
+
+        float posX = (getPosition().x) / (PIXELS / (float) DisplayManager.WIDTH);
+        float posY = (getPosition().y-(1 / (float) DisplayManager.HEIGHT)) / (PIXELS / (float) DisplayManager.HEIGHT);
         
-        
-        if (this.currentState == state.RESTING){
-            pullDown();
+        float pixelMovementX = (4 / (float) DisplayManager.WIDTH);
+
+
+        if (this.currentState == state.RESTING) {
             
-            if (glfwGetKey(DisplayManager.window, GLFW_KEY_S) == GLFW_TRUE) {
-                if (isValidMove(getCurrentTile().x, getCurrentTile().y+1)) {
-                    this.currentState = state.MOVING;
-                    setAnimDuration(getCurrentTile().x, getCurrentTile().y+1);
-                    speedX += 0;
-                    speedY += -speedYBase;
-                    doMove();
-                }
-            }else if (glfwGetKey(DisplayManager.window, GLFW_KEY_D) == GLFW_TRUE) {
-                if (isValidMove(getCurrentTile().x+1, getCurrentTile().y)) {
-                    this.currentState = state.MOVING;
-                    setAnimDuration(getCurrentTile().x+1, getCurrentTile().y);
-                    speedX += speedXBase;
-                    speedY += 0;
-                    doMove();
-                }
-            }
-            else if (glfwGetKey(DisplayManager.window, GLFW_KEY_W) == GLFW_TRUE) {
-                if (isValidMove(getCurrentTile().x, getCurrentTile().y-1)) {
-                    if (tileMap.getTileType(getCurrentTile().x, getCurrentTile().y-1) == 3) {
+            if (glfwGetKey(DisplayManager.window, GLFW_KEY_D) == GLFW_TRUE) {
+                int X = (int) (Math.ceil(posX + pixelMovementX));
+                int Y = (int) (Math.floor(Math.abs(posY)));
+                if (isValidMove(X,Y)) {
+                    if (tileMap.getTileType(X,Y) == 3) {
+                        float dist = (float) Math.abs((Math.floor((int) (Math.ceil((getPosition().x) / (PIXELS / (float) DisplayManager.WIDTH) + pixelMovementX)))*((PIXELS/(float)DisplayManager.WIDTH)))-this.getPosition().x);
+                        //System.out.println(dist);
+                        float epsilon = 0.01f;
+                        if (Math.abs(dist-0.05) < epsilon) {
+                            System.out.println("bouge");
+                            this.addPosition(pixelMovementX, 0);
+      
+                        }
+                        else
+                            this.addPosition(pixelMovementX, 0);
+                    } else {
                         this.currentState = state.MOVING;
-                        setAnimDuration(getCurrentTile().x , getCurrentTile().y-1);
-                        speedX += 0;
-                        speedY += speedYBase;
+                        setAnimDuration(X, Y);
+                        speedX += speedXBase;
+                        speedY += 0;
                         doMove();
                     }
                 }
+            }else if (glfwGetKey(DisplayManager.window, GLFW_KEY_A) == GLFW_TRUE) {
+                int X = (int) (Math.floor(posX - pixelMovementX));
+                int Y = (int) (Math.floor(Math.abs(posY)));
+                if (isValidMove(X,Y)) {
+                    if (tileMap.getTileType(X,Y) == 3) {
+                        float dist = (float) Math.abs((Math.floor(X)*((PIXELS/(float)DisplayManager.WIDTH)))-this.getPosition().x);
+                        //System.out.println(dist);
+                        this.addPosition(-pixelMovementX, 0);
+                    } else {
+                        this.currentState = state.MOVING;
+                        setAnimDuration(X, Y);
+                        speedX += -speedXBase;
+                        speedY += 0;
+                        doMove();
+                    }
+                }
+            }else if (glfwGetKey(DisplayManager.window, GLFW_KEY_S) == GLFW_TRUE) {
+                int Y = (int) (Math.ceil(Math.abs(posY)));
+                float X = (getPosition().x+((128)/(float)DisplayManager.WIDTH)/2)/(PIXELS/(float)DisplayManager.WIDTH);
+                if (isValidMove((int)Math.floor(X), Y)) {
+                    this.currentState = state.MOVING;
+                    setAnimDuration((int)Math.floor(X), Y);
+                    
+                    speedX += (Math.floor(X)*((PIXELS/(float)DisplayManager.WIDTH)))-this.getPosition().x;
+                    speedY += -speedYBase;
+                    doMove();
+                }
             }
+//            pullDown();
+//            
+//            if (glfwGetKey(DisplayManager.window, GLFW_KEY_S) == GLFW_TRUE) {
+//                if (isValidMove(getCurrentTile().x, getCurrentTile().y+1)) {
+//                    this.currentState = state.MOVING;
+//                    setAnimDuration(getCurrentTile().x, getCurrentTile().y+1);
+//                    speedX += 0;
+//                    speedY += -speedYBase;
+//                    doMove();
+//                }
+//            }else if (glfwGetKey(DisplayManager.window, GLFW_KEY_D) == GLFW_TRUE) {
+//                if (isValidMove(getCurrentTile().x+1, getCurrentTile().y)) {
+//                    this.currentState = state.MOVING;
+//                    setAnimDuration(getCurrentTile().x+1, getCurrentTile().y);
+//                    speedX += speedXBase;
+//                    speedY += 0;
+//                    this.currentState = state.RESTING;
+//                    doMove();
+//                }
+//            }else if (glfwGetKey(DisplayManager.window, GLFW_KEY_A) == GLFW_TRUE) {
+//                if (isValidMove(getCurrentTile().x-1, getCurrentTile().y)) {
+//                    this.currentState = state.MOVING;
+//                    setAnimDuration(getCurrentTile().x-1, getCurrentTile().y);
+//                    speedX += -speedXBase;
+//                    speedY += 0;
+//                    doMove();
+//                }
+//            }else if (glfwGetKey(DisplayManager.window, GLFW_KEY_W) == GLFW_TRUE) {
+//                if (isValidMove(getCurrentTile().x, getCurrentTile().y-1)) {
+//                    if (tileMap.getTileType(getCurrentTile().x, getCurrentTile().y-1) == 3) {
+//                        this.currentState = state.MOVING;
+//                        setAnimDuration(getCurrentTile().x , getCurrentTile().y-1);
+//                        speedX += 0;
+//                        speedY += speedYBase;
+//                        doMove();
+//                    }
+//                }
+//            }
+            
         }else if(currentState == state.MOVING){
             doMove();
-        }else{
-            pullDown();
+        }else {
+//            pullDown();
+//            //noinspection Duplicates
+//            if (glfwGetKey(DisplayManager.window, GLFW_KEY_W) == GLFW_TRUE) {
+//                if (isValidMove(getCurrentTile().x, getCurrentTile().y - 1)) {
+//                    if (tileMap.getTileType(getCurrentTile().x, getCurrentTile().y - 1) == 3) {
+//                        this.currentState = state.MOVING;
+//                        setAnimDuration(getCurrentTile().x, getCurrentTile().y - 1);
+//                        speedX += 0;
+//                        speedY += speedYBase;
+//                        doMove();
+//                    }
+//                }
+//            }
         }
         
         correctPlayerPosition();
-        System.out.println(this.getPosition());
-        
-        
-//        if (!moving) {
-//            //grav();
-//            if (glfwGetKey(DisplayManager.window, GLFW_KEY_D) == GLFW_TRUE) {
-//                if (isValidMove(getCurrentTile().x+1,getCurrentTile().y)) {
-//                    currentMoveX += speedX;
-//                    currentMoveY += 0;
-//                    animMove();
-//                }
-//                //this.addPosition(speedX, 0);
-//            }
-//            else if (glfwGetKey(DisplayManager.window, GLFW_KEY_A) == GLFW_TRUE) {
-//                if (isValidMove(getCurrentTile().x-1,getCurrentTile().y)) {
-//                    currentMoveX += -speedX;
-//                    currentMoveY += 0;
-//                    animMove();
-//                }
-//            }
-//            else if (glfwGetKey(DisplayManager.window, GLFW_KEY_S) == GLFW_TRUE) {
-//                if (isValidMove(getCurrentTile().x,getCurrentTile().y+1)) {
-//                    setAnimDuration(getCurrentTile().x,getCurrentTile().y+1);
-//                    currentMoveX += 0;
-//                    currentMoveY += -speedY;
-//                    currentMovement = direction.DOWN;
-//                    animMove();
-//                    //System.out.println("Down: " + getCurrentTile().x + ":" + (getCurrentTile().y+1));
-//                }
-//            }
-//            else if (glfwGetKey(DisplayManager.window, GLFW_KEY_W) == GLFW_TRUE) {
-//                if (isValidMove(getCurrentTile().x,getCurrentTile().y-1)) {
-//                    currentMoveX += 0;
-//                    currentMoveY += speedY;
-//                    animMove();
-//                    //tileMap.changeColour(getCurrentTile().x,getCurrentTile().y-1);
-//                }
-//            }
-//        }else
-//            animMove();
     }
     
     private void correctPlayerPosition(){
         if (this.getPosition().x < 0)
             this.setPosition(0.0f,this.getPosition().y);
-        
+
         float yMax = -(HEIGHT*(PIXELS/(float)DisplayManager.getHEIGHT()))+(PIXELS/(float)DisplayManager.HEIGHT);
         //System.out.println(yMax);
         if (this.getPosition().y < yMax)
@@ -159,12 +199,18 @@ public class Player extends Entity{
                 doMove();
                 this.currentState = state.FALLING; 
                 fallTime++;
+                //System.out.println("pulling");
+
             }else {
                 this.currentState = state.RESTING;
+                if (fallTime != 0)
+                    System.out.println("Falltime:" + fallTime/60.0f);
                 this.fallTime = 0;
             }
         }else{
             this.currentState = state.RESTING;
+            if (fallTime != 0)
+                System.out.println("Falltime:" + fallTime/60.0f);
             this.fallTime = 0;
         }
     }
@@ -173,7 +219,7 @@ public class Player extends Entity{
         frameCount++;
         this.addPosition(speedX/frameCap,speedY/frameCap);
         if (frameCap == frameCount){
-            this.frameCap = 1;
+            this.frameCap = 1; //set framecap to 1 for gravityd
             this.currentState = state.RESTING;
             this.frameCount = 0;
             speedX = 0;
@@ -181,27 +227,19 @@ public class Player extends Entity{
             tileMap.consumeTile(getCurrentTile().x, getCurrentTile().y);
         }
     }
-    
-    private void grav(){
-        if (isValidMove(getCurrentTile().x, getCurrentTile().y+1)){
-            if (tileMap.getTileType(getCurrentTile().x, getCurrentTile().y+1) == 3){
-                this.addPosition(0,-0.01f);
-                
-            }
-        }
-    }
-    
+
     private void setAnimDuration(int x, int y){
         int type = tileMap.getTileType(x,y);
         switch (type){
             case 0: frameCap = 80; break;
             case 1: frameCap = 55; break;
             case 2: frameCap = 40; break;
-            case 3: frameCap = 10; break;
+            case 3: frameCap = 20; break;
         }
     }
     
-    private boolean isValidMove(int x, int y){
+    private boolean isValidMove(float x, float y){
+        //System.out.println(x);
         return !(x < 0 || x > WIDTH-1 || y < 0 || y > HEIGHT-1);
     }
     
@@ -229,10 +267,12 @@ public class Player extends Entity{
     }
     
     private Vector2i getCurrentTile(){
-        float posX = (getPosition().x+(PIXELS/(float)DisplayManager.WIDTH)/2)/(PIXELS/(float)DisplayManager.WIDTH);
-        float posY = 1-(getPosition().y+((PIXELS-1)/(float)DisplayManager.HEIGHT))/(PIXELS/(float)DisplayManager.HEIGHT);
+        float posX = (getPosition().x+((128)/(float)DisplayManager.WIDTH)/2)/(PIXELS/(float)DisplayManager.WIDTH);
+        //System.out.println(posX + ":" + ((int)(Math.ceil(posX))-1) + ":"+ getPosition().x);
+        float posY = 1-(getPosition().y+((1)/(float)DisplayManager.HEIGHT))/(PIXELS/(float)DisplayManager.HEIGHT);
         //System.out.println("Current Tile: [" + (int)org.joml.Math.floor(posX) + " : " + (int)org.joml.Math.floor(posY) + "]");
-        return new Vector2i((int)org.joml.Math.floor(posX),(int)org.joml.Math.floor(posY));
+        
+        return new Vector2i((int)(Math.floor(posX)),(int)org.joml.Math.floor(posY));
     }
     
     
