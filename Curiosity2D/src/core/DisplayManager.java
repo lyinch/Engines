@@ -3,6 +3,8 @@ package core;
 import IO.Input;
 import org.lwjgl.opengl.GL;
 
+import java.util.ArrayList;
+
 import static org.lwjgl.glfw.GLFW.*;
 import static org.lwjgl.opengl.GL11.*;
 import static org.lwjgl.system.MemoryUtil.NULL;
@@ -14,7 +16,7 @@ public class DisplayManager {
     public static long window;
     public static final int WIDTH = 1280;
     public static final int HEIGHT = 720;
-
+    private static ArrayList<Integer> keyList = new ArrayList<>();
     /**
      * The window is initialized
      */
@@ -30,14 +32,10 @@ public class DisplayManager {
             throw new RuntimeException("Unable to create a new Window!");
         
 
-        //Hardcode the function of the ESCAPE Key with a callback
+        
         glfwSetKeyCallback(window, (window, key, scancode, action, mods) -> {
             if ( key == GLFW_KEY_ESCAPE && action == GLFW_RELEASE )
                 glfwSetWindowShouldClose(window, true);
-            if (key == GLFW_KEY_L && action == GLFW_RELEASE)
-                Input.keyReleased(GLFW_KEY_L);
-            if (key == GLFW_KEY_L && action == GLFW_PRESS)
-                Input.keyPressed(GLFW_KEY_L);
         });
         
 
@@ -80,5 +78,38 @@ public class DisplayManager {
 
     public static int getHEIGHT() {
         return HEIGHT;
+    }
+    
+
+    /**
+     * Registers a single key
+     * @param keycode
+     */
+    public static void registerKey(int keycode){
+        keyList.add(keycode);
+    }
+
+    /**
+     * Registers a list of keys to handle the input
+     * @param keycodes
+     */
+    public static void registerKey(ArrayList keycodes){
+        keyList.addAll(keycodes);
+    }
+
+    /**
+     * Creates a callback for every registered key
+     */
+    public static void startKeyCallback(){
+        glfwSetKeyCallback(window, (window, key, scancode, action, mods) -> {
+            if ( key == GLFW_KEY_ESCAPE && action == GLFW_RELEASE )
+                glfwSetWindowShouldClose(window, true);
+            for (Integer k:keyList){
+                if (key == k && action == GLFW_RELEASE)
+                    Input.keyReleased(k);
+                if (key == k && action == GLFW_PRESS)
+                    Input.keyPressed(k);
+            }
+        });
     }
 }

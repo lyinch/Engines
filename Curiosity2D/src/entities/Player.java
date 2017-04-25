@@ -1,5 +1,6 @@
 package entities;
 
+import IO.Input;
 import core.DisplayManager;
 import org.joml.*;
 import textures.Texture;
@@ -41,6 +42,7 @@ public class Player extends Entity{
     private float speedX;
     private float speedY;
     private float fallTime;
+    private float moveTime;
     
     public Player(Vector2f position, Vector2f rotation, float scale, Texture texture, TileMap tileMap) {
         super(position, rotation, scale, texture);
@@ -53,6 +55,7 @@ public class Player extends Entity{
         speedX = 0;
         speedY = 0;
         fallTime = 0;
+        moveTime = 0;
     }
     
     public void move(){
@@ -68,30 +71,25 @@ public class Player extends Entity{
 
         if (this.currentState == state.RESTING) {
             
-            if (glfwGetKey(DisplayManager.window, GLFW_KEY_D) == GLFW_TRUE) {
+            if (Input.isKeyPressed(GLFW_KEY_D) || Input.isKeyDown(GLFW_KEY_D)) {
                 int X = (int) (Math.ceil(posX + pixelMovementX));
                 int Y = (int) (Math.floor(Math.abs(posY)));
                 if (isValidMove(X,Y)) {
                     if (tileMap.getTileType(X,Y) == 3) {
-                        float dist = (float) Math.abs((Math.floor((int) (Math.ceil((getPosition().x) / (PIXELS / (float) DisplayManager.WIDTH) + pixelMovementX)))*((PIXELS/(float)DisplayManager.WIDTH)))-this.getPosition().x);
-                        //System.out.println(dist);
-                        float epsilon = 0.01f;
-                        if (Math.abs(dist-0.05) < epsilon) {
-                            //System.out.println("bouge");
-                            this.addPosition(pixelMovementX, 0);
-      
-                        }
-                        else
-                            this.addPosition(pixelMovementX, 0);
+                        float speed = pixelMovementX + 0.001f*moveTime;
+                        speed = utils.Math.clamp(speed,0.0f,pixelMovementX+0.009f);
+                        this.addPosition(speed, 0);
+                        moveTime++;
                     } else {
                         this.currentState = state.MOVING;
                         setAnimDuration(X, Y);
                         speedX += speedXBase;
                         speedY += 0;
                         doMove();
+                        moveTime = 0;
                     }
                 }
-            }else if (glfwGetKey(DisplayManager.window, GLFW_KEY_A) == GLFW_TRUE) {
+            }else if (Input.isKeyPressed(GLFW_KEY_A) || Input.isKeyDown(GLFW_KEY_A)) {
                 int X = (int) (Math.floor(posX - pixelMovementX));
                 int Y = (int) (Math.floor(Math.abs(posY)));
                 if (isValidMove(X,Y)) {
@@ -99,7 +97,9 @@ public class Player extends Entity{
                         float dist = (float) Math.abs((Math.floor(X)*((PIXELS/(float)DisplayManager.WIDTH)))-this.getPosition().x);
                         //System.out.println(dist);
                         this.addPosition(-pixelMovementX, 0);
+                        moveTime++;
                     } else {
+                        moveTime = 0;
                         this.currentState = state.MOVING;
                         setAnimDuration(X, Y);
                         speedX += -speedXBase;
@@ -107,7 +107,7 @@ public class Player extends Entity{
                         doMove();
                     }
                 }
-            }else if (glfwGetKey(DisplayManager.window, GLFW_KEY_S) == GLFW_TRUE) {
+            }else if (Input.isKeyPressed(GLFW_KEY_S) || Input.isKeyDown(GLFW_KEY_S)) {
                 int Y = (int) (Math.ceil(Math.abs(posY)));
                 float X = (getPosition().x+((128)/(float)DisplayManager.WIDTH)/2)/(PIXELS/(float)DisplayManager.WIDTH);
                 if (isValidMove((int)Math.floor(X), Y)) {
@@ -118,6 +118,39 @@ public class Player extends Entity{
                     speedY += -speedYBase;
                     doMove();
                 }
+            }else if(Input.isKeyReleased(GLFW_KEY_D)){
+                int X = (int) (Math.ceil(posX + pixelMovementX));
+                int Y = (int) (Math.floor(Math.abs(posY)));
+                
+                if (isValidMove(X,Y)) {
+                    if (tileMap.getTileType(X,Y) == 3) {
+                        float dist = (float) Math.abs((Math.floor((int) (Math.ceil((getPosition().x) / (PIXELS / (float) DisplayManager.WIDTH) + pixelMovementX))) * ((PIXELS / (float) DisplayManager.WIDTH))) - this.getPosition().x);
+                        float epsilon = 0.01f;
+                        dist += pixelMovementX * 4 + moveTime *0.0001f;
+                        
+                        if (Math.abs(dist - 0.05) < epsilon) {
+                            System.out.println("Movement corrected Center");
+                            this.currentState = state.MOVING;
+                            frameCap = 5;
+                            speedX += pixelMovementX * 6 + moveTime * 0.0001f;
+                            speedY += 0;
+                            doMove();
+                            //this.addPosition(pixelMovementX*2, 0);
+                        }else{
+                            System.out.println("Movement corrected");
+                            this.currentState = state.MOVING;
+                            frameCap = 5;
+                            speedX += pixelMovementX * 4 + moveTime * 0.0001f;
+                            speedY += 0;
+                            doMove();
+                        }
+                    }
+                }
+                
+  
+                moveTime = 0;
+            }else if(Input.isKeyReleased(GLFW_KEY_A)){
+                moveTime = 0;
             }
 //            pullDown();
 //            
@@ -183,6 +216,12 @@ public class Player extends Entity{
         if (this.getPosition().x < 0)
             this.setPosition(0.0f,this.getPosition().y);
 
+        float xMax = (WIDTH*(PIXELS/(float)DisplayManager.getWIDTH())) - (PIXELS/(float)DisplayManager.WIDTH);
+        //System.out.println(this.getPosition().x + " : " + xMax);
+        if (this.getPosition().x > xMax)
+            this.setPosition(xMax,this.getPosition().y);
+        
+        
         float yMax = -(HEIGHT*(PIXELS/(float)DisplayManager.getHEIGHT()))+(PIXELS/(float)DisplayManager.HEIGHT);
         //System.out.println(yMax);
         if (this.getPosition().y < yMax)
@@ -219,7 +258,7 @@ public class Player extends Entity{
         frameCount++;
         this.addPosition(speedX/frameCap,speedY/frameCap);
         if (frameCap == frameCount){
-            this.frameCap = 1; //set framecap to 1 for gravityd
+            this.frameCap = 1; //set framecap to 1 for gravity
             this.currentState = state.RESTING;
             this.frameCount = 0;
             speedX = 0;

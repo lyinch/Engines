@@ -10,12 +10,20 @@ public class Input {
     
     private static boolean[] keys = new boolean[GLFW_KEY_LAST];
     private static boolean[] keysLast = new boolean[GLFW_KEY_LAST];
-    
-    
+
+
+    /**
+     * Register a pressed key
+     * @param keyCode the pressed key
+     */
     public static void keyPressed(int keyCode){
         keys[keyCode] = true;
     }
 
+    /**
+     * Register a released key
+     * @param keyCode the released key
+     */
     public static void keyReleased(int keyCode){
         keys[keyCode] = false;
     }

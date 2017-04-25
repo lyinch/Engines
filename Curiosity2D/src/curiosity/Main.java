@@ -15,6 +15,9 @@ import shaders.WorldShader;
 import tileMap.TileMap;
 import renderer.TileRenderer;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
 import static curiosity.World.HEIGHT;
 import static curiosity.World.WIDTH;
 import static org.lwjgl.glfw.GLFW.*;
@@ -32,6 +35,9 @@ public class Main {
     
     public static void main(String[] args) {
         DisplayManager.createDisplay();
+        
+        DisplayManager.registerKey(new ArrayList(Arrays.asList(GLFW_KEY_A,GLFW_KEY_S,GLFW_KEY_D,GLFW_KEY_W)));
+        DisplayManager.startKeyCallback();
         //glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 
         /** ================================================= **/
@@ -86,18 +92,19 @@ public class Main {
             player.move();
             camera.move(player);
             frames++;
-            
+            Input.update();
+
 //            if (glfwGetKey(DisplayManager.window,GLFW_KEY_P) == GLFW_PRESS)
 //                input.keyPressed(GLFW_KEY_P);
 //            if (glfwGetKey(DisplayManager.window,GLFW_KEY_P) == GLFW_RELEASE)
 //                System.out.println("RELEASE");
-            if (Input.isKeyPressed(GLFW_KEY_L))
-                System.out.println("pressed");
-            if (Input.isKeyDown(GLFW_KEY_L))
-                System.out.println("down");
-            if (Input.isKeyReleased(GLFW_KEY_L))
-                System.out.println("release");
-            Input.update();
+//            if (Input.isKeyPressed(GLFW_KEY_A))
+//                System.out.println("pressed");
+//            if (Input.isKeyDown(GLFW_KEY_A))
+//                System.out.println("down");
+//            if (Input.isKeyReleased(GLFW_KEY_A))
+//                System.out.println("release");
+            
 
             if (current-last>=1){
                 //System.out.println("Frames: " + frames);
