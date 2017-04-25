@@ -77,7 +77,7 @@ public class Player extends Entity{
                         //System.out.println(dist);
                         float epsilon = 0.01f;
                         if (Math.abs(dist-0.05) < epsilon) {
-                            System.out.println("bouge");
+                            //System.out.println("bouge");
                             this.addPosition(pixelMovementX, 0);
       
                         }

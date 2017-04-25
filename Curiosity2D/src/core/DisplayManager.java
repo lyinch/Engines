@@ -1,5 +1,6 @@
 package core;
 
+import IO.Input;
 import org.lwjgl.opengl.GL;
 
 import static org.lwjgl.glfw.GLFW.*;
@@ -33,6 +34,10 @@ public class DisplayManager {
         glfwSetKeyCallback(window, (window, key, scancode, action, mods) -> {
             if ( key == GLFW_KEY_ESCAPE && action == GLFW_RELEASE )
                 glfwSetWindowShouldClose(window, true);
+            if (key == GLFW_KEY_L && action == GLFW_RELEASE)
+                Input.keyReleased(GLFW_KEY_L);
+            if (key == GLFW_KEY_L && action == GLFW_PRESS)
+                Input.keyPressed(GLFW_KEY_L);
         });
         
 

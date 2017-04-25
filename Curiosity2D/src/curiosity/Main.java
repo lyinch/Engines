@@ -1,5 +1,6 @@
 package curiosity;
 
+import IO.Input;
 import core.Camera;
 import core.DisplayManager;
 import entities.Entity;
@@ -16,8 +17,7 @@ import renderer.TileRenderer;
 
 import static curiosity.World.HEIGHT;
 import static curiosity.World.WIDTH;
-import static org.lwjgl.glfw.GLFW.glfwSwapBuffers;
-import static org.lwjgl.glfw.GLFW.glfwWindowShouldClose;
+import static org.lwjgl.glfw.GLFW.*;
 import static org.lwjgl.opengl.GL11.GL_FRONT_AND_BACK;
 import static org.lwjgl.opengl.GL11.GL_LINE;
 import static org.lwjgl.opengl.GL11.glPolygonMode;
@@ -86,6 +86,19 @@ public class Main {
             player.move();
             camera.move(player);
             frames++;
+            
+//            if (glfwGetKey(DisplayManager.window,GLFW_KEY_P) == GLFW_PRESS)
+//                input.keyPressed(GLFW_KEY_P);
+//            if (glfwGetKey(DisplayManager.window,GLFW_KEY_P) == GLFW_RELEASE)
+//                System.out.println("RELEASE");
+            if (Input.isKeyPressed(GLFW_KEY_L))
+                System.out.println("pressed");
+            if (Input.isKeyDown(GLFW_KEY_L))
+                System.out.println("down");
+            if (Input.isKeyReleased(GLFW_KEY_L))
+                System.out.println("release");
+            Input.update();
+
             if (current-last>=1){
                 //System.out.println("Frames: " + frames);
                 frames = 0;
