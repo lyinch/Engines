@@ -51,6 +51,18 @@ public class Math {
             return min;
         return var;
     }
+    
+    public static <T extends Comparable<?super T>> T clampDown(T var, T min){
+        if (var.compareTo(min) < 0)
+            return min;
+        return var;
+    }
+
+    public static <T extends Comparable<?super T>> T clampUp(T var, T max){
+        if (var.compareTo(max) > 0)
+            return max;
+        return var;
+    }
 
     /**
      * Creates the transformation matrix of the position, the rotation and the scale
